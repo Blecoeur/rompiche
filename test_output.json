@@ -1,32 +1,44 @@
 {
   "metrics": {
     "date": {
-      "exact_match": 0.9375
+      "exact_match": 0.9
     },
     "time": {
       "exact_match": 1.0
     },
     "title": {
-      "string_distance": 0.9715
+      "string_distance": 0.9483
     }
   },
-  "prompt": "Extract the date, time, and event title from the text with the following **strict** formatting rules. Follow these rules **exactly** to match the ground truth format:\n\n1. **Date**: Convert all dates to YYYY-MM-DD format, regardless of the input format. For **relative dates** (e.g., 'this Tuesday', 'next Friday'), calculate the exact date in **2026** unless the input explicitly specifies a different year. Use the following reference dates for 2026 to resolve relative dates:\n   - January 1, 2026: Thursday\n   - February 1, 2026: Sunday\n   - March 1, 2026: Sunday\n   - April 1, 2026: Wednesday\n   - May 1, 2026: Friday\n   - June 1, 2026: Monday\n   - July 1, 2026: Wednesday\n   - August 1, 2026: Saturday\n   - September 1, 2026: Tuesday\n   - October 1, 2026: Thursday\n   - November 1, 2026: Sunday\n   - December 1, 2026: Tuesday\n   \n   Examples:\n   - 'next Monday' in March 2026 -> '2026-03-02'\n   - 'this Sunday' in July 2026 -> '2026-07-26'\n   - 'next Friday' in February 2026 -> '2026-02-06'\n   \n   For **numeric dates** (e.g., '12/05/2026'), assume the format is **MM/DD/YYYY** (not DD/MM/YYYY). Examples:\n   - '12/05/2026' -> '2026-12-05'\n   - '05/12/2026' -> '2026-05-12'\n   \n   For **written dates**, parse the month and day as given. Examples:\n   - 'February 16th, 2026' -> '2026-02-16'\n   - 'May 3rd, 2026' -> '2026-05-03'.\n\n2. **Time**: Convert all times to 24-hour format as HH:MM:SS. Examples:\n   - '4 PM' -> '16:00:00'\n   - 'half past eleven' -> '11:30:00'\n   - '9 PM sharp' -> '21:00:00'.\n\n3. **Title**: Format the event title **exactly** as shown in the ground truth examples. Follow these rules **precisely**:\n   - Use **Proper Case** (capitalize the first letter of each significant word).\n   - **Do not hyphenate** compound adjectives (e.g., 'Team Building', not 'Team-Building').\n   - **Preserve the exact word order** from the ground truth. Examples:\n     - 'post-mortem for incident #123456' -> 'Incident #123456 Post-Mortem' (not 'Post-Mortem: Incident #123456')\n     - 'workshop on AI' -> 'Workshop on AI' (not 'AI Workshop')\n     - 'client onboarding' -> 'Client Onboarding' (not 'Onboarding')\n   - **Remove extraneous descriptors** like 'for new hires', 'session', or 'meeting' **only if they are not part of the official title**. Examples:\n     - 'onboarding session for new hires' -> 'Onboarding' (if ground truth shows 'Onboarding')\n     - 'year-end review: Reflect on the year' -> 'Year-End Review' (remove subtitle)\n   - **Do not include generic terms** like 'the' or 'event' unless they are part of the official title.\n   - **Do not add colons or subtitles** unless explicitly shown in the ground truth.\n   - **Ground truth examples for reference**:\n     - 'Team-building event' -> 'Team Building'\n     - 'onboarding session for new hires' -> 'Onboarding'\n     - 'tech talk on scalable systems' -> 'Tech Talk on Scalable Systems'\n     - 'kickoff for Q2' -> 'Q2 Kickoff'\n     - 'product roadmap session' -> 'Product Roadmap'\n     - 'client call' -> 'Client Call'.",
+  "prompt": "Extract the date, time, and event title from the text. Follow these EXACT formatting rules with NO deviations:\n\n1. **Date**: \n   - Format: YYYY-MM-DD (e.g., 2026-03-10).\n   - If the year is not explicitly mentioned, assume it is 2026.\n   - For relative dates (e.g., 'next Friday', 'this Sunday'), calculate the exact date based on the **actual future context** of the input text. For example:\n     - 'next Monday' in a text dated August \u2192 2026-08-10 (not 2026-03-02).\n     - 'this Sunday' in a text dated March \u2192 2026-03-01 (if Sunday) or 2026-03-08 (if not).\n   - For ordinal dates (e.g., 'February 16th', 'March 3rd'), parse the exact numeric day (e.g., 'February 16th' \u2192 2026-02-16, 'March 3rd' \u2192 2026-03-03).\n   - For ambiguous numeric dates (e.g., '07/03/2026', '12/05/2026'), interpret as **MM/DD/YYYY** (e.g., 2026-07-03, 2026-12-05).\n\n2. **Time**: \n   - Format: 24-hour HH:MM:SS (e.g., 10:00:00 for 10 AM, 14:30:00 for 2:30 PM).\n   - Default to :00 for seconds if not specified.\n   - For phrases like 'half past eleven', use 11:30:00.\n\n3. **Title**: \n   - Use **title case** with these EXACT rules:\n     - Omit generic words like 'Meeting', 'Session', 'Workshop', 'Call' **unless** they are part of a proper noun (e.g., 'Sprint Review' is correct, 'Security Audit' is correct, 'Project Kickoff' is correct, not 'New Project Kickoff').\n     - Replace 'On' or 'on' with a colon (:) **only** when it separates a topic (e.g., 'Tech Talk: Scalable Systems', not 'Onboarding Session: New Hires').\n     - Do NOT add adjectives like 'New' unless explicitly mentioned in the input (e.g., 'Project Kickoff', not 'New Project Kickoff').\n     - Do NOT reorder words (e.g., 'Workshop on AI Ethics' is correct, not 'AI Ethics Workshop').\n     - For incident-related titles, format as 'Incident #123456 Post-Mortem'.\n     - Do NOT capitalize prepositions (e.g., 'on', 'for').",
   "schema": {
     "type": "object",
     "properties": {
       "date": {
         "type": "string",
-        "description": "The date of the event in YYYY-MM-DD format (e.g., '2026-03-02'). For relative dates (e.g., 'this Tuesday', 'next Friday'), calculate the exact date in 2026 using the reference dates provided. For numeric dates (e.g., '12/05/2026'), assume MM/DD/YYYY format. Convert all input date formats to this standard.",
-        "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        "description": "The date of the event in YYYY-MM-DD format (e.g., 2026-03-10). Always include the year, defaulting to 2026 if not specified. For relative dates (e.g., 'next Friday'), calculate the exact date based on the **actual future context** of the input text. For ordinal dates (e.g., 'February 16th'), parse the exact numeric day. For ambiguous numeric dates (e.g., '07/03/2026'), interpret as **MM/DD/YYYY**.",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+        "examples": [
+          "2026-02-16",
+          "2026-03-03",
+          "2026-07-03",
+          "2026-08-10"
+        ]
       },
       "time": {
         "type": "string",
-        "description": "The time of the event in 24-hour format as HH:MM:SS (e.g., '16:00:00'). Convert all input time formats to this standard.",
+        "description": "The time of the event in 24-hour format as HH:MM:SS (e.g., 10:00:00 for 10 AM, 14:30:00 for 2:30 PM). Default to :00 for seconds if not specified. For phrases like 'half past eleven', use 11:30:00.",
         "pattern": "^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$"
       },
       "title": {
         "type": "string",
-        "description": "The title of the event in the **exact format** shown in ground truth examples. Use Proper Case, **do not hyphenate** compound adjectives (e.g., 'Team Building'), preserve the exact word order (e.g., 'Incident #123456 Post-Mortem'), remove extraneous descriptors (e.g., 'for new hires'), and do not include colons or subtitles unless explicitly shown in the ground truth. Do not include generic terms like 'the' or 'event' unless they are part of the official title."
+        "description": "The title of the event in title case, following these EXACT rules: (1) Omit generic words like 'Meeting', 'Session', 'Workshop', 'Call' unless part of a proper noun, (2) Replace 'On' or 'on' with a colon (:) only when separating a topic (e.g., 'Tech Talk: Scalable Systems'), (3) Do NOT add adjectives like 'New' unless explicitly mentioned, (4) Do NOT reorder words (e.g., 'Workshop on AI Ethics', not 'AI Ethics Workshop'), (5) Format incident-related titles as 'Incident #123456 Post-Mortem', (6) Do NOT capitalize prepositions (e.g., 'on', 'for'). Examples: 'Project Kickoff', 'Incident #123456 Post-Mortem', 'Workshop on AI Ethics', 'Tech Talk: Scalable Systems'.",
+        "examples": [
+          "Project Kickoff",
+          "Incident #123456 Post-Mortem",
+          "Workshop on AI Ethics",
+          "Tech Talk: Scalable Systems"
+        ]
       }
     },
     "required": [
@@ -37,8 +49,8 @@
   },
   "iteration": 3,
   "token_usage": {
-    "processor_tokens": 148876,
-    "brain_tokens": 10193,
-    "total_tokens": 159069
+    "processor_tokens": 154811,
+    "brain_tokens": 10284,
+    "total_tokens": 165095
   }
 }

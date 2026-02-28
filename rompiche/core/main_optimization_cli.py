@@ -10,6 +10,7 @@ import json
 import os
 import sys
 import argparse
+import importlib
 import importlib.util
 import threading
 import time
@@ -358,6 +359,7 @@ def run_full_optimization_loop(
     if use_tui and tracker:
         tracker.set_active_configuration(current_prompt, current_schema)
         tracker.update_status("🎉 Optimization complete!")
+        tracker.freeze_elapsed_time()
     else:
         # Ensure tracker is up to date even when not using TUI
         if tracker:
@@ -401,22 +403,20 @@ def load_config(config_file: str) -> Dict[str, Any]:
 def load_processor_module(
     module_path: str,
 ) -> Callable[[str, str, Dict[str, Any]], Dict[str, Any]]:
-    """Dynamically load a processor module and return its process function"""
+    """Load processor from Python module path or file path."""
     try:
-        # Check if file exists
-        if not os.path.exists(module_path):
-            raise FileNotFoundError(f"Processor module not found: {module_path}")
+        module = None
 
-        # Create module spec from file location
-        spec = importlib.util.spec_from_file_location("custom_processor", module_path)
-        if spec is None:
-            raise ImportError(f"Could not load module from {module_path}")
-
-        # Create module from spec
-        module = importlib.util.module_from_spec(spec)
-
-        # Execute the module to load its contents
-        spec.loader.exec_module(module)
+        # If it's an existing file path, load from file location.
+        if os.path.exists(module_path):
+            spec = importlib.util.spec_from_file_location("custom_processor", module_path)
+            if spec is None or spec.loader is None:
+                raise ImportError(f"Could not load module from {module_path}")
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+        else:
+            # Otherwise treat it as a dotted Python module path.
+            module = importlib.import_module(module_path)
 
         # Get the process function
         if not hasattr(module, "process"):
@@ -500,6 +500,7 @@ def main():
                 )
                 result_queue.put(final_results)
             except Exception as e:
+                tracker.freeze_elapsed_time()
                 result_queue.put({"status": "error", "error": str(e)})
 
         # Start optimization thread

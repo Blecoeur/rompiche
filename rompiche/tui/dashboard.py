@@ -33,6 +33,7 @@ class MetricsTracker:
         self.current_iteration = 0
         self.total_iterations = 0
         self.start_time = datetime.now()
+        self.stop_time = None
         self.tokens_used = 0
         self.current_status = "Initializing..."
         self.current_progress = 0
@@ -117,7 +118,14 @@ class MetricsTracker:
     def stop(self):
         """Stop the optimization"""
         self.stopped = True
+        if self.stop_time is None:
+            self.stop_time = datetime.now()
         self.update_status("STOPPED by user")
+
+    def freeze_elapsed_time(self):
+        """Freeze elapsed time display at the current moment."""
+        if self.stop_time is None:
+            self.stop_time = datetime.now()
 
     def set_active_configuration(self, prompt: str, schema: dict):
         """Store the currently active prompt and schema."""
