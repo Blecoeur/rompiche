@@ -39,6 +39,7 @@ class MetricsTracker:
         self.update_history = []
         self.last_update_at = None
         self.user_hints = []
+        self.evaluator = None  # Store evaluator for mismatch analysis
     
     def update_status(self, status: str):
         """Update the current status message"""
@@ -202,11 +203,18 @@ class LiveDashboard(App):
     .mismatches-section {
         width: 1fr;
         height: 20;
+        layout: vertical;
+        overflow: hidden;
+    }
+
+    #mismatch-scroll {
+        height: 1fr;
         overflow-y: auto;
     }
 
     #mismatch-content {
-        overflow-y: auto;
+        height: auto;
+        padding: 0 1;
     }
 
     .decision-section {
@@ -304,7 +312,10 @@ class LiveDashboard(App):
                 ),
                 Container(
                     Label("💡 RECENT MISMATCHES", classes="section-title"),
-                    Static(id="mismatch-content"),
+                    VerticalScroll(
+                        Static(id="mismatch-content"),
+                        id="mismatch-scroll"
+                    ),
                     classes="mismatches-section"
                 ),
                 classes="side-by-side"
@@ -466,8 +477,38 @@ class LiveDashboard(App):
         for i, example in enumerate(self.tracker.mismatch_examples):
             content.append(f"Mismatch {i+1}:")
             content.append(f"  Input: {example.get('input', '')[:70]}...")
-            content.append(f"  Expected: {json.dumps(example.get('ground_truth', {}))}")
-            content.append(f"  Predicted: {json.dumps(example.get('prediction', {}))}")
+            
+            # Get the evaluator to check which fields don't meet criteria
+            evaluator = self.tracker.evaluator
+            if evaluator and 'ground_truth' in example and 'prediction' in example:
+                evaluation = evaluator.evaluate(example['prediction'], example['ground_truth'])
+                success = evaluator.is_success(evaluation)
+                
+                if not success:
+                    # Show only fields that don't meet criteria
+                    problematic_fields = []
+                    for field_name, field_metrics in evaluation.items():
+                        for metric_name, score in field_metrics.items():
+                            threshold = evaluator.success_thresholds.get(field_name, {}).get(metric_name, 
+                                1.0 if metric_name == 'exact_match' else 0.8)
+                            if score < threshold:
+                                problematic_fields.append(field_name)
+                                break
+                    
+                    if problematic_fields:
+                        content.append("  Problematic fields:")
+                        for field in problematic_fields:
+                            content.append(f"    {field}: {json.dumps(example.get('ground_truth', {}).get(field, 'N/A'))} → {json.dumps(example.get('prediction', {}).get(field, 'N/A'))}")
+                    else:
+                        content.append(f"  Expected: {json.dumps(example.get('ground_truth', {}))}")
+                        content.append(f"  Predicted: {json.dumps(example.get('prediction', {}))}")
+                else:
+                    content.append(f"  Expected: {json.dumps(example.get('ground_truth', {}))}")
+                    content.append(f"  Predicted: {json.dumps(example.get('prediction', {}))}")
+            else:
+                content.append(f"  Expected: {json.dumps(example.get('ground_truth', {}))}")
+                content.append(f"  Predicted: {json.dumps(example.get('prediction', {}))}")
+            
             if i < len(self.tracker.mismatch_examples) - 1:
                 content.append("─" * 70)
 

@@ -140,6 +140,7 @@ def run_full_optimization_loop(
     evaluator = Evaluator(evaluator_config)
     
     if use_tui and tracker:
+        tracker.evaluator = evaluator  # Store evaluator for mismatch analysis
         tracker.update_status("💤 Starting optimization loop...")
     else:
         print("Starting optimization loop...")
