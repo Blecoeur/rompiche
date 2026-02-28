@@ -5,7 +5,7 @@ from mistralai.models.systemmessage import SystemMessage
 from mistralai.models.assistantmessage import AssistantMessage
 import json
 
-def get_brain_decision(metrics, prompt, schema, evaluator_config, mismatch_examples=None):
+def get_brain_decision(metrics, prompt, schema, evaluator_config, mismatch_examples=None, hints=None):
     """
     Asks Mistral if the results meet the success thresholds.
     Returns: {
@@ -51,6 +51,15 @@ Here are concrete mismatch examples (prediction vs ground_truth):
 
 Analyze the differences carefully and fix the prompt/schema so predictions match ground truth exactly."""
 
+    if hints:
+        hints_str = "\n".join([f"- {hint}" for hint in hints])
+        user_prompt += f"""
+
+USER HINTS:
+{hints_str}
+
+Consider these hints when improving the prompt and schema."""
+
     messages = [
         SystemMessage(content=system_prompt),
         UserMessage(content=user_prompt)
@@ -73,6 +82,7 @@ if __name__ == "__main__":
     }
     prompt = "Extract the title and date from the text."
     schema = {"title": "str", "date": "YYYY-MM-DD"}
+    hints = ["Pay attention to date formats", "Title should be concise"]
 
-    decision = get_brain_decision(metrics, prompt, schema, evaluator_config)
+    decision = get_brain_decision(metrics, prompt, schema, evaluator_config, hints=hints)
     print(json.dumps(decision, indent=2))

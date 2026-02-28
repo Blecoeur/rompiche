@@ -22,7 +22,6 @@ if _PROJECT_ROOT not in sys.path:
 
 from rompiche.core.evaluator import Evaluator
 from rompiche.core.brain import get_brain_decision
-from tqdm import tqdm
 
 # Try to import TUI components
 try:
@@ -38,22 +37,6 @@ def load_data(file_path: str) -> List[Dict[str, Any]]:
         for line in f:
             data.append(json.loads(line))
     return data
-
-def run_script_on_all_files(prompt: str, schema: Dict[str, Any], data: List[Dict[str, Any]], processor_func: Callable[[str, str, Dict[str, Any]], Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Run the processor on all input data"""
-    results = []
-    for index, item in tqdm(enumerate(data), desc="Running the processor on all files"):
-#        if index > 10:
-#            break
-        input_text = item["input"]["text"]
-        prediction = processor_func(input_text, prompt, schema)
-        ground_truth = item["results"]
-        results.append({
-            "input": input_text,
-            "prediction": prediction,
-            "ground_truth": ground_truth
-        })
-    return results
 
 def collect_mismatch_examples(results: List[Dict[str, Any]], evaluator: Evaluator, max_examples: int = 10) -> List[Dict[str, Any]]:
     """Collect examples where prediction differs from ground truth or has low scores."""
@@ -129,6 +112,7 @@ def run_full_optimization_loop(
     data_file: str,
     processor_func: Callable[[str, str, Dict[str, Any]], Dict[str, Any]],
     max_iterations: int,
+    max_samples: int | None = None,
     tracker: MetricsTracker = None,
     use_tui: bool = False
 ) -> Dict[str, Any]:
@@ -136,14 +120,20 @@ def run_full_optimization_loop(
     
     current_prompt = initial_prompt
     current_schema = initial_schema
+    if tracker:
+        tracker.set_active_configuration(current_prompt, current_schema)
     
     # Load evaluation data
     data = load_data(data_file)
+    if max_samples is not None:
+        if max_samples <= 0:
+            raise ValueError("max_samples must be a positive integer when provided.")
+        data = data[:max_samples]
     
     evaluator = Evaluator(evaluator_config)
     
     if use_tui and tracker:
-        tracker.update_status("Starting optimization loop...")
+        tracker.update_status("💤 Starting optimization loop...")
     else:
         print("Starting optimization loop...")
         print(f"Initial prompt: {current_prompt}")
@@ -159,7 +149,7 @@ def run_full_optimization_loop(
             time.sleep(0.1)
         
         if use_tui and tracker:
-            tracker.update_status(f"Iteration {iteration + 1}/{max_iterations}")
+            tracker.update_status(f"🔄 Iteration {iteration + 1}/{max_iterations}")
         else:
             print(f"\n{'='*50}")
             print(f"Iteration {iteration + 1}/{max_iterations}")
@@ -167,14 +157,13 @@ def run_full_optimization_loop(
         
         # 1. Run processor on all data
         if use_tui and tracker:
-            tracker.update_status("Running processor on all files...")
+            tracker.update_status("💻 Running processor on all files...")
         else:
-            print("Running processor on all files...")
+            print("💻 Running processor on all files...")
         
         processing_results = []
-        for index, item in enumerate(data):
-            if use_tui and tracker:
-                tracker.update_progress(index, len(data))
+        total_items = len(data)
+        for index, item in enumerate(data, start=1):
             
             input_text = item["input"]["text"]
             prediction = processor_func(input_text, current_prompt, current_schema)
@@ -184,6 +173,11 @@ def run_full_optimization_loop(
                 "prediction": prediction,
                 "ground_truth": ground_truth
             })
+            if use_tui and tracker:
+                tracker.update_progress(index, total_items)
+        
+        if use_tui and tracker:
+            tracker.update_progress(total_items, total_items)
         
         # 2. Evaluate results
         if use_tui and tracker:
@@ -218,7 +212,7 @@ def run_full_optimization_loop(
         
         if use_tui and tracker:
             # Add top 3 mismatches to tracker
-            for example in mismatch_examples[:3]:
+            for example in mismatch_examples[:10]:
                 tracker.add_mismatch(example)
             tracker.update_status(f"Found {len(mismatch_examples)} mismatch examples")
         else:
@@ -226,41 +220,78 @@ def run_full_optimization_loop(
         
         # 5. Ask the brain for decision with mismatch context
         if use_tui and tracker:
-            tracker.update_status("Consulting optimization brain...")
+            tracker.update_status("🤖 Consulting optimization brain...")
         else:
-            print("Consulting optimization brain...")
+            print("🤖 Consulting optimization brain...")
         
         try:
+            hints = tracker.user_hints if tracker else None
             decision = get_brain_decision(
                 metrics, current_prompt, current_schema,
-                evaluator_config, mismatch_examples
+                evaluator_config, mismatch_examples, hints
             )
             
             if use_tui and tracker:
-                tracker.update_status(f"Brain decision received")
+                tracker.update_status(f"🤖 Brain decision received")
             else:
-                print(f"Brain decision: {json.dumps(decision, indent=2)}")
+                print(f"🤖 Brain decision: {json.dumps(decision, indent=2)}")
             
             if decision["decision"] == "stop":
+                if tracker:
+                    tracker.add_brain_update({
+                        "iteration": iteration + 1,
+                        "decision": "stop",
+                        "summary": decision.get("reason", "Brain decided to stop optimization.")
+                    })
                 if use_tui and tracker:
-                    tracker.update_status("Brain decided to stop optimization.")
+                    tracker.update_status("🤖 Brain decided to stop optimization.")
                 else:
-                    print("Brain decided to stop optimization.")
+                    print("🤖 Brain decided to stop optimization.")
                 break
             
             # 6. Use the brain's updated prompt and schema directly
+            prompt_was_updated = "updated_prompt" in decision and decision["updated_prompt"] != current_prompt
+            schema_was_updated = "updated_schema" in decision and decision["updated_schema"] != current_schema
             if "updated_prompt" in decision:
                 current_prompt = decision["updated_prompt"]
             if "updated_schema" in decision:
                 current_schema = decision["updated_schema"]
+
+            if tracker:
+                tracker.set_active_configuration(current_prompt, current_schema)
+                summary = decision.get("update_summary")
+                if not summary:
+                    changed_parts = []
+                    if prompt_was_updated:
+                        changed_parts.append("prompt")
+                    if schema_was_updated:
+                        changed_parts.append("schema")
+                    if changed_parts:
+                        summary = f"Updated {', '.join(changed_parts)}."
+                    else:
+                        summary = "No prompt/schema changes in this decision."
+                    reason = decision.get("reason")
+                    if reason:
+                        summary = f"{summary} Reason: {reason}"
+                tracker.add_brain_update({
+                    "iteration": iteration + 1,
+                    "decision": decision.get("decision", "continue"),
+                    "summary": summary
+                })
             
             if use_tui and tracker:
-                tracker.update_status("Applying brain updates")
+                tracker.update_status("🤖 Applying brain updates")
             else:
                 print(f"Updated prompt: {current_prompt}")
                 print(f"Updated schema: {json.dumps(current_schema, indent=2)}")
             
         except Exception as e:
+            if tracker:
+                tracker.add_brain_update({
+                    "iteration": iteration + 1,
+                    "decision": "error",
+                    "summary": f"Brain consultation failed: {e}"
+                })
             if use_tui and tracker:
                 tracker.update_status(f"Error consulting brain: {e}")
             else:
@@ -268,7 +299,8 @@ def run_full_optimization_loop(
                 print("Continuing with current prompt and schema...")
     
     if use_tui and tracker:
-        tracker.update_status("Optimization complete!")
+        tracker.set_active_configuration(current_prompt, current_schema)
+        tracker.update_status("🎉 Optimization complete!")
     else:
         # Ensure tracker is up to date even when not using TUI
         if tracker:
@@ -326,6 +358,7 @@ def main():
     parser.add_argument('--config', type=str, required=True, help='Path to JSON config file')
     parser.add_argument('--processor', type=str, required=True, help='Path to custom processor module')
     parser.add_argument('--output', type=str, default='output/optimization_results.json', help='Output file path')
+    parser.add_argument('--max-samples', type=int, default=None, help='Limit number of dataset samples processed per iteration')
     parser.add_argument('--tui', action='store_true', help='Enable live TUI dashboard')
     args = parser.parse_args()
     
@@ -336,6 +369,8 @@ def main():
         if key not in config:
             raise ValueError(f"Error: Missing required configuration parameter: {key}")
     
+    max_samples = args.max_samples if args.max_samples is not None else config.get('max_samples')
+
     # Load processor module
     processor_func = load_processor_module(args.processor)
     print(f"Using custom processor from: {args.processor}")
@@ -359,6 +394,7 @@ def main():
                     initial_schema=config.get('schema'),
                     evaluator_config=config.get('evaluator'),
                     max_iterations=config.get('max_iterations'),
+                    max_samples=max_samples,
                     data_file=config.get('data_file'),
                     processor_func=processor_func,
                     tracker=tracker,
@@ -394,6 +430,7 @@ def main():
                 initial_schema=config.get('schema'),
                 evaluator_config=config.get('evaluator'),
                 max_iterations=config.get('max_iterations'),
+                max_samples=max_samples,
                 data_file=config.get('data_file'),
                 processor_func=processor_func,
                 tracker=tracker,

@@ -9,9 +9,11 @@ from typing import Dict, Any, List
 
 try:
     from textual.app import App, ComposeResult
-    from textual.containers import Container, Horizontal
-    from textual.widgets import Static, ProgressBar, DataTable, Label
+    from textual.containers import Container, Horizontal, VerticalScroll
+    from textual.widgets import Static, ProgressBar, DataTable, Label, Input, Footer, Sparkline
     from textual.reactive import reactive
+    from textual.screen import ModalScreen
+    from textual import events
     TUI_AVAILABLE = True
 except ImportError:
     TUI_AVAILABLE = False
@@ -32,6 +34,11 @@ class MetricsTracker:
         self.mismatch_examples = []
         self.paused = False
         self.stopped = False
+        self.current_prompt = ""
+        self.current_schema = {}
+        self.update_history = []
+        self.last_update_at = None
+        self.user_hints = []
     
     def update_status(self, status: str):
         """Update the current status message"""
@@ -61,7 +68,8 @@ class MetricsTracker:
     
     def get_elapsed_time(self) -> str:
         """Get formatted elapsed time"""
-        elapsed = datetime.now() - self.start_time
+        end_time = self.stop_time if hasattr(self, 'stop_time') and self.stop_time else datetime.now()
+        elapsed = end_time - self.start_time
         hours, remainder = divmod(elapsed.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
         return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
@@ -99,6 +107,22 @@ class MetricsTracker:
         """Stop the optimization"""
         self.stopped = True
         self.update_status("STOPPED by user")
+
+    def set_active_configuration(self, prompt: str, schema: dict):
+        """Store the currently active prompt and schema."""
+        self.current_prompt = prompt or ""
+        self.current_schema = schema or {}
+
+    def add_brain_update(self, update: dict):
+        """Append a brain update entry and stamp the latest update time."""
+        self.last_update_at = datetime.now()
+        stamped_update = {
+            "timestamp": self.last_update_at.strftime("%H:%M:%S"),
+            **update,
+        }
+        self.update_history.append(stamped_update)
+        if len(self.update_history) > 50:
+            self.update_history = self.update_history[-50:]
 
 
 class LiveDashboard(App):
@@ -140,7 +164,34 @@ class LiveDashboard(App):
 
     .performance-section {
         width: 1fr;
-        height: 10;
+        height: 20;
+        layout: vertical;
+        overflow: hidden;
+    }
+
+    #sparkline-container {
+        height: 1fr;
+        overflow-y: auto;
+        padding: 0 1;
+    }
+
+    .sparkline-group {
+        height: auto;
+        padding: 0 1;
+    }
+
+    .sparkline-label {
+        height: 1;
+    }
+
+    Sparkline {
+        height: 3;
+        margin: 0 1;
+    }
+
+    .sparkline-value {
+        height: 1;
+        text-align: center;
     }
 
     .progress-section {
@@ -150,14 +201,59 @@ class LiveDashboard(App):
 
     .mismatches-section {
         width: 1fr;
-        height: 10;
+        height: 20;
+        overflow-y: auto;
     }
 
-    .controls {
-        dock: bottom;
+    #mismatch-content {
+        overflow-y: auto;
+    }
+
+    .decision-section {
+        height: 20;
+    }
+
+    .prompt-section {
+        width: 1fr;
+        height: 1fr;
+        layout: vertical;
+    }
+
+    .updates-section {
+        width: 1fr;
+        height: 1fr;
+        layout: vertical;
+    }
+
+    #prompt-schema-scroll {
+        height: 1fr;
+        overflow-y: auto;
+    }
+
+    #updates-scroll {
+        height: 1fr;
+        overflow-y: auto;
+    }
+
+    #prompt-schema-content {
+        height: auto;
+        overflow-y: auto;
+        padding: 0 1;
+    }
+
+    #updates-content {
+        height: auto;
+        overflow-y: auto;
+        padding: 0 1;
+    }
+
+    .row-spacer {
         height: 1;
-        background: $surface;
-        text-align: center;
+    }
+
+
+    Footer {
+        dock: bottom;
     }
     """
     
@@ -165,6 +261,7 @@ class LiveDashboard(App):
         ("q", "quit", "Quit"),
         ("p", "pause_resume", "Pause/Resume"),
         ("s", "stop", "Stop"),
+        ("h", "add_hint", "Add Hint"),
     ]
     
     def __init__(self, tracker: MetricsTracker):
@@ -172,29 +269,17 @@ class LiveDashboard(App):
         self.tracker = tracker
         self.refresh_interval = 0.1  # seconds
         self._columns_initialized = False
+        self._last_prompt_schema_text = ""
+        self._last_updates_text = ""
     
     def compose(self) -> ComposeResult:
         yield Container(
-            Label("ROMPICHE OPTIMIZATION DASHBOARD", classes="header"),
+            Label("💤 ROMPICHE OPTIMIZATION DASHBOARD", classes="header"),
             Container(
                 Label("🎯 CURRENT ITERATION: 0/0", id="iteration-info"),
                 Label("⏱️  ELAPSED TIME: 00:00:00", id="time-info"),
                 Label("💾 TOKENS USED: 0", id="tokens-info"),
                 classes="status-bar"
-            ),
-            Horizontal(
-                Container(
-                    Label("📊 OVERALL METRICS", classes="section-title"),
-                    DataTable(id="metrics-table"),
-                    classes="metrics-section"
-                ),
-                Container(
-                    Label("📈 PERFORMANCE EVOLUTION", classes="section-title"),
-                    ProgressBar(id="performance-progress", total=100),
-                    Static(id="performance-text"),
-                    classes="performance-section"
-                ),
-                classes="side-by-side"
             ),
             Horizontal(
                 Container(
@@ -205,19 +290,55 @@ class LiveDashboard(App):
                     classes="progress-section"
                 ),
                 Container(
+                    Label("📊 CURRENT METRICS", classes="section-title"),
+                    DataTable(id="metrics-table"),
+                    classes="metrics-section"
+                ),
+                classes="side-by-side"
+            ),
+            Horizontal(
+                Container(
+                    Label("📈 PERFORMANCE EVOLUTION", classes="section-title"),
+                    VerticalScroll(id="sparkline-container"),
+                    classes="performance-section"
+                ),
+                Container(
                     Label("💡 RECENT MISMATCHES", classes="section-title"),
                     Static(id="mismatch-content"),
                     classes="mismatches-section"
                 ),
                 classes="side-by-side"
             ),
-            Label("🎛️  [Q] Quit  [P] Pause/Resume  [S] Stop", classes="controls"),
+            Container(classes="row-spacer"),  # Spacer between 2nd and 3rd row
+            Horizontal(
+                Container(
+                    Label("📝 CURRENT PROMPT & SCHEMA", classes="section-title"),
+                    VerticalScroll(
+                        Static(id="prompt-schema-content"),
+                        id="prompt-schema-scroll"
+                    ),
+                    classes="prompt-section"
+                ),
+                Container(
+                    Label("🤖 ALL UPDATES", classes="section-title"),
+                    VerticalScroll(
+                        Static(id="updates-content"),
+                        id="updates-scroll"
+                    ),
+                    classes="updates-section"
+                ),
+                classes="decision-section"
+            ),
+            Footer(),
+            
             id="main-container"
         )
     
     def on_mount(self) -> None:
         self.update_metrics_table()
         self.update_performance_chart()
+        self.update_prompt_schema()
+        self.update_all_updates()
         self.set_interval(self.refresh_interval, self.update_display)
     
     def update_display(self) -> None:
@@ -231,6 +352,8 @@ class LiveDashboard(App):
         self.update_performance_chart()
         self.update_progress_section()
         self.update_mismatches()
+        self.update_prompt_schema()
+        self.update_all_updates()
     
     def update_status_bar(self) -> None:
         """Update the status bar information"""
@@ -243,15 +366,16 @@ class LiveDashboard(App):
         tokens_label.update(f"💾 TOKENS USED: {self.tracker.tokens_used:,}")
     
     def update_metrics_table(self) -> None:
-        """Update the metrics data table"""
+        """Update the metrics data table with current iteration metrics"""
         table = self.query_one("#metrics-table", DataTable)
-        overall_metrics = self.tracker.get_overall_metrics()
+        current_metrics = self.tracker.get_current_iteration_metrics()
 
+        # Get all metric names from current metrics
         all_metric_names = sorted({
             metric
-            for field_metrics in overall_metrics.values()
+            for field_metrics in current_metrics.values()
             for metric in field_metrics
-        })
+        }) if current_metrics else []
 
         if not self._columns_initialized and all_metric_names:
             table.add_column("Field")
@@ -261,7 +385,11 @@ class LiveDashboard(App):
 
         table.clear()
 
-        for field, metrics in overall_metrics.items():
+        # If no current metrics available, show empty table
+        if not current_metrics:
+            return
+
+        for field, metrics in current_metrics.items():
             row = [field]
             for metric_name in all_metric_names:
                 if metric_name in metrics:
@@ -271,32 +399,42 @@ class LiveDashboard(App):
             table.add_row(*row)
     
     def update_performance_chart(self) -> None:
-        """Update the performance evolution chart"""
+        """Update the performance evolution sparklines per field-metric"""
         if not self.tracker.iteration_metrics:
             return
 
-        performance_text = self.query_one("#performance-text", Static)
-        performance_scores = []
+        field_metric_history: dict[tuple[str, str], list[float]] = {}
+        for metrics in self.tracker.iteration_metrics:
+            for field, field_metrics in metrics.items():
+                for metric_name, value in field_metrics.items():
+                    key = (field, metric_name)
+                    if key not in field_metric_history:
+                        field_metric_history[key] = []
+                    field_metric_history[key].append(value)
 
-        for i, metrics in enumerate(self.tracker.iteration_metrics):
-            # Calculate composite score
-            all_values = []
-            for field_metrics in metrics.values():
-                all_values.extend(field_metrics.values())
-            score = sum(all_values) / len(all_values) if all_values else 0
-            performance_scores.append(score)
+        if not field_metric_history:
+            return
 
-        # Update progress bar and text
-        progress_bar = self.query_one("#performance-progress", ProgressBar)
-        current_score = performance_scores[-1] * 100
-        progress_bar.update(total=100, progress=current_score)
+        container = self.query_one("#sparkline-container", VerticalScroll)
 
-        performance_lines = []
-        for i, score in enumerate(performance_scores):
-            bar_length = int(score * 50)
-            performance_lines.append(f"Iteration {i+1}: {'█' * bar_length}{' ' * (50 - bar_length)} {score:.2%}")
-        
-        performance_text.update("\n".join(performance_lines))
+        for (field, metric_name), values in field_metric_history.items():
+            widget_id = f"spark-{field}-{metric_name}".replace(" ", "-")
+            label_text = f"{field} - {metric_name.replace('_', ' ').title()}"
+            current_text = f"Current: {values[-1]:.1%}"
+
+            try:
+                sparkline = self.query_one(f"#{widget_id}", Sparkline)
+                sparkline.data = values
+                value_label = self.query_one(f"#{widget_id}-val", Label)
+                value_label.update(current_text)
+            except Exception:
+                group = Container(
+                    Label(label_text, classes="sparkline-label"),
+                    Sparkline(values, id=widget_id),
+                    Label(current_text, id=f"{widget_id}-val", classes="sparkline-value"),
+                    classes="sparkline-group"
+                )
+                container.mount(group)
     
     def update_progress_section(self) -> None:
         """Update the current iteration progress section"""
@@ -334,7 +472,70 @@ class LiveDashboard(App):
                 content.append("─" * 70)
 
         mismatch_content.update("\n".join(content))
+
+    def update_prompt_schema(self) -> None:
+        """Update the current prompt and schema display"""
+        try:
+            prompt_content = self.query_one("#prompt-schema-content", Static)
+
+            content = ""
+            if self.tracker.current_prompt:
+                trimmed_prompt = self.tracker.current_prompt
+                if len(trimmed_prompt) > 500:
+                    trimmed_prompt = trimmed_prompt[:500] + "\n... [truncated]"
+                content += f"Prompt:\n{trimmed_prompt}\n\n"
+            else:
+                content += "Prompt: (initial prompt will appear here when first iteration starts)\n\n"
+
+            # Always show the current schema, even if empty (will show as placeholder)
+            if self.tracker.current_schema:
+                schema_json = json.dumps(self.tracker.current_schema, indent=2)
+                if len(schema_json) > 700:
+                    schema_json = schema_json[:700] + "\n... [truncated]"
+                content += f"Schema:\n{schema_json}\n\n"
+            else:
+                content += "Schema: (initial schema will appear here when first iteration starts)\n\n"
+
+            if self.tracker.last_update_at:
+                content += f"Last update: {self.tracker.last_update_at.strftime('%H:%M:%S')}"
+            else:
+                content += "Last update: waiting for first brain decision"
+
+            if content != self._last_prompt_schema_text:
+                prompt_content.update(content)
+                self._last_prompt_schema_text = content
+        except Exception as e:
+            print(f"Error updating prompt schema: {e}")
+
+    def update_all_updates(self) -> None:
+        """Update the all updates display"""
+        try:
+            updates_content = self.query_one("#updates-content", Static)
+
+            if not self.tracker.update_history:
+                content = "No updates yet - waiting for first brain decision."
+                if content != self._last_updates_text:
+                    updates_content.update(content)
+                    self._last_updates_text = content
+                return
+
+            content = ""
+            for i, update in enumerate(self.tracker.update_history, start=1):
+                iteration = update.get("iteration", "?")
+                decision = update.get("decision", "continue")
+                summary = update.get("summary", "No summary provided.")
+                timestamp = update.get("timestamp", "--:--:--")
+                content += f"{i}. [{timestamp}] Iteration {iteration} -> {decision}\n"
+                content += f"   {summary}\n"
+
+            if content != self._last_updates_text:
+                updates_content.update(content)
+                self._last_updates_text = content
+        except Exception as e:
+            print(f"Error updating all updates: {e}")
+
     
+
     def action_pause_resume(self) -> None:
         """Handle pause/resume action"""
         if self.tracker.paused:
@@ -349,6 +550,48 @@ class LiveDashboard(App):
     def action_quit(self) -> None:
         """Handle quit action"""
         self.exit()
+
+    def action_add_hint(self) -> None:
+        """Handle add hint action - pauses processing while user provides input"""
+        def on_submit(hint_text: str) -> None:
+            if hint_text.strip():
+                self.tracker.user_hints.append(hint_text.strip())
+                self.tracker.update_status(f"Hint added: {hint_text[:50]}...")
+            # Resume processing after hint is submitted
+            if self.tracker.paused:
+                self.tracker.resume()
+        
+        # Pause processing while user provides input
+        if not self.tracker.paused:
+            self.tracker.pause()
+        
+        self.push_screen(InputScreen("Add Hint", "Enter your hint for the LLM:", on_submit))
+
+
+class InputScreen(ModalScreen[str]):
+    """A simple input screen for collecting user hints"""
+    
+    def __init__(self, title: str, prompt: str, callback: callable):
+        super().__init__()
+        self.title = title
+        self.prompt = prompt
+        self.callback = callback
+    
+    def compose(self) -> ComposeResult:
+        yield Label(self.title, classes="header")
+        yield Label(self.prompt)
+        yield Input(placeholder="Type your hint here...", id="hint-input")
+        yield Label("[Enter] Submit  [Esc] Cancel", classes="controls")
+    
+    def on_input_submitted(self, event: Input.Submitted) -> None:
+        """Handle input submission"""
+        self.callback(event.value)
+        self.dismiss(event.value)
+    
+    def on_key(self, event: events.Key) -> None:
+        """Handle key presses"""
+        if event.key == "escape":
+            self.dismiss("")
 
 
 def check_tui_available():
