@@ -72,6 +72,19 @@ Consider these hints when improving the prompt and schema."""
         response_format={"type": "json_object"}
     )
 
+    # Track token usage from response
+    tokens_used = 0
+    if hasattr(response, 'usage') and response.usage:
+        if hasattr(response.usage, 'total_tokens'):
+            tokens_used = response.usage.total_tokens
+        elif hasattr(response.usage, 'prompt_tokens') and hasattr(response.usage, 'completion_tokens'):
+            tokens_used = response.usage.prompt_tokens + response.usage.completion_tokens
+    
+    # Store tokens in a global variable
+    if 'tokens_used' not in get_brain_decision.__dict__:
+        get_brain_decision.tokens_used = 0
+    get_brain_decision.tokens_used += tokens_used
+
     return json.loads(response.choices[0].message.content)
 
 # Example usage

@@ -480,18 +480,13 @@ class LiveDashboard(App):
 
             content = ""
             if self.tracker.current_prompt:
-                trimmed_prompt = self.tracker.current_prompt
-                if len(trimmed_prompt) > 500:
-                    trimmed_prompt = trimmed_prompt[:500] + "\n... [truncated]"
-                content += f"Prompt:\n{trimmed_prompt}\n\n"
+                content += f"Prompt:\n{self.tracker.current_prompt}\n\n"
             else:
                 content += "Prompt: (initial prompt will appear here when first iteration starts)\n\n"
 
             # Always show the current schema, even if empty (will show as placeholder)
             if self.tracker.current_schema:
                 schema_json = json.dumps(self.tracker.current_schema, indent=2)
-                if len(schema_json) > 700:
-                    schema_json = schema_json[:700] + "\n... [truncated]"
                 content += f"Schema:\n{schema_json}\n\n"
             else:
                 content += "Schema: (initial schema will appear here when first iteration starts)\n\n"

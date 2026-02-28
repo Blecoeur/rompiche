@@ -57,6 +57,19 @@ def process(input: str, prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]:
             temperature=0.1
         )
 
+        # Track token usage from response
+        tokens_used = 0
+        if hasattr(response, 'usage') and response.usage:
+            if hasattr(response.usage, 'total_tokens'):
+                tokens_used = response.usage.total_tokens
+            elif hasattr(response.usage, 'prompt_tokens') and hasattr(response.usage, 'completion_tokens'):
+                tokens_used = response.usage.prompt_tokens + response.usage.completion_tokens
+        
+        # Store tokens in a global variable or return them
+        if 'tokens_used' not in process.__dict__:
+            process.tokens_used = 0
+        process.tokens_used += tokens_used
+
         if response.choices and response.choices[0].message.tool_calls:
             tool_call = response.choices[0].message.tool_calls[0]
             if tool_call.function.name == function_name:

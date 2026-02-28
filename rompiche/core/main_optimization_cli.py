@@ -123,6 +123,13 @@ def run_full_optimization_loop(
     if tracker:
         tracker.set_active_configuration(current_prompt, current_schema)
     
+    # Reset token counters for processor and brain
+    if hasattr(processor_func, 'tokens_used'):
+        processor_func.tokens_used = 0
+    from rompiche.core.brain import get_brain_decision
+    if hasattr(get_brain_decision, 'tokens_used'):
+        get_brain_decision.tokens_used = 0
+    
     # Load evaluation data
     data = load_data(data_file)
     if max_samples is not None:
@@ -179,6 +186,10 @@ def run_full_optimization_loop(
         if use_tui and tracker:
             tracker.update_progress(total_items, total_items)
         
+        # Track processor tokens
+        if hasattr(processor_func, 'tokens_used') and tracker:
+            tracker.add_tokens(processor_func.tokens_used)
+        
         # 2. Evaluate results
         if use_tui and tracker:
             tracker.update_status("Evaluating results...")
@@ -230,6 +241,10 @@ def run_full_optimization_loop(
                 metrics, current_prompt, current_schema,
                 evaluator_config, mismatch_examples, hints
             )
+            
+            # Track brain tokens
+            if hasattr(get_brain_decision, 'tokens_used') and tracker:
+                tracker.add_tokens(get_brain_decision.tokens_used)
             
             if use_tui and tracker:
                 tracker.update_status(f"🤖 Brain decision received")
@@ -314,12 +329,25 @@ def run_full_optimization_loop(
         print(f"Final schema: {json.dumps(current_schema, indent=2)}")
     
     # Return final results
-    return {
+    result = {
         "metrics": metrics,
         "prompt": current_prompt,
         "schema": current_schema,
         "iteration": iteration + 1
     }
+    
+    # Add token usage information
+    processor_tokens = getattr(processor_func, 'tokens_used', 0)
+    brain_tokens = getattr(get_brain_decision, 'tokens_used', 0)
+    total_tokens = processor_tokens + brain_tokens
+    
+    result["token_usage"] = {
+        "processor_tokens": processor_tokens,
+        "brain_tokens": brain_tokens,
+        "total_tokens": total_tokens
+    }
+    
+    return result
 
 def load_config(config_file: str) -> Dict[str, Any]:
     """Load configuration from JSON file"""
