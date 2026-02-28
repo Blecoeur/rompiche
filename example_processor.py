@@ -1,47 +1,87 @@
 import json
+import os
 from typing import Dict, Any
+import mistralai
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 def process(input: str, prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Process input text using Mistral LLM with given prompt and schema.
-    
-    Args:
-        input: Input text to process
-        prompt: Prompt to guide LLM processing
-        schema: Expected output schema
-        
-    Returns:
-        Dictionary with structured results matching the schema
-    """
-    # Use the input text directly
-    text = input
-    
-    # This would call the Mistral LLM API
-    # For this example, we'll simulate the LLM response
-    # In a real implementation, you would use:
-    # from mistralai.client import MistralClient
-    # client = MistralClient()
-    # response = client.chat.complete(model="ministral-3b-latest", messages=[{"role": "user", "content": text}])
-    
-    # Simulated LLM processing using prompt and schema
-    # In real implementation, the prompt would guide the LLM to follow the schema
-    llm_output = {
-        "date": "2026-03-11",
-        "time": "09:52:00", 
-        "title": "Code Review"
+    api_key = os.environ.get("MISTRAL_API_KEY")
+    if not api_key:
+        raise ValueError("MISTRAL_API_KEY not found in environment variables")
+
+    client = mistralai.Mistral(api_key=api_key)
+
+    function_name = "extract_information"
+    function_description = "Extract structured information from text. Arguments cannot be null."
+
+    parameters = {
+        "type": "object",
+        "properties": {},
+        "required": []
     }
-    
-    return llm_output
+
+    for field_name, field_config in schema.get("properties", {}).items():
+        parameters["properties"][field_name] = field_config
+        if field_name in schema.get("required", []):
+            parameters["required"].append(field_name)
+
+    tools = [
+        {
+            "type": "function",
+            "function": {
+                "name": function_name,
+                "description": function_description,
+                "parameters": parameters
+            }
+        }
+    ]
+
+    try:
+        response = client.chat.complete(
+            model="ministral-3b-latest",
+            messages=[
+                {
+                    "role": "system",
+                    "content": prompt
+                },
+                {
+                    "role": "user",
+                    "content": f"Text to process: {input}"
+                }
+            ],
+            tools=tools,
+            tool_choice="any",
+            temperature=0.1
+        )
+
+        if response.choices and response.choices[0].message.tool_calls:
+            tool_call = response.choices[0].message.tool_calls[0]
+            if tool_call.function.name == function_name:
+                args_dict = json.loads(tool_call.function.arguments)
+                return args_dict
+
+        return {}
+
+    except Exception as e:
+        print(f"Error calling Mistral API: {e}")
+        return {}
 
 # Example usage
 if __name__ == "__main__":
     example_input = "The code review is on 2026-03-11 at 9:52 AM. Coffee provided."
-    example_prompt = "Extract date, time, and event title from the text"
+    example_prompt = "Extract the date, time, and event title from the text. All fields are required and cannot be null."
     example_schema = {
-        "date": "string",
-        "time": "string",
-        "title": "string"
+        "type": "object",
+        "properties": {
+            "date": {"type": "string", "description": "The date of the event"},
+            "time": {"type": "string", "description": "The time of the event"},
+            "title": {"type": "string", "description": "The title of the event"}
+        },
+        "required": ["date", "time", "title"]
     }
-    
+
     result = process(example_input, example_prompt, example_schema)
     print(json.dumps(result, indent=2))
