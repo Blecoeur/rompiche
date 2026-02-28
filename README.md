@@ -12,8 +12,41 @@ A Python tool for optimizing LLM-based information extraction workflows through 
 
 ## Installation
 
+(Not yet released)
 ```bash
-pip install rompiche
+pip install rompiche 
+```
+
+## Usage
+
+### Command Line Interface
+
+After installing rompiche, you can use the following commands:
+
+```bash
+# Run the CLI optimization tool
+rompiche --config path/to/config.json --processor path/to/processor.py --output results.json
+
+# Run the TUI dashboard (requires optional TUI dependencies)
+rompiche-tui
+
+# Install TUI dependencies if needed
+pip install rompiche[tui]
+```
+
+### Python API
+
+You can also use rompiche programmatically:
+
+```python
+from rompiche.core.main_optimization_cli import main
+
+# Run optimization from Python
+main()
+
+# Or use the TUI dashboard
+from rompiche.tui.__main__ import main as tui_main
+tui_main()
 ```
 
 ## Quick Start

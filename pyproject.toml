@@ -17,3 +17,7 @@ dependencies = [
 [project.optional-dependencies]
 tui = ["textual>=0.40.0"]
 ocr = ["pytesseract>=0.3.10", "easyocr>=1.7.0"]
+
+[project.scripts]
+rompiche = "rompiche.core.main_optimization_cli:main"
+rompiche-tui = "rompiche.tui.__main__:main"
