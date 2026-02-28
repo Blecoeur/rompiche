@@ -9,9 +9,11 @@ dependencies = [
     "mistral>=21.0.0",
     "mistralai==1.12.4",
     "python-dotenv>=1.2.1",
+    "pillow>=10.0.0",
     "textual>=8.0.0",
     "tqdm>=4.67.3",
 ]
 
 [project.optional-dependencies]
 tui = ["textual>=0.40.0"]
+ocr = ["pytesseract>=0.3.10", "easyocr>=1.7.0"]
