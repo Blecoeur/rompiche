@@ -7,13 +7,13 @@ Accepts a config file to initialize prompt, schema, success criteria, evaluator,
 import json
 import os
 import argparse
-from typing import Dict, Any, List
+import importlib.util
+from typing import Dict, Any, List, Callable
 from evaluator import Evaluator
-from example_processor import process
 from brain import get_brain_decision
 from tqdm import tqdm
 
-def load_data(file_path: str = "example_data/example.jsonl") -> List[Dict[str, Any]]:
+def load_data(file_path: str) -> List[Dict[str, Any]]:
     """Load JSONL data from file"""
     data = []
     with open(file_path, 'r') as f:
@@ -21,14 +21,14 @@ def load_data(file_path: str = "example_data/example.jsonl") -> List[Dict[str, A
             data.append(json.loads(line))
     return data
 
-def run_script_on_all_files(prompt: str, schema: Dict[str, Any], data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def run_script_on_all_files(prompt: str, schema: Dict[str, Any], data: List[Dict[str, Any]], processor_func: Callable[[str, str, Dict[str, Any]], Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Run the processor on all input data"""
     results = []
     for index, item in tqdm(enumerate(data), desc="Running the processor on all files"):
 #        if index > 10:
 #            break
         input_text = item["input"]["text"]
-        prediction = process(input_text, prompt, schema)
+        prediction = processor_func(input_text, prompt, schema)
         ground_truth = item["results"]
         results.append({
             "input": input_text,
@@ -108,8 +108,9 @@ def run_full_optimization_loop(
     initial_prompt: str,
     initial_schema: Dict[str, Any],
     evaluator_config: Dict[str, Any],
-    max_iterations: int = 5,
-    data_file: str = "example_data/example.jsonl"
+    data_file: str,
+    processor_func: Callable[[str, str, Dict[str, Any]], Dict[str, Any]],
+    max_iterations: int,
 ) -> Dict[str, Any]:
     """Main optimization loop with configurable parameters"""
     
@@ -134,7 +135,7 @@ def run_full_optimization_loop(
         
         # 1. Run processor on all data
         print("Running processor on all files...")
-        processing_results = run_script_on_all_files(current_prompt, current_schema, data)
+        processing_results = run_script_on_all_files(current_prompt, current_schema, data, processor_func)
         
         # 2. Evaluate results
         print("Evaluating results...")
@@ -200,10 +201,38 @@ def load_config(config_file: str) -> Dict[str, Any]:
     with open(config_file, 'r') as f:
         return json.load(f)
 
+def load_processor_module(module_path: str) -> Callable[[str, str, Dict[str, Any]], Dict[str, Any]]:
+    """Dynamically load a processor module and return its process function"""
+    try:
+        # Check if file exists
+        if not os.path.exists(module_path):
+            raise FileNotFoundError(f"Processor module not found: {module_path}")
+        
+        # Create module spec from file location
+        spec = importlib.util.spec_from_file_location("custom_processor", module_path)
+        if spec is None:
+            raise ImportError(f"Could not load module from {module_path}")
+        
+        # Create module from spec
+        module = importlib.util.module_from_spec(spec)
+        
+        # Execute the module to load its contents
+        spec.loader.exec_module(module)
+        
+        # Get the process function
+        if not hasattr(module, 'process'):
+            raise AttributeError(f"Module {module_path} does not have a 'process' function. Expected signature: process(input: str, prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]")
+        
+        return module.process
+        
+    except Exception as e:
+        raise type(e)(f"Error loading processor module '{module_path}': {str(e)}") from e
+
 def main():
     parser = argparse.ArgumentParser(description='Run optimization workflow with configurable parameters')
     parser.add_argument('--config', type=str, required=True, help='Path to JSON config file')
-    parser.add_argument('--output', type=str, default='optimization_results.json', help='Output file path')
+    parser.add_argument('--processor', type=str, default=None, help='Path to custom processor module')
+    parser.add_argument('--output', type=str, default='output/optimization_results.json', help='Output file path')
     args = parser.parse_args()
     
     # Load configuration
@@ -213,13 +242,21 @@ def main():
         if key not in config:
             raise ValueError(f"Error: Missing required configuration parameter: {key}")
     
+    # Load processor module
+    if not args.processor:
+        raise ValueError("Error: --processor argument is required")
+    
+    processor_func = load_processor_module(args.processor)
+    print(f"Using custom processor from: {args.processor}")
+    
     # Run optimization with config parameters
     final_results = run_full_optimization_loop(
         initial_prompt=config.get('prompt'),
         initial_schema=config.get('schema'),
         evaluator_config=config.get('evaluator'),
         max_iterations=config.get('max_iterations'),
-        data_file=config.get('data_file')
+        data_file=config.get('data_file'),
+        processor_func=processor_func
     )
     
     # Save results to a file
