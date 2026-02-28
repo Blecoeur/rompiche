@@ -5,9 +5,9 @@ from mistralai.models.systemmessage import SystemMessage
 from mistralai.models.assistantmessage import AssistantMessage
 import json
 
-def get_brain_decision(metrics, prompt, schema, success_criteria, mismatch_examples=None):
+def get_brain_decision(metrics, prompt, schema, evaluator_config, mismatch_examples=None):
     """
-    Asks Mistral if the results meet the success criteria.
+    Asks Mistral if the results meet the success thresholds.
     Returns: {
         "decision": "stop/continue",
         "reason": "...",
@@ -38,7 +38,7 @@ ALWAYS respond in JSON with this structure:
 }"""
 
     user_prompt = f"""Metrics: {json.dumps(metrics)}
-Success criteria: {json.dumps(success_criteria)}
+Success thresholds: {json.dumps(evaluator_config.get('success_thresholds', {}))}
 Current prompt: {prompt}
 Current schema: {json.dumps(schema)}"""
 
@@ -68,9 +68,11 @@ Analyze the differences carefully and fix the prompt/schema so predictions match
 # Example usage
 if __name__ == "__main__":
     metrics = {"date_exact_match": 0.85, "title_similarity": 0.60}
-    success_criteria = {"date_exact_match": 1.0, "title_similarity": 0.8}
+    evaluator_config = {
+        "success_thresholds": {"date_exact_match": 1.0, "title_similarity": 0.8}
+    }
     prompt = "Extract the title and date from the text."
     schema = {"title": "str", "date": "YYYY-MM-DD"}
 
-    decision = get_brain_decision(metrics, prompt, schema, success_criteria)
+    decision = get_brain_decision(metrics, prompt, schema, evaluator_config)
     print(json.dumps(decision, indent=2))

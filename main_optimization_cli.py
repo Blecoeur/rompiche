@@ -25,8 +25,8 @@ def run_script_on_all_files(prompt: str, schema: Dict[str, Any], data: List[Dict
     """Run the processor on all input data"""
     results = []
     for index, item in tqdm(enumerate(data), desc="Running the processor on all files"):
-        if index > 10:
-            break
+#        if index > 10:
+#            break
         input_text = item["input"]["text"]
         prediction = process(input_text, prompt, schema)
         ground_truth = item["results"]
@@ -37,19 +37,48 @@ def run_script_on_all_files(prompt: str, schema: Dict[str, Any], data: List[Dict
         })
     return results
 
-def collect_mismatch_examples(results: List[Dict[str, Any]], max_examples: int = 5) -> List[Dict[str, Any]]:
-    """Collect examples where prediction differs from ground truth."""
-    mismatches = []
+def collect_mismatch_examples(results: List[Dict[str, Any]], evaluator: Evaluator, max_examples: int = 10) -> List[Dict[str, Any]]:
+    """Collect examples where prediction differs from ground truth or has low scores."""
+    # First, collect exact mismatches (up to max_examples)
+    exact_mismatches = []
+    scored_results = []
+    
     for result in results:
         if result["prediction"] != result["ground_truth"]:
-            mismatches.append({
+            exact_mismatches.append({
                 "input": result["input"],
                 "prediction": result["prediction"],
-                "ground_truth": result["ground_truth"]
+                "ground_truth": result["ground_truth"],
+                "type": "exact_mismatch"
             })
-        if len(mismatches) >= max_examples:
-            break
-    return mismatches
+            if len(exact_mismatches) >= max_examples:
+                return exact_mismatches
+        
+        # Also collect all results with their scores for potential low-scoring examples
+        evaluation = evaluator.evaluate(result["prediction"], result["ground_truth"])
+        scored_results.append({
+            "input": result["input"],
+            "prediction": result["prediction"],
+            "ground_truth": result["ground_truth"],
+            "scores": evaluation,
+            "type": "low_score"
+        })
+    
+    # If we have exact mismatches, return them
+    if exact_mismatches:
+        return exact_mismatches[:max_examples]
+    
+    # Otherwise, find the worst scoring examples
+    # Calculate overall score for each result (average of all metric scores)
+    for item in scored_results:
+        all_scores = []
+        for field_scores in item["scores"].values():
+            all_scores.extend(field_scores.values())
+        item["overall_score"] = sum(all_scores) / len(all_scores) if all_scores else 0
+    
+    # Sort by overall score (ascending - worst first) and return top max_examples
+    scored_results.sort(key=lambda x: x["overall_score"])
+    return scored_results[:max_examples]
 
 def evaluate_all_results(results: List[Dict[str, Any]], evaluator: Evaluator) -> Dict[str, Dict[str, float]]:
     """Evaluate all results and return average metrics per field.
@@ -78,7 +107,6 @@ def evaluate_all_results(results: List[Dict[str, Any]], evaluator: Evaluator) ->
 def run_full_optimization_loop(
     initial_prompt: str,
     initial_schema: Dict[str, Any],
-    success_criteria: Dict[str, Dict[str, float]],
     evaluator_config: Dict[str, Any],
     max_iterations: int = 5,
     data_file: str = "example_data/example.jsonl"
@@ -96,7 +124,7 @@ def run_full_optimization_loop(
     print("Starting optimization loop...")
     print(f"Initial prompt: {current_prompt}")
     print(f"Initial schema: {json.dumps(current_schema, indent=2)}")
-    print(f"Success criteria: {success_criteria}")
+
     print(f"Evaluator config: {json.dumps(evaluator_config, indent=2)}")
     
     for iteration in range(max_iterations):
@@ -115,15 +143,15 @@ def run_full_optimization_loop(
         for field, field_metrics in metrics.items():
             print(f"  {field}: {field_metrics}")
         
-        # 3. Check if we meet success criteria using evaluator
+        # 3. Check if we meet success thresholds using evaluator
         criteria_met = evaluator.is_success(metrics)
         
         if criteria_met:
-            print("🎉 Success criteria met! Stopping optimization.")
+            print("🎉 Success thresholds met! Stopping optimization.")
             break
         
         # 4. Collect mismatch examples for the brain
-        mismatch_examples = collect_mismatch_examples(processing_results)
+        mismatch_examples = collect_mismatch_examples(processing_results, evaluator)
         print(f"Found {len(mismatch_examples)} mismatch examples")
         
         # 5. Ask the brain for decision with mismatch context
@@ -131,7 +159,7 @@ def run_full_optimization_loop(
         try:
             decision = get_brain_decision(
                 metrics, current_prompt, current_schema,
-                success_criteria, mismatch_examples
+                evaluator_config, mismatch_examples
             )
             print(f"Brain decision: {json.dumps(decision, indent=2)}")
             
@@ -181,7 +209,7 @@ def main():
     # Load configuration
     config = load_config(args.config)
     
-    for key in ['prompt', 'schema', 'success_criteria', 'evaluator', 'max_iterations', 'data_file']:
+    for key in ['prompt', 'schema', 'evaluator', 'max_iterations', 'data_file']:
         if key not in config:
             raise ValueError(f"Error: Missing required configuration parameter: {key}")
     
@@ -189,7 +217,6 @@ def main():
     final_results = run_full_optimization_loop(
         initial_prompt=config.get('prompt'),
         initial_schema=config.get('schema'),
-        success_criteria=config.get('success_criteria'),
         evaluator_config=config.get('evaluator'),
         max_iterations=config.get('max_iterations'),
         data_file=config.get('data_file')

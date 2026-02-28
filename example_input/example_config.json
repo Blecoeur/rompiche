@@ -9,11 +9,7 @@
     },
     "required": ["date", "time", "title"]
   },
-  "success_criteria": {
-    "date": {"exact_match": 0.95, "string_distance": 0.95},
-    "time": {"exact_match": 0.95, "string_distance": 0.95},
-    "title": {"exact_match": 0.90, "string_distance": 0.90}
-  },
+
   "evaluator": {
     "metrics": ["exact_match", "string_distance"],
     "field_metrics": {
