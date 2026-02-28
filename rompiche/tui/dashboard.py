@@ -3,17 +3,23 @@ TUI Dashboard for Rompiche Optimization
 """
 
 import json
-import time
-from datetime import datetime, timedelta
-from typing import Dict, Any, List
+from datetime import datetime
 
 try:
     from textual.app import App, ComposeResult
     from textual.containers import Container, Horizontal, VerticalScroll
-    from textual.widgets import Static, ProgressBar, DataTable, Label, Input, Footer, Sparkline
-    from textual.reactive import reactive
+    from textual.widgets import (
+        Static,
+        ProgressBar,
+        DataTable,
+        Label,
+        Input,
+        Footer,
+        Sparkline,
+    )
     from textual.screen import ModalScreen
     from textual import events
+
     TUI_AVAILABLE = True
 except ImportError:
     TUI_AVAILABLE = False
@@ -21,7 +27,7 @@ except ImportError:
 
 class MetricsTracker:
     """Tracks all metrics and history for the TUI dashboard"""
-    
+
     def __init__(self):
         self.iteration_metrics = []
         self.current_iteration = 0
@@ -40,25 +46,25 @@ class MetricsTracker:
         self.last_update_at = None
         self.user_hints = []
         self.evaluator = None  # Store evaluator for mismatch analysis
-    
+
     def update_status(self, status: str):
         """Update the current status message"""
         self.current_status = status
-    
+
     def update_progress(self, processed: int, total: int):
         """Update processing progress"""
         self.current_progress = processed
         self.total_items = total
-    
+
     def add_iteration_metrics(self, metrics: dict):
         """Add metrics for the current iteration"""
         self.iteration_metrics.append(metrics)
         self.current_iteration += 1
-    
+
     def add_tokens(self, tokens: int):
         """Add to the total token count"""
         self.tokens_used += tokens
-    
+
     def add_mismatch(self, example: dict):
         """Add a mismatch example (keep only 10 most recent)"""
         if len(self.mismatch_examples) < 10:
@@ -66,20 +72,24 @@ class MetricsTracker:
         else:
             self.mismatch_examples.pop(0)
             self.mismatch_examples.append(example)
-    
+
     def get_elapsed_time(self) -> str:
         """Get formatted elapsed time"""
-        end_time = self.stop_time if hasattr(self, 'stop_time') and self.stop_time else datetime.now()
+        end_time = (
+            self.stop_time
+            if hasattr(self, "stop_time") and self.stop_time
+            else datetime.now()
+        )
         elapsed = end_time - self.start_time
         hours, remainder = divmod(elapsed.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
         return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-    
+
     def get_overall_metrics(self) -> dict:
         """Calculate average metrics across all iterations"""
         if not self.iteration_metrics:
             return {}
-        
+
         overall = {}
         for field in self.iteration_metrics[0].keys():
             overall[field] = {}
@@ -87,23 +97,23 @@ class MetricsTracker:
                 values = [m[field][metric] for m in self.iteration_metrics]
                 overall[field][metric] = sum(values) / len(values)
         return overall
-    
+
     def get_current_iteration_metrics(self) -> dict:
         """Get metrics for the current iteration"""
         if self.iteration_metrics:
             return self.iteration_metrics[-1]
         return {}
-    
+
     def pause(self):
         """Pause the optimization"""
         self.paused = True
         self.update_status("PAUSED - Press P to continue")
-    
+
     def resume(self):
         """Resume the optimization"""
         self.paused = False
         self.update_status("Resumed")
-    
+
     def stop(self):
         """Stop the optimization"""
         self.stopped = True
@@ -128,7 +138,7 @@ class MetricsTracker:
 
 class LiveDashboard(App):
     """Main TUI Dashboard Application"""
-    
+
     CSS = """
     #main-container {
         layout: vertical;
@@ -264,14 +274,14 @@ class LiveDashboard(App):
         dock: bottom;
     }
     """
-    
+
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("p", "pause_resume", "Pause/Resume"),
         ("s", "stop", "Stop"),
         ("h", "add_hint", "Add Hint"),
     ]
-    
+
     def __init__(self, tracker: MetricsTracker):
         super().__init__()
         self.tracker = tracker
@@ -279,7 +289,7 @@ class LiveDashboard(App):
         self._columns_initialized = False
         self._last_prompt_schema_text = ""
         self._last_updates_text = ""
-    
+
     def compose(self) -> ComposeResult:
         yield Container(
             Label("💤 ROMPICHE OPTIMIZATION DASHBOARD", classes="header"),
@@ -287,7 +297,7 @@ class LiveDashboard(App):
                 Label("🎯 CURRENT ITERATION: 0/0", id="iteration-info"),
                 Label("⏱️  ELAPSED TIME: 00:00:00", id="time-info"),
                 Label("💾 TOKENS USED: 0", id="tokens-info"),
-                classes="status-bar"
+                classes="status-bar",
             ),
             Horizontal(
                 Container(
@@ -295,69 +305,61 @@ class LiveDashboard(App):
                     ProgressBar(id="iteration-progress", total=100),
                     Label("Processing: 0/0 items (0%)", id="progress-text"),
                     Label("Status: Initializing...", id="status-text"),
-                    classes="progress-section"
+                    classes="progress-section",
                 ),
                 Container(
                     Label("📊 CURRENT METRICS", classes="section-title"),
                     DataTable(id="metrics-table"),
-                    classes="metrics-section"
+                    classes="metrics-section",
                 ),
-                classes="side-by-side"
+                classes="side-by-side",
             ),
             Horizontal(
                 Container(
                     Label("📈 PERFORMANCE EVOLUTION", classes="section-title"),
                     VerticalScroll(id="sparkline-container"),
-                    classes="performance-section"
+                    classes="performance-section",
                 ),
                 Container(
                     Label("💡 RECENT MISMATCHES", classes="section-title"),
-                    VerticalScroll(
-                        Static(id="mismatch-content"),
-                        id="mismatch-scroll"
-                    ),
-                    classes="mismatches-section"
+                    VerticalScroll(Static(id="mismatch-content"), id="mismatch-scroll"),
+                    classes="mismatches-section",
                 ),
-                classes="side-by-side"
+                classes="side-by-side",
             ),
             Container(classes="row-spacer"),  # Spacer between 2nd and 3rd row
             Horizontal(
                 Container(
                     Label("📝 CURRENT PROMPT & SCHEMA", classes="section-title"),
                     VerticalScroll(
-                        Static(id="prompt-schema-content"),
-                        id="prompt-schema-scroll"
+                        Static(id="prompt-schema-content"), id="prompt-schema-scroll"
                     ),
-                    classes="prompt-section"
+                    classes="prompt-section",
                 ),
                 Container(
                     Label("🤖 ALL UPDATES", classes="section-title"),
-                    VerticalScroll(
-                        Static(id="updates-content"),
-                        id="updates-scroll"
-                    ),
-                    classes="updates-section"
+                    VerticalScroll(Static(id="updates-content"), id="updates-scroll"),
+                    classes="updates-section",
                 ),
-                classes="decision-section"
+                classes="decision-section",
             ),
             Footer(),
-            
-            id="main-container"
+            id="main-container",
         )
-    
+
     def on_mount(self) -> None:
         self.update_metrics_table()
         self.update_performance_chart()
         self.update_prompt_schema()
         self.update_all_updates()
         self.set_interval(self.refresh_interval, self.update_display)
-    
+
     def update_display(self) -> None:
         """Update all dashboard components"""
         if self.tracker.stopped:
             self.exit()
             return
-            
+
         self.update_status_bar()
         self.update_metrics_table()
         self.update_performance_chart()
@@ -365,28 +367,36 @@ class LiveDashboard(App):
         self.update_mismatches()
         self.update_prompt_schema()
         self.update_all_updates()
-    
+
     def update_status_bar(self) -> None:
         """Update the status bar information"""
         iteration_label = self.query_one("#iteration-info", Label)
         time_label = self.query_one("#time-info", Label)
         tokens_label = self.query_one("#tokens-info", Label)
 
-        iteration_label.update(f"🎯 CURRENT ITERATION: {self.tracker.current_iteration}/{self.tracker.total_iterations}")
+        iteration_label.update(
+            f"🎯 CURRENT ITERATION: {self.tracker.current_iteration}/{self.tracker.total_iterations}"
+        )
         time_label.update(f"⏱️  ELAPSED TIME: {self.tracker.get_elapsed_time()}")
         tokens_label.update(f"💾 TOKENS USED: {self.tracker.tokens_used:,}")
-    
+
     def update_metrics_table(self) -> None:
         """Update the metrics data table with current iteration metrics"""
         table = self.query_one("#metrics-table", DataTable)
         current_metrics = self.tracker.get_current_iteration_metrics()
 
         # Get all metric names from current metrics
-        all_metric_names = sorted({
-            metric
-            for field_metrics in current_metrics.values()
-            for metric in field_metrics
-        }) if current_metrics else []
+        all_metric_names = (
+            sorted(
+                {
+                    metric
+                    for field_metrics in current_metrics.values()
+                    for metric in field_metrics
+                }
+            )
+            if current_metrics
+            else []
+        )
 
         if not self._columns_initialized and all_metric_names:
             table.add_column("Field")
@@ -408,7 +418,7 @@ class LiveDashboard(App):
                 else:
                     row.append("")
             table.add_row(*row)
-    
+
     def update_performance_chart(self) -> None:
         """Update the performance evolution sparklines per field-metric"""
         if not self.tracker.iteration_metrics:
@@ -442,11 +452,13 @@ class LiveDashboard(App):
                 group = Container(
                     Label(label_text, classes="sparkline-label"),
                     Sparkline(values, id=widget_id),
-                    Label(current_text, id=f"{widget_id}-val", classes="sparkline-value"),
-                    classes="sparkline-group"
+                    Label(
+                        current_text, id=f"{widget_id}-val", classes="sparkline-value"
+                    ),
+                    classes="sparkline-group",
                 )
                 container.mount(group)
-    
+
     def update_progress_section(self) -> None:
         """Update the current iteration progress section"""
         progress_bar = self.query_one("#iteration-progress", ProgressBar)
@@ -454,9 +466,15 @@ class LiveDashboard(App):
         status_text = self.query_one("#status-text", Label)
 
         if self.tracker.total_items > 0:
-            progress = min(self.tracker.current_progress / self.tracker.total_items, 1.0)
-            progress_bar.update(total=self.tracker.total_items, progress=self.tracker.current_progress)
-            progress_text.update(f"Processing: {self.tracker.current_progress}/{self.tracker.total_items} items ({progress:.0%})")
+            progress = min(
+                self.tracker.current_progress / self.tracker.total_items, 1.0
+            )
+            progress_bar.update(
+                total=self.tracker.total_items, progress=self.tracker.current_progress
+            )
+            progress_text.update(
+                f"Processing: {self.tracker.current_progress}/{self.tracker.total_items} items ({progress:.0%})"
+            )
         else:
             progress_bar.update(total=100, progress=0)
             progress_text.update("Processing: 0/0 items (0%)")
@@ -465,50 +483,72 @@ class LiveDashboard(App):
         if self.tracker.paused:
             status = "⏸️  " + status
         status_text.update(f"Status: {status}")
-    
+
     def update_mismatches(self) -> None:
         """Update the recent mismatches display"""
         mismatch_content = self.query_one("#mismatch-content", Static)
         if not self.tracker.mismatch_examples:
-            mismatch_content.update("No recent mismatches - wait for the first iteration to complete")
+            mismatch_content.update(
+                "No recent mismatches - wait for the first iteration to complete"
+            )
             return
 
         content = []
         for i, example in enumerate(self.tracker.mismatch_examples):
-            content.append(f"Mismatch {i+1}:")
+            content.append(f"Mismatch {i + 1}:")
             content.append(f"  Input: {example.get('input', '')[:70]}...")
-            
+
             # Get the evaluator to check which fields don't meet criteria
             evaluator = self.tracker.evaluator
-            if evaluator and 'ground_truth' in example and 'prediction' in example:
-                evaluation = evaluator.evaluate(example['prediction'], example['ground_truth'])
+            if evaluator and "ground_truth" in example and "prediction" in example:
+                evaluation = evaluator.evaluate(
+                    example["prediction"], example["ground_truth"]
+                )
                 success = evaluator.is_success(evaluation)
-                
+
                 if not success:
                     # Show only fields that don't meet criteria
                     problematic_fields = []
                     for field_name, field_metrics in evaluation.items():
                         for metric_name, score in field_metrics.items():
-                            threshold = evaluator.success_thresholds.get(field_name, {}).get(metric_name, 
-                                1.0 if metric_name == 'exact_match' else 0.8)
+                            threshold = evaluator.success_thresholds.get(
+                                field_name, {}
+                            ).get(
+                                metric_name,
+                                1.0 if metric_name == "exact_match" else 0.8,
+                            )
                             if score < threshold:
                                 problematic_fields.append(field_name)
                                 break
-                    
+
                     if problematic_fields:
                         content.append("  Problematic fields:")
                         for field in problematic_fields:
-                            content.append(f"    {field}: {json.dumps(example.get('ground_truth', {}).get(field, 'N/A'))} → {json.dumps(example.get('prediction', {}).get(field, 'N/A'))}")
+                            content.append(
+                                f"    {field}: {json.dumps(example.get('ground_truth', {}).get(field, 'N/A'))} → {json.dumps(example.get('prediction', {}).get(field, 'N/A'))}"
+                            )
                     else:
-                        content.append(f"  Expected: {json.dumps(example.get('ground_truth', {}))}")
-                        content.append(f"  Predicted: {json.dumps(example.get('prediction', {}))}")
+                        content.append(
+                            f"  Expected: {json.dumps(example.get('ground_truth', {}))}"
+                        )
+                        content.append(
+                            f"  Predicted: {json.dumps(example.get('prediction', {}))}"
+                        )
                 else:
-                    content.append(f"  Expected: {json.dumps(example.get('ground_truth', {}))}")
-                    content.append(f"  Predicted: {json.dumps(example.get('prediction', {}))}")
+                    content.append(
+                        f"  Expected: {json.dumps(example.get('ground_truth', {}))}"
+                    )
+                    content.append(
+                        f"  Predicted: {json.dumps(example.get('prediction', {}))}"
+                    )
             else:
-                content.append(f"  Expected: {json.dumps(example.get('ground_truth', {}))}")
-                content.append(f"  Predicted: {json.dumps(example.get('prediction', {}))}")
-            
+                content.append(
+                    f"  Expected: {json.dumps(example.get('ground_truth', {}))}"
+                )
+                content.append(
+                    f"  Predicted: {json.dumps(example.get('prediction', {}))}"
+                )
+
             if i < len(self.tracker.mismatch_examples) - 1:
                 content.append("─" * 70)
 
@@ -533,7 +573,9 @@ class LiveDashboard(App):
                 content += "Schema: (initial schema will appear here when first iteration starts)\n\n"
 
             if self.tracker.last_update_at:
-                content += f"Last update: {self.tracker.last_update_at.strftime('%H:%M:%S')}"
+                content += (
+                    f"Last update: {self.tracker.last_update_at.strftime('%H:%M:%S')}"
+                )
             else:
                 content += "Last update: waiting for first brain decision"
 
@@ -570,25 +612,24 @@ class LiveDashboard(App):
         except Exception as e:
             print(f"Error updating all updates: {e}")
 
-    
-
     def action_pause_resume(self) -> None:
         """Handle pause/resume action"""
         if self.tracker.paused:
             self.tracker.resume()
         else:
             self.tracker.pause()
-    
+
     def action_stop(self) -> None:
         """Handle stop action"""
         self.tracker.stop()
-    
+
     def action_quit(self) -> None:
         """Handle quit action"""
         self.exit()
 
     def action_add_hint(self) -> None:
         """Handle add hint action - pauses processing while user provides input"""
+
         def on_submit(hint_text: str) -> None:
             if hint_text.strip():
                 self.tracker.user_hints.append(hint_text.strip())
@@ -596,34 +637,36 @@ class LiveDashboard(App):
             # Resume processing after hint is submitted
             if self.tracker.paused:
                 self.tracker.resume()
-        
+
         # Pause processing while user provides input
         if not self.tracker.paused:
             self.tracker.pause()
-        
-        self.push_screen(InputScreen("Add Hint", "Enter your hint for the LLM:", on_submit))
+
+        self.push_screen(
+            InputScreen("Add Hint", "Enter your hint for the LLM:", on_submit)
+        )
 
 
 class InputScreen(ModalScreen[str]):
     """A simple input screen for collecting user hints"""
-    
+
     def __init__(self, title: str, prompt: str, callback: callable):
         super().__init__()
         self.title = title
         self.prompt = prompt
         self.callback = callback
-    
+
     def compose(self) -> ComposeResult:
         yield Label(self.title, classes="header")
         yield Label(self.prompt)
         yield Input(placeholder="Type your hint here...", id="hint-input")
         yield Label("[Enter] Submit  [Esc] Cancel", classes="controls")
-    
+
     def on_input_submitted(self, event: Input.Submitted) -> None:
         """Handle input submission"""
         self.callback(event.value)
         self.dismiss(event.value)
-    
+
     def on_key(self, event: events.Key) -> None:
         """Handle key presses"""
         if event.key == "escape":

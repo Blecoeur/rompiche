@@ -11,7 +11,7 @@ def main():
         print("Error: TUI dependencies not available.")
         print("Please install them with: pip install rompiche[tui]")
         return 1
-    
+
     # Create and run the dashboard
     dashboard = LiveDashboard()
     dashboard.run()

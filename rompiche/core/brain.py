@@ -2,10 +2,12 @@ import os
 import mistralai
 from mistralai.models.usermessage import UserMessage
 from mistralai.models.systemmessage import SystemMessage
-from mistralai.models.assistantmessage import AssistantMessage
 import json
 
-def get_brain_decision(metrics, prompt, schema, evaluator_config, mismatch_examples=None, hints=None):
+
+def get_brain_decision(
+    metrics, prompt, schema, evaluator_config, mismatch_examples=None, hints=None
+):
     """
     Asks Mistral if the results meet the success thresholds.
     Returns: {
@@ -38,7 +40,7 @@ ALWAYS respond in JSON with this structure:
 }"""
 
     user_prompt = f"""Metrics: {json.dumps(metrics)}
-Success thresholds: {json.dumps(evaluator_config.get('success_thresholds', {}))}
+Success thresholds: {json.dumps(evaluator_config.get("success_thresholds", {}))}
 Current prompt: {prompt}
 Current schema: {json.dumps(schema)}"""
 
@@ -60,32 +62,34 @@ USER HINTS:
 
 Consider these hints when improving the prompt and schema."""
 
-    messages = [
-        SystemMessage(content=system_prompt),
-        UserMessage(content=user_prompt)
-    ]
+    messages = [SystemMessage(content=system_prompt), UserMessage(content=user_prompt)]
 
     response = client.chat.complete(
         model="mistral-large-latest",
         messages=messages,
         temperature=0.3,
-        response_format={"type": "json_object"}
+        response_format={"type": "json_object"},
     )
 
     # Track token usage from response
     tokens_used = 0
-    if hasattr(response, 'usage') and response.usage:
-        if hasattr(response.usage, 'total_tokens'):
+    if hasattr(response, "usage") and response.usage:
+        if hasattr(response.usage, "total_tokens"):
             tokens_used = response.usage.total_tokens
-        elif hasattr(response.usage, 'prompt_tokens') and hasattr(response.usage, 'completion_tokens'):
-            tokens_used = response.usage.prompt_tokens + response.usage.completion_tokens
-    
+        elif hasattr(response.usage, "prompt_tokens") and hasattr(
+            response.usage, "completion_tokens"
+        ):
+            tokens_used = (
+                response.usage.prompt_tokens + response.usage.completion_tokens
+            )
+
     # Store tokens in a global variable
-    if 'tokens_used' not in get_brain_decision.__dict__:
+    if "tokens_used" not in get_brain_decision.__dict__:
         get_brain_decision.tokens_used = 0
     get_brain_decision.tokens_used += tokens_used
 
     return json.loads(response.choices[0].message.content)
+
 
 # Example usage
 if __name__ == "__main__":
@@ -97,5 +101,7 @@ if __name__ == "__main__":
     schema = {"title": "str", "date": "YYYY-MM-DD"}
     hints = ["Pay attention to date formats", "Title should be concise"]
 
-    decision = get_brain_decision(metrics, prompt, schema, evaluator_config, hints=hints)
+    decision = get_brain_decision(
+        metrics, prompt, schema, evaluator_config, hints=hints
+    )
     print(json.dumps(decision, indent=2))
