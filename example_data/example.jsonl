@@ -1,0 +1,80 @@
+{"input": {"text": "Heads up: the sprint review is now on March 10th, 2026, at 10 AM sharp!"}, "results": {"date": "2026-03-10", "time": "10:00:00", "title": "Sprint Review"}}
+{"input": {"text": "Don’t forget, the quarterly planning workshop is this Tuesday, April 15th, at 2:30 PM in the big room."}, "results": {"date": "2026-04-15", "time": "14:30:00", "title": "Quarterly Planning Workshop"}}
+{"input": {"text": "The team-building event got moved to Friday, May 22nd, 2026, starting at 9 AM. Breakfast provided!"}, "results": {"date": "2026-05-22", "time": "09:00:00", "title": "Team-Building Event"}}
+{"input": {"text": "Just confirming: the client demo is set for next Friday, March 6th, at 2:30 PM. Let me know if you can’t make it."}, "results": {"date": "2026-03-06", "time": "14:30:00", "title": "Client Demo"}}
+{"input": {"text": "Reminder: the budget review is happening on 03/03/2026 at 9:15 in the morning. Bring your reports!"}, "results": {"date": "2026-03-03", "time": "09:15:00", "title": "Budget Review"}}
+{"input": {"text": "The AI ethics workshop has been rescheduled to May 12th, 2026, at half past eleven. See you there!"}, "results": {"date": "2026-05-12", "time": "11:30:00", "title": "AI Ethics Workshop"}}
+{"input": {"text": "Quick note: the hackathon kickoff is this coming Monday, February 9th, 2026, at 8:45 AM. Don’t be late!"}, "results": {"date": "2026-02-09", "time": "08:45:00", "title": "Hackathon Kickoff"}}
+{"input": {"text": "The post-mortem for incident #123456 is confirmed for next Monday, February 16th, 2026, at 4 PM. Mandatory for the tech team."}, "results": {"date": "2026-02-16", "time": "16:00:00", "title": "Incident #123456 Post-Mortem"}}
+{"input": {"text": "Please block your calendar for the project kickoff on 2026-03-04 at 10 AM. Agenda to follow."}, "results": {"date": "2026-03-04", "time": "10:00:00", "title": "Project Kickoff"}}
+{"input": {"text": "The security audit meeting is on Thursday, March 12th, 2026, around 3 PM. Remote participants, check your invites."}, "results": {"date": "2026-03-12", "time": "15:00:00", "title": "Security Audit"}}
+{"input": {"text": "The design sprint wrap-up is happening next Wednesday, March 4th, 2026, at 10 AM. Bring your prototypes!"}, "results": {"date": "2026-03-04", "time": "10:00:00", "title": "Design Sprint Wrap-Up"}}
+{"input": {"text": "The stakeholder update is set for next Tuesday, March 3rd, 2026, at 9:15 AM. Prepare your progress reports."}, "results": {"date": "2026-03-03", "time": "09:15:00", "title": "Stakeholder Update"}}
+{"input": {"text": "The onboarding session for new hires is this Friday, March 6th, 2026, at 2:30 PM. Welcome aboard!"}, "results": {"date": "2026-03-06", "time": "14:30:00", "title": "Onboarding Session"}}
+{"input": {"text": "The tech talk on scalable systems is happening on 15th April 2026 at 3 PM. Open to all teams!"}, "results": {"date": "2026-04-15", "time": "15:00:00", "title": "Tech Talk: Scalable Systems"}}
+{"input": {"text": "Just a heads-up: the client call is moved to next Thurs, March 12th, 2026, around 3pm."}, "results": {"date": "2026-03-12", "time": "15:00:00", "title": "Client Call"}}
+{"input": {"text": "The workshop on AI ethics is now on 12/05/2026 at half past eleven in the morning."}, "results": {"date": "2026-05-12", "time": "11:30:00", "title": "AI Ethics Workshop"}}
+{"input": {"text": "Don’t miss the hackathon kickoff this coming Monday, Feb 9th 2026, at 8:45 in the morning!"}, "results": {"date": "2026-02-09", "time": "08:45:00", "title": "Hackathon Kickoff"}}
+{"input": {"text": "The brainstorming session is scheduled for 2026-05-20 at 10:37 AM."}, "results": {"date": "2026-05-20", "time": "10:37:00", "title": "Brainstorming Session"}}
+{"input": {"text": "The training workshop is scheduled for Sunday, August 09, 2026 at 7:37 AM."}, "results": {"date": "2026-08-09", "time": "07:37:00", "title": "Training Workshop"}}
+{"input": {"text": "The code review is scheduled for April 11, 2026 at 6:37 PM."}, "results": {"date": "2026-04-11", "time": "18:37:00", "title": "Code Review"}}
+{"input": {"text": "The budget meeting is scheduled for Friday, June 26, 2026 at 9:07 PM."}, "results": {"date": "2026-06-26", "time": "21:07:00", "title": "Budget Meeting"}}
+{"input": {"text": "The workshop on AI is scheduled for May 3rd, 2026 at 9 PM sharp."}, "results": {"date": "2026-05-03", "time": "21:00:00", "title": "Workshop on AI"}}
+{"input": {"text": "The brainstorming session is happening May 12, 2026 at 8 PM. Don’t forget your ideas!"}, "results": {"date": "2026-05-12", "time": "20:00:00", "title": "Brainstorming Session"}}
+{"input": {"text": "The team sync is on 2026-07-30 at 7:52 PM. Join the call!"}, "results": {"date": "2026-07-30", "time": "19:52:00", "title": "Team Sync"}}
+{"input": {"text": "The code review is this Sunday at 3:22 AM. Early birds only!"}, "results": {"date": "2026-07-26", "time": "03:22:00", "title": "Code Review"}}
+{"input": {"text": "The onboarding session is on July 30, 2026 at 6:07 PM. New team members, be there!"}, "results": {"date": "2026-07-30", "time": "18:07:00", "title": "Onboarding Session"}}
+{"input": {"text": "The client call is on the 15th of May 2026 at 7:37 PM. Dial in early!"}, "results": {"date": "2026-05-15", "time": "19:37:00", "title": "Client Call"}}
+{"input": {"text": "The budget meeting is on 03/06/2026 at 9:22 PM. Bring your spreadsheets!"}, "results": {"date": "2026-03-06", "time": "21:22:00", "title": "Budget Meeting"}}
+{"input": {"text": "The client call is next Friday at 11:07 AM. Don’t be late!"}, "results": {"date": "2026-03-06", "time": "11:07:00", "title": "Client Call"}}
+{"input": {"text": "The sprint review is on 2026-03-05 at 11:52 AM. Be prepared!"}, "results": {"date": "2026-03-05", "time": "11:52:00", "title": "Sprint Review"}}
+{"input": {"text": "The brainstorming session is on Tuesday, May 12, 2026 at 4:07 PM. Ideas welcome!"}, "results": {"date": "2026-05-12", "time": "16:07:00", "title": "Brainstorming Session"}}
+{"input": {"text": "The code review is on 2026-03-11 at 9:52 AM. Coffee provided."}, "results": {"date": "2026-03-11", "time": "09:52:00", "title": "Code Review"}}
+{"input": {"text": "The client call is on 07/03/2026 at 3:52 PM. Check your calendar!"}, "results": {"date": "2026-07-03", "time": "15:52:00", "title": "Client Call"}}
+{"input": {"text": "The training workshop is next Monday at 7 PM. See you there!"}, "results": {"date": "2026-08-10", "time": "19:00:00", "title": "Training Workshop"}}
+{"input": {"text": "The training workshop is on 2026-06-18 at 6:22 PM. Don’t miss it!"}, "results": {"date": "2026-06-18", "time": "18:22:00", "title": "Training Workshop"}}
+{"input": {"text": "The retrospective is on Monday, July 6th, 2026 at 12:07 PM. Lunch included!"}, "results": {"date": "2026-07-06", "time": "12:07:00", "title": "Retrospective"}}
+{"input": {"text": "The client call is on 26/06/2026 at 10:22 AM. Be ready!"}, "results": {"date": "2026-06-26", "time": "10:22:00", "title": "Client Call"}}
+{"input": {"text": "The brainstorming session is on Jul 2, 2026 at 10:07 PM. Night owls welcome!"}, "results": {"date": "2026-07-02", "time": "22:07:00", "title": "Brainstorming Session"}}
+{"input": {"text": "The client call is on 28th April 2026 at 9 AM. Dial in on time!"}, "results": {"date": "2026-04-28", "time": "09:00:00", "title": "Client Call"}}
+{"input": {"text": "The team sync is on May 17, 2026 at 12:52 AM. Late-night sync!"}, "results": {"date": "2026-05-17", "time": "00:52:00", "title": "Team Sync"}}
+{"input": {"text": "The team sync is next Saturday at 1 PM. Weekend sync!"}, "results": {"date": "2026-03-07", "time": "13:00:00", "title": "Team Sync"}}
+{"input": {"text": "The sprint planning is on 2026-04-20 at 2 PM. Bring your tasks!"}, "results": {"date": "2026-04-20", "time": "14:00:00", "title": "Sprint Planning"}}
+{"input": {"text": "The product demo is on Wednesday, April 1st, 2026 at 3 PM. Showtime!"}, "results": {"date": "2026-04-01", "time": "15:00:00", "title": "Product Demo"}}
+{"input": {"text": "The release planning is on next Thursday, April 2nd, 2026 at 10 AM. Be there!"}, "results": {"date": "2026-04-02", "time": "10:00:00", "title": "Release Planning"}}
+{"input": {"text": "The stakeholder meeting is on 04/05/2026 at 11 AM. Important updates!"}, "results": {"date": "2026-04-05", "time": "11:00:00", "title": "Stakeholder Meeting"}}
+{"input": {"text": "The tech talk is on May 20th, 2026 at 4 PM. Open to all!"}, "results": {"date": "2026-05-20", "time": "16:00:00", "title": "Tech Talk"}}
+{"input": {"text": "The design review is on 2026-05-10 at 2:30 PM. Feedback welcome!"}, "results": {"date": "2026-05-10", "time": "14:30:00", "title": "Design Review"}}
+{"input": {"text": "The security training is on June 15, 2026 at 9 AM. Mandatory!"}, "results": {"date": "2026-06-15", "time": "09:00:00", "title": "Security Training"}}
+{"input": {"text": "The project retrospective is on 2026-06-30 at 3 PM. Lessons learned!"}, "results": {"date": "2026-06-30", "time": "15:00:00", "title": "Project Retrospective"}}
+{"input": {"text": "The client onboarding is on July 10, 2026 at 10 AM. Welcome new clients!"}, "results": {"date": "2026-07-10", "time": "10:00:00", "title": "Client Onboarding"}}
+{"input": {"text": "The workshop is on August 5, 2026 at 1 PM. Hands-on session!"}, "results": {"date": "2026-08-05", "time": "13:00:00", "title": "Workshop"}}
+{"input": {"text": "The team lunch is on next Friday, August 7th, 2026 at 12 PM. Food provided!"}, "results": {"date": "2026-08-07", "time": "12:00:00", "title": "Team Lunch"}}
+{"input": {"text": "The code freeze is on 2026-08-15 at 5 PM. No more changes!"}, "results": {"date": "2026-08-15", "time": "17:00:00", "title": "Code Freeze"}}
+{"input": {"text": "The sprint demo is on September 1, 2026 at 2 PM. Show your work!"}, "results": {"date": "2026-09-01", "time": "14:00:00", "title": "Sprint Demo"}}
+{"input": {"text": "The planning session is on 09/10/2026 at 10 AM. Bring your ideas!"}, "results": {"date": "2026-09-10", "time": "10:00:00", "title": "Planning Session"}}
+{"input": {"text": "The client workshop is on October 5, 2026 at 11 AM. Interactive session!"}, "results": {"date": "2026-10-05", "time": "11:00:00", "title": "Client Workshop"}}
+{"input": {"text": "The team offsite is on 2026-10-20 at 9 AM. All day event!"}, "results": {"date": "2026-10-20", "time": "09:00:00", "title": "Team Offsite"}}
+{"input": {"text": "The hackathon is on November 2, 2026 at 8 AM. 24 hours of coding!"}, "results": {"date": "2026-11-02", "time": "08:00:00", "title": "Hackathon"}}
+{"input": {"text": "The product launch is on 2026-11-15 at 10 AM. Big day!"}, "results": {"date": "2026-11-15", "time": "10:00:00", "title": "Product Launch"}}
+{"input": {"text": "The year-end review is on December 1, 2026 at 2 PM. Reflect on the year!"}, "results": {"date": "2026-12-01", "time": "14:00:00", "title": "Year-End Review"}}
+{"input": {"text": "The holiday party is on 2026-12-20 at 6 PM. Celebrate with us!"}, "results": {"date": "2026-12-20", "time": "18:00:00", "title": "Holiday Party"}}
+{"input": {"text": "The strategy meeting is on January 5, 2027 at 9 AM. Plan for the new year!"}, "results": {"date": "2027-01-05", "time": "09:00:00", "title": "Strategy Meeting"}}
+{"input": {"text": "The kickoff for Q2 is on 2027-04-01 at 10 AM. New goals ahead!"}, "results": {"date": "2027-04-01", "time": "10:00:00", "title": "Q2 Kickoff"}}
+{"input": {"text": "The team building is on May 10, 2027 at 1 PM. Fun activities planned!"}, "results": {"date": "2027-05-10", "time": "13:00:00", "title": "Team Building"}}
+{"input": {"text": "The client presentation is on June 15, 2027 at 3 PM. Final prep!"}, "results": {"date": "2027-06-15", "time": "15:00:00", "title": "Client Presentation"}}
+{"input": {"text": "The tech summit is on 2027-07-20 at 9 AM. Industry leaders speaking!"}, "results": {"date": "2027-07-20", "time": "09:00:00", "title": "Tech Summit"}}
+{"input": {"text": "The innovation workshop is on August 5, 2027 at 10 AM. Think outside the box!"}, "results": {"date": "2027-08-05", "time": "10:00:00", "title": "Innovation Workshop"}}
+{"input": {"text": "The sprint retrospective is on 2027-08-30 at 2 PM. What went well?"}, "results": {"date": "2027-08-30", "time": "14:00:00", "title": "Sprint Retrospective"}}
+{"input": {"text": "The product roadmap session is on September 10, 2027 at 11 AM. Future plans!"}, "results": {"date": "2027-09-10", "time": "11:00:00", "title": "Product Roadmap"}}
+{"input": {"text": "The client feedback session is on October 15, 2027 at 3 PM. Your input matters!"}, "results": {"date": "2027-10-15", "time": "15:00:00", "title": "Client Feedback Session"}}
+{"input": {"text": "The team planning is on November 1, 2027 at 10 AM. Set your goals!"}, "results": {"date": "2027-11-01", "time": "10:00:00", "title": "Team Planning"}}
+{"input": {"text": "The end-of-year celebration is on 2027-12-15 at 6 PM. Join the fun!"}, "results": {"date": "2027-12-15", "time": "18:00:00", "title": "End-of-Year Celebration"}}
+{"input": {"text": "The new project kickoff is on 2028-01-10 at 9 AM. Exciting times ahead!"}, "results": {"date": "2028-01-10", "time": "09:00:00", "title": "New Project Kickoff"}}
+{"input": {"text": "The security review is on February 5, 2028 at 2 PM. Stay secure!"}, "results": {"date": "2028-02-05", "time": "14:00:00", "title": "Security Review"}}
+{"input": {"text": "The client check-in is on March 10, 2028 at 11 AM. Quick sync!"}, "results": {"date": "2028-03-10", "time": "11:00:00", "title": "Client Check-In"}}
+{"input": {"text": "The team sync is on 2028-03-20 at 3 PM. Weekly updates!"}, "results": {"date": "2028-03-20", "time": "15:00:00", "title": "Team Sync"}}
+{"input": {"text": "The workshop on new tools is on April 5, 2028 at 10 AM. Learn something new!"}, "results": {"date": "2028-04-05", "time": "10:00:00", "title": "New Tools Workshop"}}
+{"input": {"text": "The sprint planning is on May 1, 2028 at 9 AM. Plan your tasks!"}, "results": {"date": "2028-05-01", "time": "09:00:00", "title": "Sprint Planning"}}
+{"input": {"text": "The client demo is on June 15, 2028 at 2 PM. Show your progress!"}, "results": {"date": "2028-06-15", "time": "14:00:00", "title": "Client Demo"}}
+{"input": {"text": "The team retrospective is on July 10, 2028 at 10 AM. Reflect and improve!"}, "results": {"date": "2028-07-10", "time": "10:00:00", "title": "Team Retrospective"}}
