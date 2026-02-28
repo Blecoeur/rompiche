@@ -8,7 +8,7 @@ from typing import Dict, Any, Optional
 import mistralai
 from dotenv import load_dotenv
 from PIL import Image
-
+from rompiche.utils.processor_utils import create_function_calling_tools
 # Load environment variables
 load_dotenv()
 
@@ -132,31 +132,7 @@ class OCRVLMDocumentProcessor(BaseDocumentProcessor):
             print("No text extracted via OCR")
             return {}
         
-        # Step 2: Process extracted text with VLM
-        function_name = "extract_information"
-        function_description = "Extract structured information from OCR'd text. Arguments cannot be null."
-
-        parameters = {
-            "type": "object",
-            "properties": {},
-            "required": []
-        }
-
-        for field_name, field_config in schema.get("properties", {}).items():
-            parameters["properties"][field_name] = field_config
-            if field_name in schema.get("required", []):
-                parameters["required"].append(field_name)
-
-        tools = [
-            {
-                "type": "function",
-                "function": {
-                    "name": function_name,
-                    "description": function_description,
-                    "parameters": parameters
-                }
-            }
-        ]
+        function_name, tools = create_function_calling_tools(schema)
 
         try:
             response = self.client.chat.complete(

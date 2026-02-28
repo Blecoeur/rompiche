@@ -7,7 +7,7 @@ from typing import Dict, Any, Optional
 import mistralai
 from dotenv import load_dotenv
 import base64
-
+from rompiche.utils.processor_utils import create_function_calling_tools
 # Load environment variables
 load_dotenv()
 
@@ -83,30 +83,7 @@ class VLMOnlyDocumentProcessor(BaseDocumentProcessor):
             print(f"Error reading image file: {e}")
             return {}
         
-        function_name = "extract_information"
-        function_description = "Extract structured information from document/image. Arguments cannot be null."
-
-        parameters = {
-            "type": "object",
-            "properties": {},
-            "required": []
-        }
-
-        for field_name, field_config in schema.get("properties", {}).items():
-            parameters["properties"][field_name] = field_config
-            if field_name in schema.get("required", []):
-                parameters["required"].append(field_name)
-
-        tools = [
-            {
-                "type": "function",
-                "function": {
-                    "name": function_name,
-                    "description": function_description,
-                    "parameters": parameters
-                }
-            }
-        ]
+        function_name, tools = create_function_calling_tools(schema)
 
         try:
             response = self.client.chat.complete(
