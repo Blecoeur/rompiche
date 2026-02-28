@@ -1,0 +1,32 @@
+{
+  "prompt": "Extract the date, time, and event title from the text.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "date": {"type": "string", "description": "The date of the event"},
+      "time": {"type": "string", "description": "The time of the event"},
+      "title": {"type": "string", "description": "The title of the event"}
+    },
+    "required": ["date", "time", "title"]
+  },
+  "success_criteria": {
+    "date": {"exact_match": 0.95, "string_distance": 0.95},
+    "time": {"exact_match": 0.95, "string_distance": 0.95},
+    "title": {"exact_match": 0.90, "string_distance": 0.90}
+  },
+  "evaluator": {
+    "metrics": ["exact_match", "string_distance"],
+    "field_metrics": {
+      "date": ["exact_match"],
+      "time": ["exact_match"],
+      "title": ["string_distance"]
+    },
+    "success_thresholds": {
+      "date": {"exact_match": 1.0},
+      "time": {"exact_match": 1.0},
+      "title": {"string_distance": 0.8}
+    }
+  },
+  "max_iterations": 3,
+  "data_file": "example_input/example.jsonl"
+}

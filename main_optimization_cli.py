@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 """
-Main optimization workflow that ties everything together:
-1. Processes all input files using example_processor.py
-2. Evaluates results using evaluator.py
-3. Uses brain.py to decide whether to continue or stop
-4. Applies suggestions using applier.py
-5. Repeats until success criteria are met or max iterations reached
+CLI version of the main optimization workflow.
+Accepts a config file to initialize prompt, schema, success criteria, evaluator, and number of loops.
 """
 
 import json
 import os
+import argparse
 from typing import Dict, Any, List
 from evaluator import Evaluator
 from example_processor import process
@@ -78,61 +75,29 @@ def evaluate_all_results(results: List[Dict[str, Any]], evaluator: Evaluator) ->
     
     return averages
 
-
-def check_success_criteria(
-    metrics: Dict[str, Dict[str, float]],
-    criteria: Dict[str, Dict[str, float]]
-) -> bool:
-    """Check if all per-field metrics meet their success criteria."""
-    for field_name, field_criteria in criteria.items():
-        field_metrics = metrics.get(field_name, {})
-        for metric_name, target in field_criteria.items():
-            if field_metrics.get(metric_name, 0.0) < target:
-                return False
-    return True
-
-def run_full_optimization_loop(max_iterations: int = 5):
-    """Main optimization loop"""
+def run_full_optimization_loop(
+    initial_prompt: str,
+    initial_schema: Dict[str, Any],
+    success_criteria: Dict[str, Dict[str, float]],
+    evaluator_config: Dict[str, Any],
+    max_iterations: int = 5,
+    data_file: str = "example_data/example.jsonl"
+) -> Dict[str, Any]:
+    """Main optimization loop with configurable parameters"""
     
-    # Initialize
-    current_prompt = "Extract the date, time, and event title from the text."
-    current_schema = {
-        "type": "object",
-        "properties": {
-            "date": {"type": "string", "description": "The date of the event"},
-            "time": {"type": "string", "description": "The time of the event"},
-            "title": {"type": "string", "description": "The title of the event"}
-        },
-        "required": ["date", "time", "title"]
-    }
-    # Per-field success criteria (now handled by evaluator)
-    success_criteria = {
-        "date": {"exact_match": 0.95, "string_distance": 0.95},
-        "time": {"exact_match": 0.95, "string_distance": 0.95},
-        "title": {"exact_match": 0.90, "string_distance": 0.90},
-    }
+    current_prompt = initial_prompt
+    current_schema = initial_schema
     
     # Load evaluation data
-    data = load_data()
+    data = load_data(data_file)
     
-    evaluator = Evaluator({
-        "metrics": ["exact_match", "string_distance"],
-        "field_metrics": {
-            "date": ["exact_match"],
-            "time": ["exact_match"],
-            "title": ["string_distance"]
-        },
-        "success_thresholds": {
-            "date": {"exact_match": 1.0},
-            "time": {"exact_match": 1.0},
-            "title": {"string_distance": 0.8}
-        }
-    })
+    evaluator = Evaluator(evaluator_config)
     
     print("Starting optimization loop...")
     print(f"Initial prompt: {current_prompt}")
     print(f"Initial schema: {json.dumps(current_schema, indent=2)}")
     print(f"Success criteria: {success_criteria}")
+    print(f"Evaluator config: {json.dumps(evaluator_config, indent=2)}")
     
     for iteration in range(max_iterations):
         print(f"\n{'='*50}")
@@ -202,12 +167,39 @@ def run_full_optimization_loop(max_iterations: int = 5):
         "iteration": iteration + 1
     }
 
-if __name__ == "__main__":
-    # Run the optimization with a maximum of 3 iterations
-    final_results = run_full_optimization_loop(max_iterations=3)
+def load_config(config_file: str) -> Dict[str, Any]:
+    """Load configuration from JSON file"""
+    with open(config_file, 'r') as f:
+        return json.load(f)
+
+def main():
+    parser = argparse.ArgumentParser(description='Run optimization workflow with configurable parameters')
+    parser.add_argument('--config', type=str, required=True, help='Path to JSON config file')
+    parser.add_argument('--output', type=str, default='optimization_results.json', help='Output file path')
+    args = parser.parse_args()
+    
+    # Load configuration
+    config = load_config(args.config)
+    
+    for key in ['prompt', 'schema', 'success_criteria', 'evaluator', 'max_iterations', 'data_file']:
+        if key not in config:
+            raise ValueError(f"Error: Missing required configuration parameter: {key}")
+    
+    # Run optimization with config parameters
+    final_results = run_full_optimization_loop(
+        initial_prompt=config.get('prompt'),
+        initial_schema=config.get('schema'),
+        success_criteria=config.get('success_criteria'),
+        evaluator_config=config.get('evaluator'),
+        max_iterations=config.get('max_iterations'),
+        data_file=config.get('data_file')
+    )
     
     # Save results to a file
-    with open("optimization_results.json", "w") as f:
+    with open(args.output, "w") as f:
         json.dump(final_results, f, indent=2)
     
-    print(f"\nResults saved to optimization_results.json")
+    print(f"\nResults saved to {args.output}")
+
+if __name__ == "__main__":
+    main()

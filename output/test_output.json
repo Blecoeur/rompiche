@@ -1,0 +1,39 @@
+{
+  "metrics": {
+    "date": {
+      "exact_match": 1.0
+    },
+    "time": {
+      "exact_match": 1.0
+    },
+    "title": {
+      "string_distance": 1.0
+    }
+  },
+  "prompt": "Extract the date, time, and event title from the text with the following strict formatting rules:\n\n1. Date: Always use the ISO format YYYY-MM-DD (e.g., 2026-03-10). If the year is explicitly mentioned in the text, use that year. If the year is not specified, assume the next occurrence of the date in the future, but prioritize the year 2026 if the date is in the context of long-term planning or recurring events (e.g., 'next Tuesday, April 15th' should default to 2026).\n\n2. Time: Always use the 24-hour format HH:MM:SS (e.g., 10:00:00 for 10 AM, 14:30:00 for 2:30 PM). If seconds are not specified, default to 00. Ignore words like 'around' or 'about' when extracting the time.\n\n3. Title: Always use title case for the event title. Include all parts of the title as they appear in the text, such as incident numbers (e.g., 'Incident #123456 Post-Mortem'), project codes, or other identifiers. Do NOT shorten or paraphrase the title. Remove only leading articles like 'the' or 'a' if they are not part of a proper noun or identifier. For example:\n   - 'the post-mortem for incident #123456' \u2192 'Incident #123456 Post-Mortem'\n   - 'security audit meeting' \u2192 'Security Audit'\n\n4. Ignore any additional context like locations, notes, or attendance instructions (e.g., 'in the big room', 'Breakfast provided', 'Mandatory for the tech team').",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "date": {
+        "type": "string",
+        "description": "The date of the event in ISO format (YYYY-MM-DD). If the year is not specified, assume 2026 for future dates. Example: 2026-04-15.",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      },
+      "time": {
+        "type": "string",
+        "description": "The time of the event in 24-hour format (HH:MM:SS). Example: 14:30:00.",
+        "pattern": "^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$"
+      },
+      "title": {
+        "type": "string",
+        "description": "The full title of the event in title case, including all identifiers like incident numbers or project codes. Example: 'Incident #123456 Post-Mortem' or 'Security Audit'."
+      }
+    },
+    "required": [
+      "date",
+      "time",
+      "title"
+    ]
+  },
+  "iteration": 3
+}
