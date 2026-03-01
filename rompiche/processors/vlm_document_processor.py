@@ -68,7 +68,7 @@ class VLMOnlyDocumentProcessor(BaseDocumentProcessor):
     """Processor for document/image to JSON using VLM (Vision-Language Model) only."""
 
     def process(
-        self, image_path: str, prompt: str, schema: Dict[str, Any]
+        self, input: str, prompt: str, schema: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
         Process an image/document and extract structured information using VLM.
@@ -81,6 +81,10 @@ class VLMOnlyDocumentProcessor(BaseDocumentProcessor):
         Returns:
             Dictionary containing the extracted information
         """
+        image_path = json.loads(input).get("image_path")
+        if not image_path:
+            raise ValueError("image_path is required")
+
         # Open and encode the image
         try:
             with open(image_path, "rb") as image_file:

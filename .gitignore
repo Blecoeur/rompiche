@@ -4,3 +4,4 @@ __pycache__/
 output/*
 .DS_Store
 test_output.json
+sroie_dataset/*
