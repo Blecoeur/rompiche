@@ -387,7 +387,9 @@ class LiveDashboard(App):
         content = []
         for i, example in enumerate(self.tracker.mismatch_examples):
             content.append(f"Mismatch {i + 1}:")
-            content.append(f"  Input: {example.get('input', '')[:70]}...")
+            raw_input = example.get('input', '')
+            input_str = str(raw_input) if not isinstance(raw_input, str) else raw_input
+            content.append(f"  Input: {input_str[:70]}...")
 
             # Get the evaluator to check which fields don't meet criteria
             evaluator = self.tracker.evaluator

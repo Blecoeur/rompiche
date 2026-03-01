@@ -4,9 +4,10 @@ from rompiche.core.evaluator import Evaluator
 from rompiche.core.brain import get_brain_decision
 from rompiche.utils.utils import load_data, split_data
 from rompiche.utils.evaluate_utils import evaluate_all_results
-from rompiche.utils.evaluate_utils import collect_mismatch_examples
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import json
+import random
 import time
 
 
@@ -95,6 +96,7 @@ def _run_processor(
     status_message: str | None = None,
     evaluator: Evaluator | None = None,
     early_stop_per_field: int | None = None,
+    batch_size: int | None = None,
 ) -> tuple[list[Dict], int, list[Dict], bool]:
     """Run processor and optionally early-stop when every mismatched field is saturated.
 
@@ -102,6 +104,9 @@ def _run_processor(
     every field that has at least one mismatch has collected that many
     examples. This guarantees the brain receives balanced coverage across
     all problematic fields.
+    
+    Args:
+        batch_size: Number of items to process in parallel. If None, processes sequentially.
     """
     message = status_message or "💻 Running processor on all files..."
     if use_tui and tracker:
@@ -116,34 +121,130 @@ def _run_processor(
     early_stopped_on_mismatches = False
     field_mismatches: dict[str, list[Dict[str, Any]]] = {}
 
-    for index, item in enumerate(data, start=1):
-        input_text = item["input"]["text"]
-        before_tokens = _get_processor_tokens(processor_func)
-        prediction = processor_func(input_text, current_prompt, current_schema)
-        after_tokens = _get_processor_tokens(processor_func)
-        processor_tokens_used += max(0, after_tokens - before_tokens)
-        ground_truth = item["results"]
-        processing_results.append({
-            "input": input_text,
-            "prediction": prediction,
-            "ground_truth": ground_truth,
-        })
-        processed_items = index
+    # Process data in batches if batch_size is specified
+    if batch_size and batch_size > 1:
+        # Process in batches with parallel execution using ThreadPoolExecutor
+        for batch_start in range(0, len(data), batch_size):
+            batch_end = min(batch_start + batch_size, len(data))
+            batch = data[batch_start:batch_end]
+            
+            # Use ThreadPoolExecutor for parallel processing within the batch
+            with ThreadPoolExecutor(max_workers=batch_size) as executor:
+                # Submit all items in the batch for parallel processing
+                future_to_index = {}
+                index_to_item = {}
+                for batch_index, item in enumerate(batch):
+                    index = batch_start + batch_index + 1
+                    future = executor.submit(
+                        processor_func, 
+                        item["input"], 
+                        current_prompt, 
+                        current_schema
+                    )
+                    future_to_index[future] = index
+                    index_to_item[index] = item
+                
+                # Store results in order by collecting all futures first
+                results_in_batch = {}
+                for future in as_completed(future_to_index):
+                    index = future_to_index[future]
+                    try:
+                        prediction = future.result()
+                        results_in_batch[index] = ("success", prediction)
+                    except Exception as e:
+                        print(f"Error processing item {index}: {e}")
+                        results_in_batch[index] = ("error", {})
+                
+                # Process results in original order
+                for batch_index, item in enumerate(batch):
+                    index = batch_start + batch_index + 1
+                    result_type, prediction = results_in_batch.get(index, ("error", {}))
+                    
+                    after_tokens = _get_processor_tokens(processor_func)
+                    before_tokens = after_tokens  # Approximation since we can't get before for parallel
+                    processor_tokens_used += max(0, after_tokens - before_tokens)
+                    ground_truth = item["results"]
+                    processing_results.append({
+                        "input": item["input"],
+                        "prediction": prediction,
+                        "ground_truth": ground_truth,
+                    })
+                    processed_items = index
+                    
+                    # Check for early stopping in batch processing
+                    if evaluator and early_stop_per_field and result_type == "success":
+                        field_evaluation = evaluator.evaluate(prediction, ground_truth)
+                        for field_name in ground_truth.keys():
+                            if field_name not in field_mismatches:
+                                field_mismatches[field_name] = []
 
-        if evaluator and early_stop_per_field:
-            field_evaluation = None
-            for field_name in ground_truth.keys():
-                if field_name not in field_mismatches:
-                    field_mismatches[field_name] = []
+                            field_score = field_evaluation.get(field_name, {})
+                            field_thresholds = evaluator.success_thresholds.get(field_name, {})
+                            field_failed = any(
+                                field_score.get(metric, 1.0) < field_thresholds.get(metric, 1.0)
+                                for metric in field_score
+                            )
 
-                if prediction.get(field_name) != ground_truth.get(field_name):
-                    if len(field_mismatches[field_name]) < early_stop_per_field:
-                        if field_evaluation is None:
-                            field_evaluation = evaluator.evaluate(prediction, ground_truth)
-                        field_score = field_evaluation.get(field_name, {})
+                            if field_failed and len(field_mismatches[field_name]) < early_stop_per_field:
+                                field_mismatches[field_name].append(
+                                    {
+                                        "input": item["input"],
+                                        "prediction": prediction,
+                                        "ground_truth": ground_truth,
+                                        "field": field_name,
+                                        "field_score": field_score,
+                                        "type": "field_mismatch",
+                                    }
+                                )
+
+                        fields_with_mismatches = [
+                            f for f, m in field_mismatches.items() if len(m) > 0
+                        ]
+                        if fields_with_mismatches and all(
+                            len(field_mismatches[f]) >= early_stop_per_field
+                            for f in fields_with_mismatches
+                        ):
+                            early_stopped_on_mismatches = True
+                            break
+
+            if use_tui and tracker:
+                tracker.update_progress(processed_items, total_items)
+                
+            if early_stopped_on_mismatches:
+                break
+    else:
+        # Process sequentially (original behavior)
+        for index, item in enumerate(data, start=1):
+            input_data = item["input"]
+            before_tokens = _get_processor_tokens(processor_func)
+            prediction = processor_func(input_data, current_prompt, current_schema)
+            after_tokens = _get_processor_tokens(processor_func)
+            processor_tokens_used += max(0, after_tokens - before_tokens)
+            ground_truth = item["results"]
+            processing_results.append({
+                "input": input_data,
+                "prediction": prediction,
+                "ground_truth": ground_truth,
+            })
+            processed_items = index
+
+            if evaluator and early_stop_per_field:
+                field_evaluation = evaluator.evaluate(prediction, ground_truth)
+                for field_name in ground_truth.keys():
+                    if field_name not in field_mismatches:
+                        field_mismatches[field_name] = []
+
+                    field_score = field_evaluation.get(field_name, {})
+                    field_thresholds = evaluator.success_thresholds.get(field_name, {})
+                    field_failed = any(
+                        field_score.get(metric, 1.0) < field_thresholds.get(metric, 1.0)
+                        for metric in field_score
+                    )
+
+                    if field_failed and len(field_mismatches[field_name]) < early_stop_per_field:
                         field_mismatches[field_name].append(
                             {
-                                "input": input_text,
+                                "input": input_data,
                                 "prediction": prediction,
                                 "ground_truth": ground_truth,
                                 "field": field_name,
@@ -152,18 +253,18 @@ def _run_processor(
                             }
                         )
 
-            fields_with_mismatches = [
-                f for f, m in field_mismatches.items() if len(m) > 0
-            ]
-            if fields_with_mismatches and all(
-                len(field_mismatches[f]) >= early_stop_per_field
-                for f in fields_with_mismatches
-            ):
-                early_stopped_on_mismatches = True
-                break
+                fields_with_mismatches = [
+                    f for f, m in field_mismatches.items() if len(m) > 0
+                ]
+                if fields_with_mismatches and all(
+                    len(field_mismatches[f]) >= early_stop_per_field
+                    for f in fields_with_mismatches
+                ):
+                    early_stopped_on_mismatches = True
+                    break
 
-        if use_tui and tracker:
-            tracker.update_progress(index, total_items)
+            if use_tui and tracker:
+                tracker.update_progress(index, total_items)
 
     if use_tui and tracker:
         tracker.update_progress(processed_items, total_items)
@@ -211,11 +312,9 @@ def _evaluate_results(
     
     metrics = evaluate_all_results(processing_results, evaluator)
     
-    if use_tui and tracker:
-        tracker.add_iteration_metrics(metrics)
-    else:
-        if tracker:
-            tracker.add_iteration_metrics(metrics)
+    if tracker:
+        tracker.add_iteration_metrics(metrics, dataset_type=dataset_type)
+    if not use_tui:
         print(f"{dataset_type.upper()} Metrics:")
         for field, field_metrics in metrics.items():
             print(f"  {field}: {field_metrics}")
@@ -452,6 +551,7 @@ def run_full_optimization_loop(
     max_samples: int | None = None,
     test_size: float = 0.0,
     early_stop_mismatches_per_field: int | None = 5,
+    batch_size: int | None = None,
     tracker: MetricsTracker = None,
     use_tui: bool = False,
 ) -> Dict[str, Any]:
@@ -513,6 +613,7 @@ def run_full_optimization_loop(
                 tracker,
                 use_tui,
                 status_message=f"Step 1/{total_steps}: 💻 Running processor on test set...",
+                batch_size=batch_size,
             )
             total_processor_tokens += test_processor_tokens
             if tracker and test_processor_tokens:
@@ -533,7 +634,8 @@ def run_full_optimization_loop(
                 metrics = test_metrics
                 break
         
-        # 2. Run processor on training set
+        # 2. Run processor on training set (shuffled to avoid order bias)
+        random.shuffle(train_data)
         (
             train_processing_results,
             train_processor_tokens,
@@ -553,6 +655,7 @@ def run_full_optimization_loop(
             ),
             evaluator=evaluator,
             early_stop_per_field=early_stop_mismatches_per_field,
+            batch_size=batch_size,
         )
         total_processor_tokens += train_processor_tokens
         if tracker and train_processor_tokens:
@@ -575,27 +678,21 @@ def run_full_optimization_loop(
         # Use training metrics for optimization decisions
         metrics = train_metrics
         
-        # 4. Collect mismatch examples from test set (if available), otherwise from training set
-        mismatch_examples = []
-        if test_data and test_processing_results:
-            mismatch_examples = collect_mismatch_examples(test_processing_results, evaluator, max_examples_per_field=5)
-            dataset_type = "test"
-        else:
-            mismatch_examples = train_mismatch_examples
-            dataset_type = "train"
+        # 4. Collect mismatch examples from training set
+        mismatch_examples = train_mismatch_examples
         
         if use_tui and tracker:
             for example in mismatch_examples[:10]:
                 tracker.add_mismatch(example)
             tracker.update_status(
                 (
-                    f"Step 5/{total_steps}: Found {len(mismatch_examples)} mismatch examples from {dataset_type} set"
+                    f"Step 5/{total_steps}: Found {len(mismatch_examples)} mismatch examples from training set"
                     if has_test_set
                     else f"Step 3/{total_steps}: Found {len(mismatch_examples)} mismatch examples"
                 )
             )
         else:
-            print(f"Found {len(mismatch_examples)} mismatch examples from {dataset_type} set")
+            print(f"Found {len(mismatch_examples)} mismatch examples from training set")
         
         if train_early_stopped_on_mismatch_limit:
             if use_tui and tracker:
@@ -685,6 +782,7 @@ def run_full_optimization_loop(
             tracker,
             use_tui,
             status_message="Final test evaluation: 💻 Running processor on test set...",
+            batch_size=batch_size,
         )
         total_processor_tokens += final_test_processor_tokens
         if tracker and final_test_processor_tokens:

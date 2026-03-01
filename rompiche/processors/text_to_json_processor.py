@@ -44,19 +44,20 @@ class TextToJsonProcessor:
         self.tokens_used = 0
 
     def process(
-        self, input_text: str, prompt: str, schema: Dict[str, Any]
+        self, input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
         Process text and extract structured information based on the provided schema.
 
         Args:
-            input_text: The text to process
+            input_data: Dict containing at least a "text" key with the text to process
             prompt: Instructions for the extraction
             schema: JSON schema defining the output structure
 
         Returns:
             Dictionary containing the extracted information
         """
+        input_text = input_data["text"]
         function_name, tools = create_function_calling_tools(schema)
 
         try:
@@ -102,13 +103,12 @@ class TextToJsonProcessor:
         return self.tokens_used
 
 
-def process(input_text: str, prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]:
+def process(input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Legacy function for backward compatibility.
-    Creates a processor instance and calls process.
+    Module-level process function expected by the processor loader.
     """
     processor = TextToJsonProcessor()
-    result = processor.process(input_text, prompt, schema)
+    result = processor.process(input_data, prompt, schema)
     if not hasattr(process, "tokens_used"):
         process.tokens_used = 0
     process.tokens_used += processor.tokens_used

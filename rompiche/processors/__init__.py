@@ -3,7 +3,7 @@
 
 from .vlm_document_processor import (
     VLMOnlyDocumentProcessor,
-    process_vlm_only,
+    process as process_vlm_only,
     BaseDocumentProcessor,
 )
 from .ocr_vlm_document_processor import OCRVLMDocumentProcessor, process_ocr_vlm

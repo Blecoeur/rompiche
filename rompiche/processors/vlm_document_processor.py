@@ -68,22 +68,22 @@ class VLMOnlyDocumentProcessor(BaseDocumentProcessor):
     """Processor for document/image to JSON using VLM (Vision-Language Model) only."""
 
     def process(
-        self, input: str, prompt: str, schema: Dict[str, Any]
+        self, input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
         Process an image/document and extract structured information using VLM.
 
         Args:
-            image_path: Path to the image/document file
+            input_data: Dict containing at least an "image_path" key
             prompt: Instructions for the extraction
             schema: JSON schema defining the output structure
 
         Returns:
             Dictionary containing the extracted information
         """
-        image_path = json.loads(input).get("image_path")
+        image_path = input_data.get("image_path")
         if not image_path:
-            raise ValueError("image_path is required")
+            raise ValueError("image_path is required in input_data")
 
         # Open and encode the image
         try:
@@ -137,15 +137,13 @@ class VLMOnlyDocumentProcessor(BaseDocumentProcessor):
             return {}
 
 
-def process_vlm_only(
-    image_path: str, prompt: str, schema: Dict[str, Any]
-) -> Dict[str, Any]:
+def process(input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Legacy function for VLM-only processing (backward compatibility).
+    Module-level process function expected by the processor loader.
     """
     processor = VLMOnlyDocumentProcessor()
-    result = processor.process(image_path, prompt, schema)
-    if not hasattr(process_vlm_only, "tokens_used"):
-        process_vlm_only.tokens_used = 0
-    process_vlm_only.tokens_used += processor.tokens_used
+    result = processor.process(input_data, prompt, schema)
+    if not hasattr(process, "tokens_used"):
+        process.tokens_used = 0
+    process.tokens_used += processor.tokens_used
     return result

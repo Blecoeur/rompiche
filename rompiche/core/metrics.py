@@ -4,7 +4,8 @@ class MetricsTracker:
     """Tracks all metrics and history for the TUI dashboard"""
 
     def __init__(self):
-        self.iteration_metrics = []
+        self.iteration_metrics = []  # test-set metrics only (used by dashboard)
+        self.train_iteration_metrics = []
         self.current_iteration = 0
         self.total_iterations = 0
         self.start_time = datetime.now()
@@ -32,9 +33,12 @@ class MetricsTracker:
         self.current_progress = processed
         self.total_items = total
 
-    def add_iteration_metrics(self, metrics: dict):
+    def add_iteration_metrics(self, metrics: dict, dataset_type: str = "test"):
         """Add metrics for the current iteration"""
-        self.iteration_metrics.append(metrics)
+        if dataset_type == "test":
+            self.iteration_metrics.append(metrics)
+        else:
+            self.train_iteration_metrics.append(metrics)
 
     def add_tokens(self, tokens: int):
         """Add to the total token count"""

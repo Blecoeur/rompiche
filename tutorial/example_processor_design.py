@@ -19,13 +19,13 @@ class ExampleProcessor(BaseProcessor):
     """
 
     def process(
-        self, input_text: str, prompt: str, schema: Dict[str, Any]
+        self, input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
-        Process text and extract structured information based on the provided schema.
+        Process input data and extract structured information based on the provided schema.
 
         Args:
-            input_text: The text to process
+            input_data: Dict with input fields (e.g. {"text": "..."} or {"image_path": "..."})
             prompt: Instructions for the extraction
             schema: JSON schema defining the output structure
 

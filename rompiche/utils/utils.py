@@ -70,7 +70,7 @@ def load_processor_module(
         # Get the process function
         if not hasattr(module, "process"):
             raise AttributeError(
-                f"Module {module_path} does not have a 'process' function. Expected signature: process(input: str, prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]"
+                f"Module {module_path} does not have a 'process' function. Expected signature: process(input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]"
             )
 
         return module.process

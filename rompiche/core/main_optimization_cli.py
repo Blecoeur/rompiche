@@ -64,6 +64,12 @@ def main():
         default=None,
         help="Proportion of data to use for test set (0.0 to 1.0)",
     )
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=None,
+        help="Number of items to process in parallel (batch processing)",
+    )
     parser.add_argument("--tui", action="store_true", help="Enable live TUI dashboard")
     args = parser.parse_args()
 
@@ -80,6 +86,9 @@ def main():
     
     # Get test_size from CLI or config
     test_size = args.test_size if args.test_size is not None else config.get("test_size", 0.0)
+
+    # Get batch_size from CLI or config
+    batch_size = args.batch_size if args.batch_size is not None else config.get("batch_size")
 
     early_stop_mismatches_per_field = config.get("early_stop_mismatches_per_field", 5)
 
@@ -110,6 +119,7 @@ def main():
                     max_samples=max_samples,
                     test_size=test_size,
                     early_stop_mismatches_per_field=early_stop_mismatches_per_field,
+                    batch_size=batch_size,
                     data_file=config.get("data_file"),
                     processor_func=processor_func,
                     tracker=tracker,
@@ -149,6 +159,7 @@ def main():
                 max_samples=max_samples,
                 test_size=test_size,
                 early_stop_mismatches_per_field=early_stop_mismatches_per_field,
+                batch_size=batch_size,
                 data_file=config.get("data_file"),
                 processor_func=processor_func,
                 tracker=tracker,

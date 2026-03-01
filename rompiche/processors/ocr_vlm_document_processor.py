@@ -127,20 +127,23 @@ class OCRVLMDocumentProcessor(BaseDocumentProcessor):
             return ""
 
     def process(
-        self, image_path: str, prompt: str, schema: Dict[str, Any]
+        self, input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
         Process an image/document using OCR+VLM pipeline and extract structured information.
 
         Args:
-            image_path: Path to the image/document file
+            input_data: Dict containing at least an "image_path" key
             prompt: Instructions for the extraction
             schema: JSON schema defining the output structure
 
         Returns:
             Dictionary containing the extracted information
         """
-        # Step 1: Extract text using OCR
+        image_path = input_data.get("image_path")
+        if not image_path:
+            raise ValueError("image_path is required in input_data")
+
         extracted_text = self._extract_text_with_ocr(image_path)
         if not extracted_text:
             print("No text extracted via OCR")
@@ -178,14 +181,26 @@ class OCRVLMDocumentProcessor(BaseDocumentProcessor):
             return {}
 
 
+def process(input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Module-level process function expected by the processor loader.
+    """
+    processor = OCRVLMDocumentProcessor()
+    result = processor.process(input_data, prompt, schema)
+    if not hasattr(process, "tokens_used"):
+        process.tokens_used = 0
+    process.tokens_used += processor.tokens_used
+    return result
+
+
 def process_ocr_vlm(
-    image_path: str, prompt: str, schema: Dict[str, Any], ocr_engine: str = "tesseract"
+    input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any], ocr_engine: str = "tesseract"
 ) -> Dict[str, Any]:
     """
     Legacy function for OCR+VLM processing (backward compatibility).
     """
     processor = OCRVLMDocumentProcessor(ocr_engine=ocr_engine)
-    result = processor.process(image_path, prompt, schema)
+    result = processor.process(input_data, prompt, schema)
     if not hasattr(process_ocr_vlm, "tokens_used"):
         process_ocr_vlm.tokens_used = 0
     process_ocr_vlm.tokens_used += processor.tokens_used
