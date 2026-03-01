@@ -675,8 +675,8 @@ def run_full_optimization_loop(
         mismatch_examples = train_mismatch_examples
         
         if use_tui and tracker:
-            for example in mismatch_examples[:10]:
-                tracker.add_mismatch(example)
+            # Show all mismatch examples collected for this iteration in the UI.
+            tracker.mismatch_examples = list(mismatch_examples)
             tracker.update_status(
                 (
                     f"Step 5/{total_steps}: Found {len(mismatch_examples)} mismatch examples from training set"

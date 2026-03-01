@@ -23,6 +23,7 @@ def clean_date(date_str):
     # Try different date formats
     date_formats = [
         ('%d/%m/%Y', r'\d{2}/\d{2}/\d{4}'),  # DD/MM/YYYY
+        ('%d-%m-%Y', r'\d{2}-\d{2}-\d{4}'),  # DD-MM-YYYY
         ('%d-%m-%y', r'\d{2}-\d{2}-\d{2}'),  # DD-MM-YY
         ('%d %b %Y', r'\d{2}\s[A-Z]{3}\s\d{4}'),  # DD MON YYYY
         ('%d/%m/%Y', r'\d{1,2}/\d{1,2}/\d{4}'),  # D/M/YYYY
@@ -132,6 +133,12 @@ def clean_total(total_str):
     except ValueError:
         return None
 
+def clean_text_full_caps(text):
+    """Normalize free text fields to full uppercase."""
+    if text is None:
+        return None
+    return str(text).upper()
+
 def clean_dataset(input_file, output_file):
     """Clean the dataset and save to output file"""
     with open(input_file, 'r') as f:
@@ -166,6 +173,34 @@ def clean_dataset(input_file, output_file):
                         'field': 'date',
                         'original': original_date,
                         'cleaned': None
+                    })
+
+            # Normalize company to full caps
+            if 'company' in results:
+                original_company = results['company']
+                cleaned_company = clean_text_full_caps(original_company)
+                if cleaned_company != original_company:
+                    results['company'] = cleaned_company
+                    stats['companies_cleaned'] += 1
+                    changes_made.append({
+                        'id': item.get('id', 'unknown'),
+                        'field': 'company',
+                        'original': original_company,
+                        'cleaned': cleaned_company
+                    })
+
+            # Normalize address to full caps
+            if 'address' in results:
+                original_address = results['address']
+                cleaned_address = clean_text_full_caps(original_address)
+                if cleaned_address != original_address:
+                    results['address'] = cleaned_address
+                    stats['addresses_cleaned'] += 1
+                    changes_made.append({
+                        'id': item.get('id', 'unknown'),
+                        'field': 'address',
+                        'original': original_address,
+                        'cleaned': cleaned_address
                     })
             
             # Clean total
@@ -213,6 +248,8 @@ if __name__ == '__main__':
     print(f"\n📊 Statistics:")
     print(f"  Dates cleaned: {stats['dates_cleaned']}")
     print(f"  Dates removed: {stats['dates_removed']}")
+    print(f"  Companies cleaned: {stats['companies_cleaned']}")
+    print(f"  Addresses cleaned: {stats['addresses_cleaned']}")
     print(f"  Totals cleaned: {stats['totals_cleaned']}")
     print(f"  Totals removed: {stats['totals_removed']}")
     

@@ -108,7 +108,9 @@ IMPORTANT:
 - Provide a "changes" array containing concise, concrete change items.
 - Each item in "changes" must describe one specific modification made to prompt/schema.
 - Use null for "updated_prompt" and/or "updated_schema" when that part is unchanged.
-Do not hardcode the values in the prompt or schema, you can give examples but invent similar values to the ground truth.
+
+VERY IMPORTANT:
+- DO NOT HARDCODE THE VALUES IN THE PROMPT OR SCHEMA, YOU CAN GIVE EXAMPLES BUT INVENT SIMILAR VALUES TO THE GROUND TRUTH.
 """
 
     user_prompt = f"""Metrics: {json.dumps(metrics)}
@@ -123,7 +125,9 @@ Current schema: {json.dumps(schema)}"""
 Here are concrete mismatch examples (prediction vs ground_truth):
 {examples_str}
 
-Analyze the differences carefully and fix the prompt/schema so predictions match ground truth exactly."""
+Analyze the differences carefully and fix the prompt/schema so predictions match ground truth exactly.
+
+Don't forget to follow the instructions above."""
 
     if hints:
         hints_str = "\n".join([f"- {hint}" for hint in hints])
