@@ -185,4 +185,8 @@ def process_ocr_vlm(
     Legacy function for OCR+VLM processing (backward compatibility).
     """
     processor = OCRVLMDocumentProcessor(ocr_engine=ocr_engine)
-    return processor.process(image_path, prompt, schema)
+    result = processor.process(image_path, prompt, schema)
+    if not hasattr(process_ocr_vlm, "tokens_used"):
+        process_ocr_vlm.tokens_used = 0
+    process_ocr_vlm.tokens_used += processor.tokens_used
+    return result

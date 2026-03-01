@@ -86,40 +86,112 @@ def _initialize_loop(
 
 
 def _run_processor(
-    data: Dict,
+    data: list[Dict],
     processor_func: Callable,
     current_prompt: str,
     current_schema: Dict[str, Any],
     tracker: MetricsTracker,
     use_tui: bool,
     status_message: str | None = None,
-) -> list[Dict]:
-    """Run processor on all data and return results."""
+    evaluator: Evaluator | None = None,
+    early_stop_per_field: int | None = None,
+) -> tuple[list[Dict], int, list[Dict], bool]:
+    """Run processor and optionally early-stop when every mismatched field is saturated.
+
+    When *early_stop_per_field* is set, the processor keeps running until
+    every field that has at least one mismatch has collected that many
+    examples. This guarantees the brain receives balanced coverage across
+    all problematic fields.
+    """
     message = status_message or "💻 Running processor on all files..."
     if use_tui and tracker:
         tracker.update_status(message)
     else:
         print(message)
-    
+
     processing_results = []
+    processor_tokens_used = 0
     total_items = len(data)
-    
+    processed_items = 0
+    early_stopped_on_mismatches = False
+    field_mismatches: dict[str, list[Dict[str, Any]]] = {}
+
     for index, item in enumerate(data, start=1):
         input_text = item["input"]["text"]
+        before_tokens = _get_processor_tokens(processor_func)
         prediction = processor_func(input_text, current_prompt, current_schema)
+        after_tokens = _get_processor_tokens(processor_func)
+        processor_tokens_used += max(0, after_tokens - before_tokens)
         ground_truth = item["results"]
         processing_results.append({
             "input": input_text,
             "prediction": prediction,
             "ground_truth": ground_truth,
         })
+        processed_items = index
+
+        if evaluator and early_stop_per_field:
+            field_evaluation = None
+            for field_name in ground_truth.keys():
+                if field_name not in field_mismatches:
+                    field_mismatches[field_name] = []
+
+                if prediction.get(field_name) != ground_truth.get(field_name):
+                    if len(field_mismatches[field_name]) < early_stop_per_field:
+                        if field_evaluation is None:
+                            field_evaluation = evaluator.evaluate(prediction, ground_truth)
+                        field_score = field_evaluation.get(field_name, {})
+                        field_mismatches[field_name].append(
+                            {
+                                "input": input_text,
+                                "prediction": prediction,
+                                "ground_truth": ground_truth,
+                                "field": field_name,
+                                "field_score": field_score,
+                                "type": "field_mismatch",
+                            }
+                        )
+
+            fields_with_mismatches = [
+                f for f, m in field_mismatches.items() if len(m) > 0
+            ]
+            if fields_with_mismatches and all(
+                len(field_mismatches[f]) >= early_stop_per_field
+                for f in fields_with_mismatches
+            ):
+                early_stopped_on_mismatches = True
+                break
+
         if use_tui and tracker:
             tracker.update_progress(index, total_items)
-    
+
     if use_tui and tracker:
-        tracker.update_progress(total_items, total_items)
-    
-    return processing_results
+        tracker.update_progress(processed_items, total_items)
+
+    mismatch_examples: list[Dict[str, Any]] = []
+    for mismatches in field_mismatches.values():
+        mismatch_examples.extend(mismatches)
+
+    if early_stopped_on_mismatches:
+        field_counts = ", ".join(
+            f"{f}: {len(m)}" for f, m in field_mismatches.items() if len(m) > 0
+        )
+        early_stop_message = (
+            f"🎯 All mismatched fields saturated at {early_stop_per_field}/field "
+            f"({field_counts}). "
+            f"Stopped training early at {processed_items}/{total_items} samples."
+        )
+        if use_tui and tracker:
+            tracker.update_status(early_stop_message)
+        else:
+            print(early_stop_message)
+
+    return (
+        processing_results,
+        processor_tokens_used,
+        mismatch_examples,
+        early_stopped_on_mismatches,
+    )
 
 
 def _evaluate_results(
@@ -190,6 +262,7 @@ def _consult_brain(
     
     try:
         hints = tracker.user_hints if tracker else None
+        before_tokens = getattr(get_brain_decision, "tokens_used", 0)
         decision = get_brain_decision(
             metrics,
             current_prompt,
@@ -199,9 +272,10 @@ def _consult_brain(
             hints,
             performance_worsened,
         )
-        
-        if hasattr(get_brain_decision, "tokens_used") and tracker:
-            tracker.add_tokens(get_brain_decision.tokens_used)
+        after_tokens = getattr(get_brain_decision, "tokens_used", 0)
+        brain_tokens_used = max(0, after_tokens - before_tokens)
+        if tracker and brain_tokens_used:
+            tracker.add_tokens(brain_tokens_used)
         
         if use_tui and tracker:
             tracker.update_status("🤖 Brain decision received")
@@ -225,6 +299,42 @@ def _consult_brain(
             print("Continuing with current prompt and schema...")
         
         return None
+
+
+def _get_processor_tokens(
+    processor_func: Callable[[str, str, Dict[str, Any]], Dict[str, Any]]
+) -> int:
+    """Read processor token usage from function or bound instance."""
+    direct_tokens = getattr(processor_func, "tokens_used", None)
+    if isinstance(direct_tokens, (int, float)):
+        return int(direct_tokens)
+
+    if hasattr(processor_func, "get_token_usage") and callable(
+        getattr(processor_func, "get_token_usage")
+    ):
+        try:
+            usage = processor_func.get_token_usage()
+            if isinstance(usage, (int, float)):
+                return int(usage)
+        except Exception:
+            pass
+
+    instance = getattr(processor_func, "__self__", None)
+    if instance is not None:
+        instance_tokens = getattr(instance, "tokens_used", None)
+        if isinstance(instance_tokens, (int, float)):
+            return int(instance_tokens)
+        if hasattr(instance, "get_token_usage") and callable(
+            getattr(instance, "get_token_usage")
+        ):
+            try:
+                usage = instance.get_token_usage()
+                if isinstance(usage, (int, float)):
+                    return int(usage)
+            except Exception:
+                pass
+
+    return 0
 
 
 def _apply_brain_decision(
@@ -341,6 +451,7 @@ def run_full_optimization_loop(
     max_iterations: int,
     max_samples: int | None = None,
     test_size: float = 0.0,
+    early_stop_mismatches_per_field: int | None = 5,
     tracker: MetricsTracker = None,
     use_tui: bool = False,
 ) -> Dict[str, Any]:
@@ -348,6 +459,7 @@ def run_full_optimization_loop(
     current_prompt = initial_prompt
     current_schema = initial_schema
     previous_metrics = None
+    total_processor_tokens = 0
     
     # Initialize loop state
     train_data, test_data, evaluator = _initialize_loop(
@@ -371,6 +483,9 @@ def run_full_optimization_loop(
         # Wait if paused
         while use_tui and tracker and tracker.paused and not tracker.stopped:
             time.sleep(0.1)
+
+        if tracker:
+            tracker.current_iteration = iteration + 1
         
         if use_tui and tracker:
             tracker.update_status(
@@ -382,8 +497,15 @@ def run_full_optimization_loop(
             print(f"{'=' * 50}")
         
         # 1. Evaluate on test set first (if available)
+        test_metrics = None
+        test_processing_results = None
         if test_data:
-            test_processing_results = _run_processor(
+            (
+                test_processing_results,
+                test_processor_tokens,
+                _,
+                _,
+            ) = _run_processor(
                 test_data,
                 processor_func,
                 current_prompt,
@@ -392,6 +514,9 @@ def run_full_optimization_loop(
                 use_tui,
                 status_message=f"Step 1/{total_steps}: 💻 Running processor on test set...",
             )
+            total_processor_tokens += test_processor_tokens
+            if tracker and test_processor_tokens:
+                tracker.add_tokens(test_processor_tokens)
             
             test_metrics = _evaluate_results(
                 test_processing_results,
@@ -409,7 +534,12 @@ def run_full_optimization_loop(
                 break
         
         # 2. Run processor on training set
-        train_processing_results = _run_processor(
+        (
+            train_processing_results,
+            train_processor_tokens,
+            train_mismatch_examples,
+            train_early_stopped_on_mismatch_limit,
+        ) = _run_processor(
             train_data,
             processor_func,
             current_prompt,
@@ -421,7 +551,12 @@ def run_full_optimization_loop(
                 if has_test_set
                 else f"Step 1/{total_steps}: 💻 Running processor on training set..."
             ),
+            evaluator=evaluator,
+            early_stop_per_field=early_stop_mismatches_per_field,
         )
+        total_processor_tokens += train_processor_tokens
+        if tracker and train_processor_tokens:
+            tracker.add_tokens(train_processor_tokens)
         
         # 3. Evaluate training results
         train_metrics = _evaluate_results(
@@ -440,21 +575,33 @@ def run_full_optimization_loop(
         # Use training metrics for optimization decisions
         metrics = train_metrics
         
-        # 4. Collect mismatch examples from training set
-        mismatch_examples = collect_mismatch_examples(train_processing_results, evaluator)
+        # 4. Collect mismatch examples from test set (if available), otherwise from training set
+        mismatch_examples = []
+        if test_data and test_processing_results:
+            mismatch_examples = collect_mismatch_examples(test_processing_results, evaluator, max_examples_per_field=5)
+            dataset_type = "test"
+        else:
+            mismatch_examples = train_mismatch_examples
+            dataset_type = "train"
         
         if use_tui and tracker:
             for example in mismatch_examples[:10]:
                 tracker.add_mismatch(example)
             tracker.update_status(
                 (
-                    f"Step 5/{total_steps}: Found {len(mismatch_examples)} mismatch examples"
+                    f"Step 5/{total_steps}: Found {len(mismatch_examples)} mismatch examples from {dataset_type} set"
                     if has_test_set
                     else f"Step 3/{total_steps}: Found {len(mismatch_examples)} mismatch examples"
                 )
             )
         else:
-            print(f"Found {len(mismatch_examples)} mismatch examples")
+            print(f"Found {len(mismatch_examples)} mismatch examples from {dataset_type} set")
+        
+        if train_early_stopped_on_mismatch_limit:
+            if use_tui and tracker:
+                tracker.update_status("🎯 Enough mismatch examples collected. Moving to brain consultation...")
+            else:
+                print("🎯 Enough mismatch examples collected. Moving to brain consultation...")
         
         # 5. Check if performance worsened
         performance_worsened = False
@@ -525,7 +672,12 @@ def run_full_optimization_loop(
     # Finalize - evaluate on test set if available
     final_metrics = metrics
     if test_data:
-        final_processing_results = _run_processor(
+        (
+            final_processing_results,
+            final_test_processor_tokens,
+            _,
+            _,
+        ) = _run_processor(
             test_data,
             processor_func,
             current_prompt,
@@ -534,6 +686,9 @@ def run_full_optimization_loop(
             use_tui,
             status_message="Final test evaluation: 💻 Running processor on test set...",
         )
+        total_processor_tokens += final_test_processor_tokens
+        if tracker and final_test_processor_tokens:
+            tracker.add_tokens(final_test_processor_tokens)
         final_metrics = _evaluate_results(
             final_processing_results,
             evaluator,
@@ -567,7 +722,7 @@ def run_full_optimization_loop(
     }
     
     # Add token usage information
-    processor_tokens = getattr(processor_func, "tokens_used", 0)
+    processor_tokens = total_processor_tokens
     brain_tokens = getattr(get_brain_decision, "tokens_used", 0)
     total_tokens = processor_tokens + brain_tokens
     

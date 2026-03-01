@@ -81,6 +81,8 @@ def main():
     # Get test_size from CLI or config
     test_size = args.test_size if args.test_size is not None else config.get("test_size", 0.0)
 
+    early_stop_mismatches_per_field = config.get("early_stop_mismatches_per_field", 5)
+
     # Load processor module
     processor_func = load_processor_module(args.processor)
     print(f"Using custom processor from: {args.processor}")
@@ -107,6 +109,7 @@ def main():
                     max_iterations=config.get("max_iterations"),
                     max_samples=max_samples,
                     test_size=test_size,
+                    early_stop_mismatches_per_field=early_stop_mismatches_per_field,
                     data_file=config.get("data_file"),
                     processor_func=processor_func,
                     tracker=tracker,
@@ -145,6 +148,7 @@ def main():
                 max_iterations=config.get("max_iterations"),
                 max_samples=max_samples,
                 test_size=test_size,
+                early_stop_mismatches_per_field=early_stop_mismatches_per_field,
                 data_file=config.get("data_file"),
                 processor_func=processor_func,
                 tracker=tracker,

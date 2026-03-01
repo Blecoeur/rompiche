@@ -108,4 +108,8 @@ def process(input_text: str, prompt: str, schema: Dict[str, Any]) -> Dict[str, A
     Creates a processor instance and calls process.
     """
     processor = TextToJsonProcessor()
-    return processor.process(input_text, prompt, schema)
+    result = processor.process(input_text, prompt, schema)
+    if not hasattr(process, "tokens_used"):
+        process.tokens_used = 0
+    process.tokens_used += processor.tokens_used
+    return result

@@ -25,5 +25,6 @@
   },
   "max_iterations": 3,
   "test_size": 0.2,
+  "early_stop_mismatches_per_field": 5,
   "data_file": "example_input/example.jsonl"
 }

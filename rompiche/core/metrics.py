@@ -35,7 +35,6 @@ class MetricsTracker:
     def add_iteration_metrics(self, metrics: dict):
         """Add metrics for the current iteration"""
         self.iteration_metrics.append(metrics)
-        self.current_iteration += 1
 
     def add_tokens(self, tokens: int):
         """Add to the total token count"""

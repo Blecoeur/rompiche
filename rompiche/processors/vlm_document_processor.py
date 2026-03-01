@@ -140,4 +140,8 @@ def process_vlm_only(
     Legacy function for VLM-only processing (backward compatibility).
     """
     processor = VLMOnlyDocumentProcessor()
-    return processor.process(image_path, prompt, schema)
+    result = processor.process(image_path, prompt, schema)
+    if not hasattr(process_vlm_only, "tokens_used"):
+        process_vlm_only.tokens_used = 0
+    process_vlm_only.tokens_used += processor.tokens_used
+    return result

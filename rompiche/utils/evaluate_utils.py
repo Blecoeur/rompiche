@@ -30,50 +30,57 @@ def evaluate_all_results(
     return averages
 
 def collect_mismatch_examples(
-    results: List[Dict[str, Any]], evaluator: Evaluator, max_examples: int = 10
+    results: List[Dict[str, Any]], evaluator: Evaluator, max_examples_per_field: int = 5
 ) -> List[Dict[str, Any]]:
-    """Collect examples where prediction differs from ground truth or has low scores."""
-    # First, collect exact mismatches (up to max_examples)
-    exact_mismatches = []
-    scored_results = []
-
+    """Collect examples where prediction differs from ground truth or has low scores.
+    
+    Args:
+        results: List of processing results with prediction and ground_truth
+        evaluator: Evaluator instance
+        max_examples_per_field: Maximum number of mismatch examples to collect per field
+        
+    Returns:
+        List of mismatch examples (up to max_examples_per_field * number_of_fields)
+    """
+    # Collect all mismatches per field
+    field_mismatches = {}
+    
     for result in results:
-        if result["prediction"] != result["ground_truth"]:
-            exact_mismatches.append(
-                {
-                    "input": result["input"],
-                    "prediction": result["prediction"],
-                    "ground_truth": result["ground_truth"],
-                    "type": "exact_mismatch",
-                }
-            )
-            if len(exact_mismatches) >= max_examples:
-                return exact_mismatches
+        prediction = result["prediction"]
+        ground_truth = result["ground_truth"]
+        
+        # Check each field for mismatches
+        for field_name in ground_truth.keys():
+            if field_name not in field_mismatches:
+                field_mismatches[field_name] = []
+            
+            # Check if this field has a mismatch
+            if prediction.get(field_name) != ground_truth.get(field_name):
+                # Evaluate this specific field
+                field_evaluation = evaluator.evaluate(prediction, ground_truth)
+                field_score = field_evaluation[field_name]
+                
+                # Add to field mismatches if we haven't reached the limit
+                if len(field_mismatches[field_name]) < max_examples_per_field:
+                    field_mismatches[field_name].append(
+                        {
+                            "input": result["input"],
+                            "prediction": prediction,
+                            "ground_truth": ground_truth,
+                            "field": field_name,
+                            "field_score": field_score,
+                            "type": "field_mismatch",
+                        }
+                    )
+        
+        # Early exit if we've collected enough examples
+        total_mismatches = sum(len(m) for m in field_mismatches.values())
+        if total_mismatches >= 15:
+            break
 
-        # Also collect all results with their scores for potential low-scoring examples
-        evaluation = evaluator.evaluate(result["prediction"], result["ground_truth"])
-        scored_results.append(
-            {
-                "input": result["input"],
-                "prediction": result["prediction"],
-                "ground_truth": result["ground_truth"],
-                "scores": evaluation,
-                "type": "low_score",
-            }
-        )
-
-    # If we have exact mismatches, return them
-    if exact_mismatches:
-        return exact_mismatches[:max_examples]
-
-    # Otherwise, find the worst scoring examples
-    # Calculate overall score for each result (average of all metric scores)
-    for item in scored_results:
-        all_scores = []
-        for field_scores in item["scores"].values():
-            all_scores.extend(field_scores.values())
-        item["overall_score"] = sum(all_scores) / len(all_scores) if all_scores else 0
-
-    # Sort by overall score (ascending - worst first) and return top max_examples
-    scored_results.sort(key=lambda x: x["overall_score"])
-    return scored_results[:max_examples]
+    # Flatten the field mismatches into a single list
+    all_mismatches = []
+    for field_name, mismatches in field_mismatches.items():
+        all_mismatches.extend(mismatches)
+    
+    return all_mismatches
