@@ -2,7 +2,7 @@ from typing import Dict, Any, Callable
 from rompiche.core.metrics import MetricsTracker
 from rompiche.core.evaluator import Evaluator
 from rompiche.core.brain import get_brain_decision
-from rompiche.utils.utils import load_data
+from rompiche.utils.utils import load_data, split_data
 from rompiche.utils.evaluate_utils import evaluate_all_results
 from rompiche.utils.evaluate_utils import collect_mismatch_examples
 
@@ -44,10 +44,11 @@ def _initialize_loop(
     initial_schema: Dict[str, Any],
     data_file: str,
     max_samples: int | None,
+    test_size: float,
     tracker: MetricsTracker,
     evaluator_config: Dict[str, Any],
     use_tui: bool,
-) -> tuple[Dict, Evaluator]:
+) -> tuple[Dict, Dict, Evaluator]:
     """Initialize loop state and load data."""
     current_prompt = initial_prompt
     current_schema = initial_schema
@@ -66,6 +67,9 @@ def _initialize_loop(
             raise ValueError("max_samples must be a positive integer when provided.")
         data = data[:max_samples]
     
+    # Split into train/test sets
+    train_data, test_data = split_data(data, test_size=test_size)
+    
     evaluator = Evaluator(evaluator_config)
     
     if use_tui and tracker:
@@ -76,8 +80,9 @@ def _initialize_loop(
         print(f"Initial prompt: {current_prompt}")
         print(f"Initial schema: {json.dumps(current_schema, indent=2)}")
         print(f"Evaluator config: {json.dumps(evaluator_config, indent=2)}")
+        print(f"Train samples: {len(train_data)}, Test samples: {len(test_data)}")
     
-    return data, evaluator
+    return train_data, test_data, evaluator
 
 
 def _run_processor(
@@ -87,12 +92,14 @@ def _run_processor(
     current_schema: Dict[str, Any],
     tracker: MetricsTracker,
     use_tui: bool,
+    status_message: str | None = None,
 ) -> list[Dict]:
     """Run processor on all data and return results."""
+    message = status_message or "💻 Running processor on all files..."
     if use_tui and tracker:
-        tracker.update_status("💻 Running processor on all files...")
+        tracker.update_status(message)
     else:
-        print("💻 Running processor on all files...")
+        print(message)
     
     processing_results = []
     total_items = len(data)
@@ -120,12 +127,15 @@ def _evaluate_results(
     evaluator: Evaluator,
     tracker: MetricsTracker,
     use_tui: bool,
+    dataset_type: str = "train",
+    status_message: str | None = None,
 ) -> Dict:
     """Evaluate processing results and return metrics."""
+    status_msg = status_message or f"Evaluating {dataset_type} results..."
     if use_tui and tracker:
-        tracker.update_status("Evaluating results...")
+        tracker.update_status(status_msg)
     else:
-        print("Evaluating results...")
+        print(status_msg)
     
     metrics = evaluate_all_results(processing_results, evaluator)
     
@@ -134,7 +144,7 @@ def _evaluate_results(
     else:
         if tracker:
             tracker.add_iteration_metrics(metrics)
-        print("Metrics:")
+        print(f"{dataset_type.upper()} Metrics:")
         for field, field_metrics in metrics.items():
             print(f"  {field}: {field_metrics}")
     
@@ -169,12 +179,14 @@ def _consult_brain(
     use_tui: bool,
     iteration: int,
     performance_worsened: bool = False,
+    status_message: str | None = None,
 ) -> Dict | None:
     """Consult the brain for optimization decisions."""
+    message = status_message or "🤖 Consulting optimization brain..."
     if use_tui and tracker:
-        tracker.update_status("🤖 Consulting optimization brain...")
+        tracker.update_status(message)
     else:
-        print("🤖 Consulting optimization brain...")
+        print(message)
     
     try:
         hints = tracker.user_hints if tracker else None
@@ -223,6 +235,7 @@ def _apply_brain_decision(
     tracker: MetricsTracker,
     use_tui: bool,
     previous_metrics: Dict | None = None,
+    status_message: str | None = None,
 ) -> tuple[str, Dict[str, Any], bool]:
     """Apply brain decision and return updated prompt/schema."""
     if decision["decision"] == "stop":
@@ -291,8 +304,9 @@ def _apply_brain_decision(
             "changes": change_items,
         })
     
+    update_message = status_message or "🤖 Applying brain updates"
     if use_tui and tracker:
-        tracker.update_status("🤖 Applying brain updates")
+        tracker.update_status(update_message)
     else:
         print(f"Updated prompt: {current_prompt}")
         print(f"Updated schema: {json.dumps(current_schema, indent=2)}")
@@ -326,6 +340,7 @@ def run_full_optimization_loop(
     processor_func: Callable[[str, str, Dict[str, Any]], Dict[str, Any]],
     max_iterations: int,
     max_samples: int | None = None,
+    test_size: float = 0.0,
     tracker: MetricsTracker = None,
     use_tui: bool = False,
 ) -> Dict[str, Any]:
@@ -335,17 +350,21 @@ def run_full_optimization_loop(
     previous_metrics = None
     
     # Initialize loop state
-    data, evaluator = _initialize_loop(
+    train_data, test_data, evaluator = _initialize_loop(
         initial_prompt,
         initial_schema,
         data_file,
         max_samples,
+        test_size,
         tracker,
         evaluator_config,
         use_tui,
     )
     
     for iteration in range(max_iterations):
+        has_test_set = bool(test_data)
+        total_steps = 7 if has_test_set else 5
+
         if use_tui and tracker and tracker.stopped:
             break
         
@@ -354,41 +373,86 @@ def run_full_optimization_loop(
             time.sleep(0.1)
         
         if use_tui and tracker:
-            tracker.update_status(f"🔄 Iteration {iteration + 1}/{max_iterations}")
+            tracker.update_status(
+                f"🔄 Iteration {iteration + 1}/{max_iterations} - preparing step 1/{total_steps}"
+            )
         else:
             print(f"\n{'=' * 50}")
             print(f"Iteration {iteration + 1}/{max_iterations}")
             print(f"{'=' * 50}")
         
-        # 1. Run processor
-        processing_results = _run_processor(
-            data,
+        # 1. Evaluate on test set first (if available)
+        if test_data:
+            test_processing_results = _run_processor(
+                test_data,
+                processor_func,
+                current_prompt,
+                current_schema,
+                tracker,
+                use_tui,
+                status_message=f"Step 1/{total_steps}: 💻 Running processor on test set...",
+            )
+            
+            test_metrics = _evaluate_results(
+                test_processing_results,
+                evaluator,
+                tracker,
+                use_tui,
+                dataset_type="test",
+                status_message=f"Step 2/{total_steps}: 📊 Evaluating test results...",
+            )
+            
+            # Check success criteria on test set
+            if _check_success(test_metrics, evaluator, tracker, use_tui):
+                # Store test metrics as final results
+                metrics = test_metrics
+                break
+        
+        # 2. Run processor on training set
+        train_processing_results = _run_processor(
+            train_data,
             processor_func,
             current_prompt,
             current_schema,
             tracker,
             use_tui,
+            status_message=(
+                f"Step 3/{total_steps}: 💻 Running processor on training set..."
+                if has_test_set
+                else f"Step 1/{total_steps}: 💻 Running processor on training set..."
+            ),
         )
         
-        # 2. Evaluate results
-        metrics = _evaluate_results(
-            processing_results,
+        # 3. Evaluate training results
+        train_metrics = _evaluate_results(
+            train_processing_results,
             evaluator,
             tracker,
             use_tui,
+            dataset_type="train",
+            status_message=(
+                f"Step 4/{total_steps}: 📊 Evaluating training results..."
+                if has_test_set
+                else f"Step 2/{total_steps}: 📊 Evaluating training results..."
+            ),
         )
         
-        # 3. Check success criteria
-        if _check_success(metrics, evaluator, tracker, use_tui):
-            break
+        # Use training metrics for optimization decisions
+        metrics = train_metrics
         
-        # 4. Collect mismatch examples
-        mismatch_examples = collect_mismatch_examples(processing_results, evaluator)
+        # 4. Collect mismatch examples from training set
+        mismatch_examples = collect_mismatch_examples(train_processing_results, evaluator)
         
         if use_tui and tracker:
             for example in mismatch_examples[:10]:
                 tracker.add_mismatch(example)
-            tracker.update_status(f"Found {len(mismatch_examples)} mismatch examples")
+            tracker.update_status(
+                (
+                    f"Step 5/{total_steps}: Found {len(mismatch_examples)} mismatch examples"
+                    if has_test_set
+                    else f"Step 3/{total_steps}: Found {len(mismatch_examples)} mismatch examples"
+                )
+            )
         else:
             print(f"Found {len(mismatch_examples)} mismatch examples")
         
@@ -416,6 +480,11 @@ def run_full_optimization_loop(
             use_tui,
             iteration,
             performance_worsened,
+            status_message=(
+                f"Step 6/{total_steps}: 🤖 Consulting optimization brain..."
+                if has_test_set
+                else f"Step 4/{total_steps}: 🤖 Consulting optimization brain..."
+            ),
         )
         
         if decision is None:
@@ -436,6 +505,11 @@ def run_full_optimization_loop(
             tracker,
             use_tui,
             previous_metrics,
+            status_message=(
+                f"Step 7/{total_steps}: 🤖 Applying brain updates..."
+                if has_test_set
+                else f"Step 5/{total_steps}: 🤖 Applying brain updates..."
+            ),
         )
         
         if should_stop:
@@ -448,7 +522,27 @@ def run_full_optimization_loop(
             "schema": current_schema,
         }
     
-    # Finalize
+    # Finalize - evaluate on test set if available
+    final_metrics = metrics
+    if test_data:
+        final_processing_results = _run_processor(
+            test_data,
+            processor_func,
+            current_prompt,
+            current_schema,
+            tracker,
+            use_tui,
+            status_message="Final test evaluation: 💻 Running processor on test set...",
+        )
+        final_metrics = _evaluate_results(
+            final_processing_results,
+            evaluator,
+            tracker,
+            use_tui,
+            dataset_type="test",
+            status_message="Final test evaluation: 📊 Evaluating test results...",
+        )
+    
     if use_tui and tracker:
         tracker.set_active_configuration(current_prompt, current_schema)
         tracker.update_status("🎉 Optimization complete!")
@@ -459,14 +553,14 @@ def run_full_optimization_loop(
         print(f"\n{'=' * 50}")
         print("Optimization complete!")
         print("Final metrics:")
-        for field, field_metrics in metrics.items():
+        for field, field_metrics in final_metrics.items():
             print(f"  {field}: {field_metrics}")
         print(f"Final prompt: {current_prompt}")
         print(f"Final schema: {json.dumps(current_schema, indent=2)}")
     
     # Return final results
     result = {
-        "metrics": metrics,
+        "metrics": final_metrics,
         "prompt": current_prompt,
         "schema": current_schema,
         "iteration": iteration + 1,

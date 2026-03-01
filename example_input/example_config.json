@@ -24,5 +24,6 @@
     }
   },
   "max_iterations": 3,
+  "test_size": 0.2,
   "data_file": "example_input/example.jsonl"
 }

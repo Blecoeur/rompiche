@@ -58,6 +58,12 @@ def main():
         default=None,
         help="Limit number of dataset samples processed per iteration",
     )
+    parser.add_argument(
+        "--test-size",
+        type=float,
+        default=None,
+        help="Proportion of data to use for test set (0.0 to 1.0)",
+    )
     parser.add_argument("--tui", action="store_true", help="Enable live TUI dashboard")
     args = parser.parse_args()
 
@@ -71,6 +77,9 @@ def main():
     max_samples = (
         args.max_samples if args.max_samples is not None else config.get("max_samples")
     )
+    
+    # Get test_size from CLI or config
+    test_size = args.test_size if args.test_size is not None else config.get("test_size", 0.0)
 
     # Load processor module
     processor_func = load_processor_module(args.processor)
@@ -97,6 +106,7 @@ def main():
                     evaluator_config=config.get("evaluator"),
                     max_iterations=config.get("max_iterations"),
                     max_samples=max_samples,
+                    test_size=test_size,
                     data_file=config.get("data_file"),
                     processor_func=processor_func,
                     tracker=tracker,
@@ -134,6 +144,7 @@ def main():
                 evaluator_config=config.get("evaluator"),
                 max_iterations=config.get("max_iterations"),
                 max_samples=max_samples,
+                test_size=test_size,
                 data_file=config.get("data_file"),
                 processor_func=processor_func,
                 tracker=tracker,

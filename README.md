@@ -5,6 +5,7 @@ A Python tool for optimizing LLM-based information extraction workflows through 
 ## Features
 
 - **Iterative Optimization**: Automatically refines prompts and schemas to improve extraction accuracy
+- **Train/Test Split**: Evaluate on a held-out test set while optimizing on training data
 - **Custom Evaluation**: Define success criteria and metrics for your specific use case
 - **CLI Interface**: Run optimizations via command line with configurable parameters
 - **TUI Dashboard**: Optional live dashboard for monitoring optimization progress
@@ -36,6 +37,13 @@ uv run python -m rompiche.core.main_optimization_cli \
   --processor rompiche.processors.text_to_json_processor \
   --output output/results.json \
   --tui
+
+# With train/test split (20% test set)
+uv run python -m rompiche.core.main_optimization_cli \
+  --config example_input/example_config.json \
+  --processor rompiche.processors.text_to_json_processor \
+  --output output/results.json \
+  --test-size 0.2
 
 # Help
 uv run python -m rompiche.core.main_optimization_cli --help
@@ -134,9 +142,32 @@ The config file is a JSON file that defines your optimization parameters:
     }
   },
   "max_iterations": 3,
-  "data_file": "example_input/example.jsonl"
+  "data_file": "example_input/example.jsonl",
+  "test_size": 0.2  // Optional: 20% of data for test set
 }
 ```
+
+### Train/Test Split
+
+You can configure a train/test split to evaluate your optimization on a held-out test set:
+
+```json
+{
+  "test_size": 0.2  // 20% of data for test set, 80% for training
+}
+```
+
+**How it works:**
+- **Test set**: Used for evaluation and success criteria checking
+- **Training set**: Used for optimization (brain decisions, mismatch analysis)
+- **Final evaluation**: Always runs on test set to report final metrics
+
+**CLI option:**
+```bash
+--test-size 0.2  # Use 20% of data for test set
+```
+
+**Default:** `0.0` (no split, use all data for both training and evaluation)
 
 ### Available Processors
 

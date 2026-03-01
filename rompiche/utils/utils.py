@@ -1,8 +1,9 @@
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Tuple
 import json
 import os
 import importlib
 from typing import Callable
+import random
 
 def load_data(file_path: str) -> List[Dict[str, Any]]:
     """Load JSONL data from file"""
@@ -11,6 +12,36 @@ def load_data(file_path: str) -> List[Dict[str, Any]]:
         for line in f:
             data.append(json.loads(line))
     return data
+
+def split_data(data: List[Dict[str, Any]], test_size: float = 0.0, random_seed: int = 42) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    """
+    Split data into training and test sets.
+    
+    Args:
+        data: List of data samples
+        test_size: Proportion of data to use for test set (0.0 to 1.0)
+        random_seed: Random seed for reproducible splits
+    
+    Returns:
+        Tuple of (train_data, test_data)
+    """
+    if test_size <= 0 or test_size >= 1.0:
+        return data, []
+    
+    # Set random seed for reproducibility
+    random.seed(random_seed)
+    
+    # Shuffle data
+    shuffled_data = data.copy()
+    random.shuffle(shuffled_data)
+    
+    # Calculate split index
+    split_idx = int(len(shuffled_data) * (1 - test_size))
+    
+    train_data = shuffled_data[:split_idx]
+    test_data = shuffled_data[split_idx:]
+    
+    return train_data, test_data
 
 def load_config(config_file: str) -> Dict[str, Any]:
     """Load configuration from JSON file"""
