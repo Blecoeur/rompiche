@@ -1,0 +1,33 @@
+{
+  "prompt": "Extract the company name, date, address, and total amount from the invoice image.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "company": {"type": "string", "description": "The company name"},
+      "date": {"type": "string", "description": "The invoice date"},
+      "address": {"type": "string", "description": "The company address"},
+      "total": {"type": "string", "description": "The total amount"}
+    },
+    "required": ["company", "date", "address", "total"]
+  },
+  "evaluator": {
+      "metrics": ["exact_match", "string_distance"],
+    "field_metrics": {
+      "company": ["string_distance"],
+      "date": ["exact_match"],
+      "address": ["string_distance"],
+      "total": ["exact_match"]
+    },
+    "success_thresholds": {
+      "company": {"string_distance": 0.8},
+      "date": {"exact_match": 1.0},
+      "address": {"string_distance": 0.7},
+      "total": {"exact_match": 1.0}
+    }
+  },
+  "max_iterations": 10,
+  "data_file": "sroie_dataset_experiment/train_cleaned.jsonl",
+  "test_size": 0.2,
+  "early_stop_mismatches_per_field": 5,
+  "batch_size": 8
+}

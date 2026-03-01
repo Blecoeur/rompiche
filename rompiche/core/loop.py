@@ -123,16 +123,14 @@ def _run_processor(
 
     # Process data in batches if batch_size is specified
     if batch_size and batch_size > 1:
-        # Process in batches with parallel execution using ThreadPoolExecutor
         for batch_start in range(0, len(data), batch_size):
             batch_end = min(batch_start + batch_size, len(data))
             batch = data[batch_start:batch_end]
             
-            # Use ThreadPoolExecutor for parallel processing within the batch
+            before_batch_tokens = _get_processor_tokens(processor_func)
+            
             with ThreadPoolExecutor(max_workers=batch_size) as executor:
-                # Submit all items in the batch for parallel processing
                 future_to_index = {}
-                index_to_item = {}
                 for batch_index, item in enumerate(batch):
                     index = batch_start + batch_index + 1
                     future = executor.submit(
@@ -142,9 +140,7 @@ def _run_processor(
                         current_schema
                     )
                     future_to_index[future] = index
-                    index_to_item[index] = item
                 
-                # Store results in order by collecting all futures first
                 results_in_batch = {}
                 for future in as_completed(future_to_index):
                     index = future_to_index[future]
@@ -154,58 +150,55 @@ def _run_processor(
                     except Exception as e:
                         print(f"Error processing item {index}: {e}")
                         results_in_batch[index] = ("error", {})
+            
+            after_batch_tokens = _get_processor_tokens(processor_func)
+            processor_tokens_used += max(0, after_batch_tokens - before_batch_tokens)
+            
+            for batch_index, item in enumerate(batch):
+                index = batch_start + batch_index + 1
+                result_type, prediction = results_in_batch.get(index, ("error", {}))
+                ground_truth = item["results"]
+                processing_results.append({
+                    "input": item["input"],
+                    "prediction": prediction,
+                    "ground_truth": ground_truth,
+                })
+                processed_items = index
                 
-                # Process results in original order
-                for batch_index, item in enumerate(batch):
-                    index = batch_start + batch_index + 1
-                    result_type, prediction = results_in_batch.get(index, ("error", {}))
-                    
-                    after_tokens = _get_processor_tokens(processor_func)
-                    before_tokens = after_tokens  # Approximation since we can't get before for parallel
-                    processor_tokens_used += max(0, after_tokens - before_tokens)
-                    ground_truth = item["results"]
-                    processing_results.append({
-                        "input": item["input"],
-                        "prediction": prediction,
-                        "ground_truth": ground_truth,
-                    })
-                    processed_items = index
-                    
-                    # Check for early stopping in batch processing
-                    if evaluator and early_stop_per_field and result_type == "success":
-                        field_evaluation = evaluator.evaluate(prediction, ground_truth)
-                        for field_name in ground_truth.keys():
-                            if field_name not in field_mismatches:
-                                field_mismatches[field_name] = []
+                if evaluator and early_stop_per_field and result_type == "success":
+                    field_evaluation = evaluator.evaluate(prediction, ground_truth)
+                    for field_name in ground_truth.keys():
+                        if field_name not in field_mismatches:
+                            field_mismatches[field_name] = []
 
-                            field_score = field_evaluation.get(field_name, {})
-                            field_thresholds = evaluator.success_thresholds.get(field_name, {})
-                            field_failed = any(
-                                field_score.get(metric, 1.0) < field_thresholds.get(metric, 1.0)
-                                for metric in field_score
+                        field_score = field_evaluation.get(field_name, {})
+                        field_thresholds = evaluator.success_thresholds.get(field_name, {})
+                        field_failed = any(
+                            field_score.get(metric, 1.0) < field_thresholds.get(metric, 1.0)
+                            for metric in field_score
+                        )
+
+                        if field_failed and len(field_mismatches[field_name]) < early_stop_per_field:
+                            field_mismatches[field_name].append(
+                                {
+                                    "input": item["input"],
+                                    "prediction": prediction,
+                                    "ground_truth": ground_truth,
+                                    "field": field_name,
+                                    "field_score": field_score,
+                                    "type": "field_mismatch",
+                                }
                             )
 
-                            if field_failed and len(field_mismatches[field_name]) < early_stop_per_field:
-                                field_mismatches[field_name].append(
-                                    {
-                                        "input": item["input"],
-                                        "prediction": prediction,
-                                        "ground_truth": ground_truth,
-                                        "field": field_name,
-                                        "field_score": field_score,
-                                        "type": "field_mismatch",
-                                    }
-                                )
-
-                        fields_with_mismatches = [
-                            f for f, m in field_mismatches.items() if len(m) > 0
-                        ]
-                        if fields_with_mismatches and all(
-                            len(field_mismatches[f]) >= early_stop_per_field
-                            for f in fields_with_mismatches
-                        ):
-                            early_stopped_on_mismatches = True
-                            break
+                    fields_with_mismatches = [
+                        f for f, m in field_mismatches.items() if len(m) > 0
+                    ]
+                    if fields_with_mismatches and all(
+                        len(field_mismatches[f]) >= early_stop_per_field
+                        for f in fields_with_mismatches
+                    ):
+                        early_stopped_on_mismatches = True
+                        break
 
             if use_tui and tracker:
                 tracker.update_progress(processed_items, total_items)

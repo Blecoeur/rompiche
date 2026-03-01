@@ -1,0 +1,7478 @@
+[
+  {
+    "id": "X51005442376",
+    "field": "date",
+    "original": "22 MAR 2018",
+    "cleaned": "2018-03-22"
+  },
+  {
+    "id": "X51005442376",
+    "field": "total",
+    "original": "$7.60",
+    "cleaned": 7.6
+  },
+  {
+    "id": "X51009453804",
+    "field": "date",
+    "original": "27/03/2018",
+    "cleaned": "2018-03-27"
+  },
+  {
+    "id": "X51009453804",
+    "field": "total",
+    "original": "12.00",
+    "cleaned": 12.0
+  },
+  {
+    "id": "X51006401723",
+    "field": "date",
+    "original": "05-JAN-2017",
+    "cleaned": "2017-01-05"
+  },
+  {
+    "id": "X51006401723",
+    "field": "total",
+    "original": "72.00",
+    "cleaned": 72.0
+  },
+  {
+    "id": "X51006913023",
+    "field": "date",
+    "original": "16 MAY 2018",
+    "cleaned": "2018-05-16"
+  },
+  {
+    "id": "X51006913023",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51007846451",
+    "field": "date",
+    "original": "23/06/18",
+    "cleaned": "2018-06-23"
+  },
+  {
+    "id": "X51007846451",
+    "field": "total",
+    "original": "36.00",
+    "cleaned": 36.0
+  },
+  {
+    "id": "X51006311780",
+    "field": "date",
+    "original": "15-03-18",
+    "cleaned": "2018-03-15"
+  },
+  {
+    "id": "X51006311780",
+    "field": "total",
+    "original": "119.70",
+    "cleaned": 119.7
+  },
+  {
+    "id": "X51005719862",
+    "field": "date",
+    "original": "03-02-18",
+    "cleaned": "2018-02-03"
+  },
+  {
+    "id": "X51005719862",
+    "field": "total",
+    "original": "3.70",
+    "cleaned": 3.7
+  },
+  {
+    "id": "X51007339133",
+    "field": "date",
+    "original": "27/10/2017",
+    "cleaned": "2017-10-27"
+  },
+  {
+    "id": "X51007339133",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51006008057",
+    "field": "date",
+    "original": "15/01/2018",
+    "cleaned": "2018-01-15"
+  },
+  {
+    "id": "X51006008057",
+    "field": "total",
+    "original": "329.10",
+    "cleaned": 329.1
+  },
+  {
+    "id": "X51005719902",
+    "field": "date",
+    "original": "11/03/18",
+    "cleaned": "2018-03-11"
+  },
+  {
+    "id": "X51005719902",
+    "field": "total",
+    "original": "25.15",
+    "cleaned": 25.15
+  },
+  {
+    "id": "X51006557161",
+    "field": "date",
+    "original": "24/10/2017",
+    "cleaned": "2017-10-24"
+  },
+  {
+    "id": "X51006557161",
+    "field": "total",
+    "original": "41.87",
+    "cleaned": 41.87
+  },
+  {
+    "id": "X51006857265",
+    "field": "date",
+    "original": "11/12/2017",
+    "cleaned": "2017-12-11"
+  },
+  {
+    "id": "X51006857265",
+    "field": "total",
+    "original": "31.45",
+    "cleaned": 31.45
+  },
+  {
+    "id": "X51005757304",
+    "field": "date",
+    "original": "20/03/2018",
+    "cleaned": "2018-03-20"
+  },
+  {
+    "id": "X51005757304",
+    "field": "total",
+    "original": "35.40",
+    "cleaned": 35.4
+  },
+  {
+    "id": "X51005447839",
+    "field": "date",
+    "original": "9/3/2018",
+    "cleaned": "2018-03-09"
+  },
+  {
+    "id": "X51005447839",
+    "field": "total",
+    "original": "65.20",
+    "cleaned": 65.2
+  },
+  {
+    "id": "X51006332575",
+    "field": "date",
+    "original": "17/03/2017",
+    "cleaned": "2017-03-17"
+  },
+  {
+    "id": "X51006332575",
+    "field": "total",
+    "original": "62.00",
+    "cleaned": 62.0
+  },
+  {
+    "id": "X00016469612",
+    "field": "date",
+    "original": "25/12/2018",
+    "cleaned": "2018-12-25"
+  },
+  {
+    "id": "X00016469612",
+    "field": "total",
+    "original": "9.00",
+    "cleaned": 9.0
+  },
+  {
+    "id": "X51006389888",
+    "field": "date",
+    "original": "01-11-17",
+    "cleaned": "2017-11-01"
+  },
+  {
+    "id": "X51006389888",
+    "field": "total",
+    "original": "52.10",
+    "cleaned": 52.1
+  },
+  {
+    "id": "X51006328920",
+    "field": "date",
+    "original": "20/03/2017",
+    "cleaned": "2017-03-20"
+  },
+  {
+    "id": "X51006328920",
+    "field": "total",
+    "original": "14.85",
+    "cleaned": 14.85
+  },
+  {
+    "id": "X51006620190",
+    "field": "date",
+    "original": "22-05-16",
+    "cleaned": "2016-05-22"
+  },
+  {
+    "id": "X51006620190",
+    "field": "total",
+    "original": "RM 21.50",
+    "cleaned": 21.5
+  },
+  {
+    "id": "X51006620191",
+    "field": "date",
+    "original": "01/05/16",
+    "cleaned": "2016-05-01"
+  },
+  {
+    "id": "X51006620191",
+    "field": "total",
+    "original": "89.00",
+    "cleaned": 89.0
+  },
+  {
+    "id": "X51008042791",
+    "field": "date",
+    "original": "06-05-2018",
+    "cleaned": "2020-05-06"
+  },
+  {
+    "id": "X51008042791",
+    "field": "total",
+    "original": "2.40",
+    "cleaned": 2.4
+  },
+  {
+    "id": "X51006329395",
+    "field": "date",
+    "original": "10/02/2017",
+    "cleaned": "2017-02-10"
+  },
+  {
+    "id": "X51006329395",
+    "field": "total",
+    "original": "7.40",
+    "cleaned": 7.4
+  },
+  {
+    "id": "X51008142034",
+    "field": "date",
+    "original": "09/05/2018",
+    "cleaned": "2018-05-09"
+  },
+  {
+    "id": "X51008142034",
+    "field": "total",
+    "original": "4.70",
+    "cleaned": 4.7
+  },
+  {
+    "id": "X51008114266",
+    "field": "date",
+    "original": "13-05-18",
+    "cleaned": "2018-05-13"
+  },
+  {
+    "id": "X51008114266",
+    "field": "total",
+    "original": "22.90",
+    "cleaned": 22.9
+  },
+  {
+    "id": "X51006556726",
+    "field": "date",
+    "original": "06/08/2017",
+    "cleaned": "2017-08-06"
+  },
+  {
+    "id": "X51006556726",
+    "field": "total",
+    "original": "68.41",
+    "cleaned": 68.41
+  },
+  {
+    "id": "X51006556732",
+    "field": "date",
+    "original": "05/08/2017",
+    "cleaned": "2017-08-05"
+  },
+  {
+    "id": "X51006556732",
+    "field": "total",
+    "original": "19.31",
+    "cleaned": 19.31
+  },
+  {
+    "id": "X51005719917",
+    "field": "date",
+    "original": "26/03/18",
+    "cleaned": "2018-03-26"
+  },
+  {
+    "id": "X51005719917",
+    "field": "total",
+    "original": "60.60",
+    "cleaned": 60.6
+  },
+  {
+    "id": "X51006414703",
+    "field": "date",
+    "original": "22/04/2018",
+    "cleaned": "2018-04-22"
+  },
+  {
+    "id": "X51006414703",
+    "field": "total",
+    "original": "98.35",
+    "cleaned": 98.35
+  },
+  {
+    "id": "X51008164420",
+    "field": "date",
+    "original": "03/04/18",
+    "cleaned": "2018-04-03"
+  },
+  {
+    "id": "X51008164420",
+    "field": "total",
+    "original": "7.30",
+    "cleaned": 7.3
+  },
+  {
+    "id": "X51006555818",
+    "field": "date",
+    "original": "24/07/2017",
+    "cleaned": "2017-07-24"
+  },
+  {
+    "id": "X51006555818",
+    "field": "total",
+    "original": "27.10",
+    "cleaned": 27.1
+  },
+  {
+    "id": "X51007339126",
+    "field": "date",
+    "original": "20/09/2017",
+    "cleaned": "2017-09-20"
+  },
+  {
+    "id": "X51007339126",
+    "field": "total",
+    "original": "12.00",
+    "cleaned": 12.0
+  },
+  {
+    "id": "X51005268262",
+    "field": "date",
+    "original": "22/12/2017",
+    "cleaned": "2017-12-22"
+  },
+  {
+    "id": "X51005268262",
+    "field": "total",
+    "original": "15.90",
+    "cleaned": 15.9
+  },
+  {
+    "id": "X51007339132",
+    "field": "date",
+    "original": "06/09/2017",
+    "cleaned": "2017-09-06"
+  },
+  {
+    "id": "X51007339132",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51006008095",
+    "field": "date",
+    "original": "19/03/2018",
+    "cleaned": "2018-03-19"
+  },
+  {
+    "id": "X51006008095",
+    "field": "total",
+    "original": "31.80",
+    "cleaned": 31.8
+  },
+  {
+    "id": "X51006414677",
+    "field": "date",
+    "original": "08/04/2018",
+    "cleaned": "2018-04-08"
+  },
+  {
+    "id": "X51006414677",
+    "field": "total",
+    "original": "12.00",
+    "cleaned": 12.0
+  },
+  {
+    "id": "X51005605286",
+    "field": "date",
+    "original": "09/02/2018",
+    "cleaned": "2018-02-09"
+  },
+  {
+    "id": "X51005605286",
+    "field": "total",
+    "original": "5.90",
+    "cleaned": 5.9
+  },
+  {
+    "id": "X51006556861",
+    "field": "date",
+    "original": "08/09/2017",
+    "cleaned": "2017-09-08"
+  },
+  {
+    "id": "X51006556861",
+    "field": "total",
+    "original": "23.20",
+    "cleaned": 23.2
+  },
+  {
+    "id": "X51006857660",
+    "field": "date",
+    "original": "13-09-2017",
+    "cleaned": "2020-09-13"
+  },
+  {
+    "id": "X51006857660",
+    "field": "total",
+    "original": "247.55",
+    "cleaned": 247.55
+  },
+  {
+    "id": "X51006441474",
+    "field": "date",
+    "original": "19/05/18",
+    "cleaned": "2018-05-19"
+  },
+  {
+    "id": "X51006441474",
+    "field": "total",
+    "original": "52.80",
+    "cleaned": 52.8
+  },
+  {
+    "id": "X51006557202",
+    "field": "date",
+    "original": "08/10/2017",
+    "cleaned": "2017-10-08"
+  },
+  {
+    "id": "X51006557202",
+    "field": "total",
+    "original": "46.06",
+    "cleaned": 46.06
+  },
+  {
+    "id": "X51005663301",
+    "field": "date",
+    "original": "03/02/2018",
+    "cleaned": "2018-02-03"
+  },
+  {
+    "id": "X51005663301",
+    "field": "total",
+    "original": "7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51006556646",
+    "field": "date",
+    "original": "21/08/2017",
+    "cleaned": "2017-08-21"
+  },
+  {
+    "id": "X51006556646",
+    "field": "total",
+    "original": "73.55",
+    "cleaned": 73.55
+  },
+  {
+    "id": "X51006556650",
+    "field": "date",
+    "original": "19/08/2017",
+    "cleaned": "2017-08-19"
+  },
+  {
+    "id": "X51006556650",
+    "field": "total",
+    "original": "50.60",
+    "cleaned": 50.6
+  },
+  {
+    "id": "X51005442361",
+    "field": "total",
+    "original": "593.10",
+    "cleaned": 593.1
+  },
+  {
+    "id": "X51005663317",
+    "field": "date",
+    "original": "29/12/2017",
+    "cleaned": "2017-12-29"
+  },
+  {
+    "id": "X51005663317",
+    "field": "total",
+    "original": "6.00",
+    "cleaned": 6.0
+  },
+  {
+    "id": "X51008123580",
+    "field": "date",
+    "original": "17-06-18",
+    "cleaned": "2018-06-17"
+  },
+  {
+    "id": "X51008123580",
+    "field": "total",
+    "original": "8.10",
+    "cleaned": 8.1
+  },
+  {
+    "id": "X51006392313",
+    "field": "date",
+    "original": "22-06-2017",
+    "cleaned": "2020-06-22"
+  },
+  {
+    "id": "X51006392313",
+    "field": "total",
+    "original": "RM28.05",
+    "cleaned": 28.05
+  },
+  {
+    "id": "X51005361907",
+    "field": "date",
+    "original": "12/02/2018",
+    "cleaned": "2018-02-12"
+  },
+  {
+    "id": "X51005361907",
+    "field": "total",
+    "original": "153.35",
+    "cleaned": 153.35
+  },
+  {
+    "id": "X51005746140",
+    "field": "date",
+    "original": "02/03/2018",
+    "cleaned": "2018-03-02"
+  },
+  {
+    "id": "X51005746140",
+    "field": "total",
+    "original": "63.35",
+    "cleaned": 63.35
+  },
+  {
+    "id": "X51006466778",
+    "field": "date",
+    "original": "04-05-2018",
+    "cleaned": "2020-05-04"
+  },
+  {
+    "id": "X51006466778",
+    "field": "total",
+    "original": "RM20.40",
+    "cleaned": 20.4
+  },
+  {
+    "id": "X51005605284",
+    "field": "date",
+    "original": "23/03/2018",
+    "cleaned": "2018-03-23"
+  },
+  {
+    "id": "X51005605284",
+    "field": "total",
+    "original": "83.00",
+    "cleaned": 83.0
+  },
+  {
+    "id": "X51006414675",
+    "field": "date",
+    "original": "11/04/18",
+    "cleaned": "2018-04-11"
+  },
+  {
+    "id": "X51006414675",
+    "field": "total",
+    "original": "21.60",
+    "cleaned": 21.6
+  },
+  {
+    "id": "X51006334926",
+    "field": "date",
+    "original": "25/12/2016",
+    "cleaned": "2016-12-25"
+  },
+  {
+    "id": "X51006334926",
+    "field": "total",
+    "original": "29.30",
+    "cleaned": 29.3
+  },
+  {
+    "id": "X51007103599",
+    "field": "date",
+    "original": "11-04-18",
+    "cleaned": "2018-04-11"
+  },
+  {
+    "id": "X51007103599",
+    "field": "total",
+    "original": "RM 9.00",
+    "cleaned": 9.0
+  },
+  {
+    "id": "X51007339642",
+    "field": "date",
+    "original": "28/09/2017",
+    "cleaned": "2017-09-28"
+  },
+  {
+    "id": "X51007339642",
+    "field": "total",
+    "original": "14.00",
+    "cleaned": 14.0
+  },
+  {
+    "id": "X51005757273",
+    "field": "date",
+    "original": "12-03-18",
+    "cleaned": "2018-03-12"
+  },
+  {
+    "id": "X51005757273",
+    "field": "total",
+    "original": "45.00",
+    "cleaned": 45.0
+  },
+  {
+    "id": "X51007339130",
+    "field": "date",
+    "original": "20/10/2017",
+    "cleaned": "2017-10-20"
+  },
+  {
+    "id": "X51007339130",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51007339656",
+    "field": "date",
+    "original": "10/05/2017",
+    "cleaned": "2017-05-10"
+  },
+  {
+    "id": "X51007339656",
+    "field": "total",
+    "original": "16.00",
+    "cleaned": 16.0
+  },
+  {
+    "id": "X51007339118",
+    "field": "date",
+    "original": "07/11/2017",
+    "cleaned": "2017-11-07"
+  },
+  {
+    "id": "X51007339118",
+    "field": "total",
+    "original": "2.00",
+    "cleaned": 2.0
+  },
+  {
+    "id": "X51005605333",
+    "field": "date",
+    "original": "07/01/18",
+    "cleaned": "2018-01-07"
+  },
+  {
+    "id": "X51005605333",
+    "field": "total",
+    "original": "31.45",
+    "cleaned": 31.45
+  },
+  {
+    "id": "X51005268472",
+    "field": "date",
+    "original": "22/12/2017",
+    "cleaned": "2017-12-22"
+  },
+  {
+    "id": "X51005268472",
+    "field": "total",
+    "original": "32.70",
+    "cleaned": 32.7
+  },
+  {
+    "id": "X51008042778",
+    "field": "date",
+    "original": "05-05-2018",
+    "cleaned": "2020-05-05"
+  },
+  {
+    "id": "X51008042778",
+    "field": "total",
+    "original": "19.40",
+    "cleaned": 19.4
+  },
+  {
+    "id": "X51005663277",
+    "field": "date",
+    "original": "02/12/2017",
+    "cleaned": "2017-12-02"
+  },
+  {
+    "id": "X51005663277",
+    "field": "total",
+    "original": "29.68",
+    "cleaned": 29.68
+  },
+  {
+    "id": "X51006556730",
+    "field": "date",
+    "original": "05-AUG-2017",
+    "cleaned": "2017-08-05"
+  },
+  {
+    "id": "X51006556730",
+    "field": "total",
+    "original": "RM40.00",
+    "cleaned": 40.0
+  },
+  {
+    "id": "X51006392273",
+    "field": "date",
+    "original": "03/06/2017",
+    "cleaned": "2017-06-03"
+  },
+  {
+    "id": "X51006392273",
+    "field": "total",
+    "original": "18.00",
+    "cleaned": 18.0
+  },
+  {
+    "id": "X51005361898",
+    "field": "date",
+    "original": "15/01/2018",
+    "cleaned": "2018-01-15"
+  },
+  {
+    "id": "X51005361898",
+    "field": "total",
+    "original": "55.10",
+    "cleaned": 55.1
+  },
+  {
+    "id": "X51008164998",
+    "field": "date",
+    "original": "20-06-2018",
+    "cleaned": "2020-06-20"
+  },
+  {
+    "id": "X51008164998",
+    "field": "total",
+    "original": "38.00",
+    "cleaned": 38.0
+  },
+  {
+    "id": "X51008042793",
+    "field": "date",
+    "original": "03/05/2018",
+    "cleaned": "2018-05-03"
+  },
+  {
+    "id": "X51008042793",
+    "field": "total",
+    "original": "2.50",
+    "cleaned": 2.5
+  },
+  {
+    "id": "X51006620187",
+    "field": "date",
+    "original": "19/05/16",
+    "cleaned": "2016-05-19"
+  },
+  {
+    "id": "X51006620187",
+    "field": "total",
+    "original": "6.85",
+    "cleaned": 6.85
+  },
+  {
+    "id": "X51007103639",
+    "field": "date",
+    "original": "19-04-18",
+    "cleaned": "2018-04-19"
+  },
+  {
+    "id": "X51007103639",
+    "field": "total",
+    "original": "RM 15.40",
+    "cleaned": 15.4
+  },
+  {
+    "id": "X51006620186",
+    "field": "date",
+    "original": "22-04-16",
+    "cleaned": "2016-04-22"
+  },
+  {
+    "id": "X51006620186",
+    "field": "total",
+    "original": "RM 68.10",
+    "cleaned": 68.1
+  },
+  {
+    "id": "X51008042792",
+    "field": "date",
+    "original": "06-05-2018",
+    "cleaned": "2020-05-06"
+  },
+  {
+    "id": "X51008042792",
+    "field": "total",
+    "original": "5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51008164999",
+    "field": "date",
+    "original": "23-06-2018",
+    "cleaned": "2020-06-23"
+  },
+  {
+    "id": "X51008164999",
+    "field": "total",
+    "original": "179.50",
+    "cleaned": 179.5
+  },
+  {
+    "id": "X51007846269",
+    "field": "date",
+    "original": "04 JUN 2018",
+    "cleaned": "2018-06-04"
+  },
+  {
+    "id": "X51007846269",
+    "field": "total",
+    "original": "RM7.70",
+    "cleaned": 7.7
+  },
+  {
+    "id": "X51006392299",
+    "field": "date",
+    "original": "14/JUN/2017",
+    "cleaned": "2017-06-14"
+  },
+  {
+    "id": "X51006392299",
+    "field": "total",
+    "original": "165.00",
+    "cleaned": 165.0
+  },
+  {
+    "id": "X51006857071",
+    "field": "date",
+    "original": "15/07/2017",
+    "cleaned": "2017-07-15"
+  },
+  {
+    "id": "X51006857071",
+    "field": "total",
+    "original": "148.00",
+    "cleaned": 148.0
+  },
+  {
+    "id": "X51005715451",
+    "field": "date",
+    "original": "06/02/18",
+    "cleaned": "2018-02-06"
+  },
+  {
+    "id": "X51005715451",
+    "field": "total",
+    "original": "14.65",
+    "cleaned": 14.65
+  },
+  {
+    "id": "X51005663276",
+    "field": "date",
+    "original": "02/12/2017",
+    "cleaned": "2017-12-02"
+  },
+  {
+    "id": "X51005663276",
+    "field": "total",
+    "original": "7.42",
+    "cleaned": 7.42
+  },
+  {
+    "id": "X51006713996",
+    "field": "date",
+    "original": "01-NOV-2017",
+    "cleaned": "2017-11-01"
+  },
+  {
+    "id": "X51006713996",
+    "field": "total",
+    "original": "142.00",
+    "cleaned": 142.0
+  },
+  {
+    "id": "X51006557188",
+    "field": "date",
+    "original": "15/10/2017",
+    "cleaned": "2017-10-15"
+  },
+  {
+    "id": "X51006557188",
+    "field": "total",
+    "original": "23.56",
+    "cleaned": 23.56
+  },
+  {
+    "id": "X51006414714",
+    "field": "date",
+    "original": "08/04/2018",
+    "cleaned": "2018-04-08"
+  },
+  {
+    "id": "X51006414714",
+    "field": "total",
+    "original": "18.90",
+    "cleaned": 18.9
+  },
+  {
+    "id": "X51005568827",
+    "field": "date",
+    "original": "29-10-2017",
+    "cleaned": "2020-10-29"
+  },
+  {
+    "id": "X51005568827",
+    "field": "total",
+    "original": "23.25",
+    "cleaned": 23.25
+  },
+  {
+    "id": "X51006414700",
+    "field": "date",
+    "original": "22/04/2018",
+    "cleaned": "2018-04-22"
+  },
+  {
+    "id": "X51006414700",
+    "field": "total",
+    "original": "10.20",
+    "cleaned": 10.2
+  },
+  {
+    "id": "X51005719914",
+    "field": "date",
+    "original": "16-03-18",
+    "cleaned": "2018-03-16"
+  },
+  {
+    "id": "X51005719914",
+    "field": "total",
+    "original": "53.30",
+    "cleaned": 53.3
+  },
+  {
+    "id": "X51007339131",
+    "field": "date",
+    "original": "18/09/2017",
+    "cleaned": "2017-09-18"
+  },
+  {
+    "id": "X51007339131",
+    "field": "total",
+    "original": "12.40",
+    "cleaned": 12.4
+  },
+  {
+    "id": "X51007339657",
+    "field": "date",
+    "original": "25/12/2017",
+    "cleaned": "2017-12-25"
+  },
+  {
+    "id": "X51007339657",
+    "field": "total",
+    "original": "2.50",
+    "cleaned": 2.5
+  },
+  {
+    "id": "X51007339643",
+    "field": "date",
+    "original": "30/03/2017",
+    "cleaned": "2017-03-30"
+  },
+  {
+    "id": "X51007339643",
+    "field": "total",
+    "original": "6.00",
+    "cleaned": 6.0
+  },
+  {
+    "id": "X51005719874",
+    "field": "date",
+    "original": "2018/02/22",
+    "cleaned": "2018-02-22"
+  },
+  {
+    "id": "X51005719874",
+    "field": "total",
+    "original": "RM39.00",
+    "cleaned": 39.0
+  },
+  {
+    "id": "X51006414674",
+    "field": "date",
+    "original": "17/04/18",
+    "cleaned": "2018-04-17"
+  },
+  {
+    "id": "X51006414674",
+    "field": "total",
+    "original": "25.60",
+    "cleaned": 25.6
+  },
+  {
+    "id": "X51005605285",
+    "field": "date",
+    "original": "22/03/2018",
+    "cleaned": "2018-03-22"
+  },
+  {
+    "id": "X51005605285",
+    "field": "total",
+    "original": "5.90",
+    "cleaned": 5.9
+  },
+  {
+    "id": "X51007846309",
+    "field": "date",
+    "original": "11 JUN 2018",
+    "cleaned": "2018-06-11"
+  },
+  {
+    "id": "X51007846309",
+    "field": "total",
+    "original": "RM6.00",
+    "cleaned": 6.0
+  },
+  {
+    "id": "X51005705722",
+    "field": "date",
+    "original": "27/09/2017",
+    "cleaned": "2017-09-27"
+  },
+  {
+    "id": "X51005705722",
+    "field": "total",
+    "original": "248.05",
+    "cleaned": 248.05
+  },
+  {
+    "id": "X51006619854",
+    "field": "date",
+    "original": "04-06-16",
+    "cleaned": "2016-06-04"
+  },
+  {
+    "id": "X51006619854",
+    "field": "total",
+    "original": "2.10",
+    "cleaned": 2.1
+  },
+  {
+    "id": "X51006619698",
+    "field": "date",
+    "original": "25-01-16",
+    "cleaned": "2016-01-25"
+  },
+  {
+    "id": "X51006619698",
+    "field": "total",
+    "original": "RM 21.00",
+    "cleaned": 21.0
+  },
+  {
+    "id": "X51006311779",
+    "field": "date",
+    "original": "27/03/2018",
+    "cleaned": "2018-03-27"
+  },
+  {
+    "id": "X51006311779",
+    "field": "total",
+    "original": "8.50",
+    "cleaned": 8.5
+  },
+  {
+    "id": "X51006441473",
+    "field": "date",
+    "original": "19/05/18",
+    "cleaned": "2018-05-19"
+  },
+  {
+    "id": "X51006441473",
+    "field": "total",
+    "original": "38.37",
+    "cleaned": 38.37
+  },
+  {
+    "id": "X51006913019",
+    "field": "date",
+    "original": "11/05/2018",
+    "cleaned": "2018-05-11"
+  },
+  {
+    "id": "X51006913019",
+    "field": "total",
+    "original": "476.80",
+    "cleaned": 476.8
+  },
+  {
+    "id": "X51007846325",
+    "field": "date",
+    "original": "02/06/18",
+    "cleaned": "2018-06-02"
+  },
+  {
+    "id": "X51007846325",
+    "field": "total",
+    "original": "25.85",
+    "cleaned": 25.85
+  },
+  {
+    "id": "X51006913031",
+    "field": "date",
+    "original": "09 MAY 2018",
+    "cleaned": "2018-05-09"
+  },
+  {
+    "id": "X51006913031",
+    "field": "total",
+    "original": "$6.60",
+    "cleaned": 6.6
+  },
+  {
+    "id": "X51006008086",
+    "field": "date",
+    "original": "24/01/18",
+    "cleaned": "2018-01-24"
+  },
+  {
+    "id": "X51006008086",
+    "field": "total",
+    "original": "30.10",
+    "cleaned": 30.1
+  },
+  {
+    "id": "X51005719864",
+    "field": "date",
+    "original": "05/01/2018",
+    "cleaned": "2018-01-05"
+  },
+  {
+    "id": "X51005719864",
+    "field": "total",
+    "original": "29.80",
+    "cleaned": 29.8
+  },
+  {
+    "id": "X51007339647",
+    "field": "date",
+    "original": "15/11/2017",
+    "cleaned": "2017-11-15"
+  },
+  {
+    "id": "X51007339647",
+    "field": "total",
+    "original": "16.00",
+    "cleaned": 16.0
+  },
+  {
+    "id": "X51007339653",
+    "field": "date",
+    "original": "15/09/2017",
+    "cleaned": "2017-09-15"
+  },
+  {
+    "id": "X51007339653",
+    "field": "total",
+    "original": "24.00",
+    "cleaned": 24.0
+  },
+  {
+    "id": "X51007339135",
+    "field": "date",
+    "original": "06/11/2017",
+    "cleaned": "2017-11-06"
+  },
+  {
+    "id": "X51007339135",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51006679222",
+    "field": "date",
+    "original": "24-05-2018",
+    "cleaned": "2020-05-24"
+  },
+  {
+    "id": "X51006679222",
+    "field": "total",
+    "original": "39.90",
+    "cleaned": 39.9
+  },
+  {
+    "id": "X51005719904",
+    "field": "total",
+    "original": "RM29.30",
+    "cleaned": 29.3
+  },
+  {
+    "id": "X51006557198",
+    "field": "date",
+    "original": "10/10/2017",
+    "cleaned": "2017-10-10"
+  },
+  {
+    "id": "X51006557198",
+    "field": "total",
+    "original": "27.20",
+    "cleaned": 27.2
+  },
+  {
+    "id": "X51006335552",
+    "field": "date",
+    "original": "6/2/2017",
+    "cleaned": "2017-02-06"
+  },
+  {
+    "id": "X51006335552",
+    "field": "total",
+    "original": "758.70",
+    "cleaned": 758.7
+  },
+  {
+    "id": "X51008142033",
+    "field": "date",
+    "original": "19-05-2018",
+    "cleaned": "2020-05-19"
+  },
+  {
+    "id": "X51008142033",
+    "field": "total",
+    "original": "42.40",
+    "cleaned": 42.4
+  },
+  {
+    "id": "X51005663272",
+    "field": "date",
+    "original": "04/12/17",
+    "cleaned": "2017-12-04"
+  },
+  {
+    "id": "X51005663272",
+    "field": "total",
+    "original": "42.40",
+    "cleaned": 42.4
+  },
+  {
+    "id": "X51007846286",
+    "field": "date",
+    "original": "09 JUN 2018",
+    "cleaned": "2018-06-09"
+  },
+  {
+    "id": "X51007846286",
+    "field": "total",
+    "original": "RM7.70",
+    "cleaned": 7.7
+  },
+  {
+    "id": "X51008042782",
+    "field": "date",
+    "original": "02-04-2018",
+    "cleaned": "2020-04-02"
+  },
+  {
+    "id": "X51008042782",
+    "field": "total",
+    "original": "6.70",
+    "cleaned": 6.7
+  },
+  {
+    "id": "X51006389865",
+    "field": "date",
+    "original": "12-11-2017",
+    "cleaned": "2020-11-12"
+  },
+  {
+    "id": "X51006389865",
+    "field": "total",
+    "original": "62.80",
+    "cleaned": 62.8
+  },
+  {
+    "id": "X51005663298",
+    "field": "date",
+    "original": "21-03-2018",
+    "cleaned": "2020-03-21"
+  },
+  {
+    "id": "X51005663298",
+    "field": "total",
+    "original": "48.15",
+    "cleaned": 48.15
+  },
+  {
+    "id": "X51008042783",
+    "field": "date",
+    "original": "11/05/2018",
+    "cleaned": "2018-05-11"
+  },
+  {
+    "id": "X51008042783",
+    "field": "total",
+    "original": "18.90",
+    "cleaned": 18.9
+  },
+  {
+    "id": "X51005663273",
+    "field": "date",
+    "original": "04/12/2017",
+    "cleaned": "2017-12-04"
+  },
+  {
+    "id": "X51005663273",
+    "field": "total",
+    "original": "47.70",
+    "cleaned": 47.7
+  },
+  {
+    "id": "X51008114260",
+    "field": "date",
+    "original": "02-05-18",
+    "cleaned": "2018-05-02"
+  },
+  {
+    "id": "X51008114260",
+    "field": "total",
+    "original": "23.60",
+    "cleaned": 23.6
+  },
+  {
+    "id": "X51005741944",
+    "field": "date",
+    "original": "18-01-2018",
+    "cleaned": "2020-01-18"
+  },
+  {
+    "id": "X51005741944",
+    "field": "total",
+    "original": "41.95",
+    "cleaned": 41.95
+  },
+  {
+    "id": "X51008142032",
+    "field": "date",
+    "original": "28-05-2018",
+    "cleaned": "2020-05-28"
+  },
+  {
+    "id": "X51008142032",
+    "field": "total",
+    "original": "112.35",
+    "cleaned": 112.35
+  },
+  {
+    "id": "X51006335547",
+    "field": "date",
+    "original": "02/02/17",
+    "cleaned": "2017-02-02"
+  },
+  {
+    "id": "X51006335547",
+    "field": "total",
+    "original": "7.50",
+    "cleaned": 7.5
+  },
+  {
+    "id": "X51005742068",
+    "field": "date",
+    "original": "24-03-2018",
+    "cleaned": "2020-03-24"
+  },
+  {
+    "id": "X51005742068",
+    "field": "total",
+    "original": "6.00",
+    "cleaned": 6.0
+  },
+  {
+    "id": "X51006557199",
+    "field": "date",
+    "original": "09/10/2017",
+    "cleaned": "2017-10-09"
+  },
+  {
+    "id": "X51006557199",
+    "field": "total",
+    "original": "60.24",
+    "cleaned": 60.24
+  },
+  {
+    "id": "X51006414711",
+    "field": "date",
+    "original": "28/04/18",
+    "cleaned": "2018-04-28"
+  },
+  {
+    "id": "X51006414711",
+    "field": "total",
+    "original": "30.90",
+    "cleaned": 30.9
+  },
+  {
+    "id": "X51007339097",
+    "field": "date",
+    "original": "10/04/2017",
+    "cleaned": "2017-04-10"
+  },
+  {
+    "id": "X51007339097",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51007339120",
+    "field": "date",
+    "original": "18/11/2017",
+    "cleaned": "2017-11-18"
+  },
+  {
+    "id": "X51007339120",
+    "field": "total",
+    "original": "9.30",
+    "cleaned": 9.3
+  },
+  {
+    "id": "X51006414671",
+    "field": "date",
+    "original": "19 APR 2018",
+    "cleaned": "2018-04-19"
+  },
+  {
+    "id": "X51006414671",
+    "field": "total",
+    "original": "$9.90",
+    "cleaned": 9.9
+  },
+  {
+    "id": "X51006327976",
+    "field": "date",
+    "original": "08/02/2017",
+    "cleaned": "2017-02-08"
+  },
+  {
+    "id": "X51006327976",
+    "field": "total",
+    "original": "25.45",
+    "cleaned": 25.45
+  },
+  {
+    "id": "X51006913024",
+    "field": "date",
+    "original": "14 MAY 2018",
+    "cleaned": "2018-05-14"
+  },
+  {
+    "id": "X51006913024",
+    "field": "total",
+    "original": "$8.90",
+    "cleaned": 8.9
+  },
+  {
+    "id": "X51006913030",
+    "field": "date",
+    "original": "10 MAY 2018",
+    "cleaned": "2018-05-10"
+  },
+  {
+    "id": "X51006913030",
+    "field": "total",
+    "original": "$10.30",
+    "cleaned": 10.3
+  },
+  {
+    "id": "X51006557210",
+    "field": "date",
+    "original": "05/10/2017",
+    "cleaned": "2017-10-05"
+  },
+  {
+    "id": "X51006557210",
+    "field": "total",
+    "original": "51.42",
+    "cleaned": 51.42
+  },
+  {
+    "id": "X51006311778",
+    "field": "date",
+    "original": "21/03/2018",
+    "cleaned": "2018-03-21"
+  },
+  {
+    "id": "X51006311778",
+    "field": "total",
+    "original": "7.40",
+    "cleaned": 7.4
+  },
+  {
+    "id": "X51005663311",
+    "field": "date",
+    "original": "09/02/2018",
+    "cleaned": "2018-02-09"
+  },
+  {
+    "id": "X51005663311",
+    "field": "total",
+    "original": "7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51008123586",
+    "field": "date",
+    "original": "29/06/2018",
+    "cleaned": "2018-06-29"
+  },
+  {
+    "id": "X51008123586",
+    "field": "total",
+    "original": "7.70",
+    "cleaned": 7.7
+  },
+  {
+    "id": "X51006556656",
+    "field": "date",
+    "original": "17/08/2017",
+    "cleaned": "2017-08-17"
+  },
+  {
+    "id": "X51006556656",
+    "field": "total",
+    "original": "7.97",
+    "cleaned": 7.97
+  },
+  {
+    "id": "X51009453801",
+    "field": "date",
+    "original": "20/03/2018",
+    "cleaned": "2018-03-20"
+  },
+  {
+    "id": "X51009453801",
+    "field": "total",
+    "original": "102.00",
+    "cleaned": 102.0
+  },
+  {
+    "id": "X51007846326",
+    "field": "date",
+    "original": "6/1/2018",
+    "cleaned": "2018-01-06"
+  },
+  {
+    "id": "X51007846326",
+    "field": "total",
+    "original": "10.30",
+    "cleaned": 10.3
+  },
+  {
+    "id": "X51007262330",
+    "field": "date",
+    "original": "23/03/2018",
+    "cleaned": "2018-03-23"
+  },
+  {
+    "id": "X51007262330",
+    "field": "total",
+    "original": "41.20",
+    "cleaned": 41.2
+  },
+  {
+    "id": "X51006008091",
+    "field": "date",
+    "original": "05/03/18",
+    "cleaned": "2018-03-05"
+  },
+  {
+    "id": "X51006008091",
+    "field": "total",
+    "original": "9.90",
+    "cleaned": 9.9
+  },
+  {
+    "id": "X51005676536",
+    "field": "date",
+    "original": "02/01/2018",
+    "cleaned": "2018-01-02"
+  },
+  {
+    "id": "X51005676536",
+    "field": "total",
+    "original": "93.07",
+    "cleaned": 93.07
+  },
+  {
+    "id": "X51005719873",
+    "field": "date",
+    "original": "21/01/2018",
+    "cleaned": "2018-01-21"
+  },
+  {
+    "id": "X51005719873",
+    "field": "total",
+    "original": "RM8.60",
+    "cleaned": 8.6
+  },
+  {
+    "id": "X51007339136",
+    "field": "date",
+    "original": "28/12/2017",
+    "cleaned": "2017-12-28"
+  },
+  {
+    "id": "X51007339136",
+    "field": "total",
+    "original": "46.90",
+    "cleaned": 46.9
+  },
+  {
+    "id": "X51007339650",
+    "field": "date",
+    "original": "13/12/2017",
+    "cleaned": "2017-12-13"
+  },
+  {
+    "id": "X51007339650",
+    "field": "total",
+    "original": "24.00",
+    "cleaned": 24.0
+  },
+  {
+    "id": "X51006557170",
+    "field": "date",
+    "original": "29/10/2017",
+    "cleaned": "2017-10-29"
+  },
+  {
+    "id": "X51006557170",
+    "field": "total",
+    "original": "58.86",
+    "cleaned": 58.86
+  },
+  {
+    "id": "X51006557164",
+    "field": "date",
+    "original": "18/10/2017",
+    "cleaned": "2017-10-18"
+  },
+  {
+    "id": "X51006557164",
+    "field": "total",
+    "original": "31.05",
+    "cleaned": 31.05
+  },
+  {
+    "id": "X51006414713",
+    "field": "date",
+    "original": "17/04/2018",
+    "cleaned": "2018-04-17"
+  },
+  {
+    "id": "X51006414713",
+    "field": "total",
+    "original": "81.80",
+    "cleaned": 81.8
+  },
+  {
+    "id": "X51007339095",
+    "field": "date",
+    "original": "05/09/2017",
+    "cleaned": "2017-09-05"
+  },
+  {
+    "id": "X51007339095",
+    "field": "total",
+    "original": "14.90",
+    "cleaned": 14.9
+  },
+  {
+    "id": "X51007231344",
+    "field": "date",
+    "original": "05 MAY 2018",
+    "cleaned": "2018-05-05"
+  },
+  {
+    "id": "X51007231344",
+    "field": "total",
+    "original": "$11.20",
+    "cleaned": 11.2
+  },
+  {
+    "id": "X51005200938",
+    "field": "date",
+    "original": "12/02/2018",
+    "cleaned": "2018-02-12"
+  },
+  {
+    "id": "X51005200938",
+    "field": "total",
+    "original": "112.45",
+    "cleaned": 112.45
+  },
+  {
+    "id": "X51005749895",
+    "field": "date",
+    "original": "02-03-18",
+    "cleaned": "2018-03-02"
+  },
+  {
+    "id": "X51005749895",
+    "field": "total",
+    "original": "71.90",
+    "cleaned": 71.9
+  },
+  {
+    "id": "X51005605335",
+    "field": "date",
+    "original": "12/01/18",
+    "cleaned": "2018-01-12"
+  },
+  {
+    "id": "X51005605335",
+    "field": "total",
+    "original": "21.00",
+    "cleaned": 21.0
+  },
+  {
+    "id": "X51008114262",
+    "field": "date",
+    "original": "05-05-18",
+    "cleaned": "2018-05-05"
+  },
+  {
+    "id": "X51008114262",
+    "field": "total",
+    "original": "137.15",
+    "cleaned": 137.15
+  },
+  {
+    "id": "X51008142030",
+    "field": "date",
+    "original": "05-06-2018",
+    "cleaned": "2020-06-05"
+  },
+  {
+    "id": "X51008142030",
+    "field": "total",
+    "original": "52.00",
+    "cleaned": 52.0
+  },
+  {
+    "id": "X51006328919",
+    "field": "date",
+    "original": "10/02/2017",
+    "cleaned": "2017-02-10"
+  },
+  {
+    "id": "X51006328919",
+    "field": "total",
+    "original": "7.40",
+    "cleaned": 7.4
+  },
+  {
+    "id": "X51008122920",
+    "field": "date",
+    "original": "04-05-18",
+    "cleaned": "2018-05-04"
+  },
+  {
+    "id": "X51008122920",
+    "field": "total",
+    "original": "19.00",
+    "cleaned": 19.0
+  },
+  {
+    "id": "X51005745249",
+    "field": "date",
+    "original": "27/02/2018",
+    "cleaned": "2018-02-27"
+  },
+  {
+    "id": "X51005745249",
+    "field": "total",
+    "original": "RM22.65",
+    "cleaned": 22.65
+  },
+  {
+    "id": "X51006620181",
+    "field": "date",
+    "original": "2016/05/01",
+    "cleaned": "2016-05-01"
+  },
+  {
+    "id": "X51006620181",
+    "field": "total",
+    "original": "RM51.30",
+    "cleaned": 51.3
+  },
+  {
+    "id": "X51005715456",
+    "field": "date",
+    "original": "22/03/2018",
+    "cleaned": "2018-03-22"
+  },
+  {
+    "id": "X51005715456",
+    "field": "total",
+    "original": "101.75",
+    "cleaned": 101.75
+  },
+  {
+    "id": "X51005717526",
+    "field": "date",
+    "original": "02/03/2018",
+    "cleaned": "2018-03-02"
+  },
+  {
+    "id": "X51005717526",
+    "field": "total",
+    "original": "28.50",
+    "cleaned": 28.5
+  },
+  {
+    "id": "X51008142031",
+    "field": "date",
+    "original": "22-05-2018",
+    "cleaned": "2020-05-22"
+  },
+  {
+    "id": "X51008142031",
+    "field": "total",
+    "original": "71.00",
+    "cleaned": 71.0
+  },
+  {
+    "id": "X51006555570",
+    "field": "date",
+    "original": "11/08/2017",
+    "cleaned": "2017-08-11"
+  },
+  {
+    "id": "X51006555570",
+    "field": "total",
+    "original": "78.10",
+    "cleaned": 78.1
+  },
+  {
+    "id": "X51005605334",
+    "field": "date",
+    "original": "29/03/18",
+    "cleaned": "2018-03-29"
+  },
+  {
+    "id": "X51005605334",
+    "field": "total",
+    "original": "9.65",
+    "cleaned": 9.65
+  },
+  {
+    "id": "X51005365179",
+    "field": "date",
+    "original": "01-03-18",
+    "cleaned": "2018-03-01"
+  },
+  {
+    "id": "X51005365179",
+    "field": "total",
+    "original": "21.20",
+    "cleaned": 21.2
+  },
+  {
+    "id": "X51007225442",
+    "field": "date",
+    "original": "27-04-18",
+    "cleaned": "2018-04-27"
+  },
+  {
+    "id": "X51007225442",
+    "field": "total",
+    "original": "23.00",
+    "cleaned": 23.0
+  },
+  {
+    "id": "X51007339094",
+    "field": "date",
+    "original": "22/05/2017",
+    "cleaned": "2017-05-22"
+  },
+  {
+    "id": "X51007339094",
+    "field": "total",
+    "original": "35.00",
+    "cleaned": 35.0
+  },
+  {
+    "id": "X51005719912",
+    "field": "date",
+    "original": "04/03/18",
+    "cleaned": "2018-03-04"
+  },
+  {
+    "id": "X51005719912",
+    "field": "total",
+    "original": "12.00",
+    "cleaned": 12.0
+  },
+  {
+    "id": "X51006334699",
+    "field": "date",
+    "original": "05 JAN 2017",
+    "cleaned": "2017-01-05"
+  },
+  {
+    "id": "X51006334699",
+    "field": "total",
+    "original": "12.60",
+    "cleaned": 12.6
+  },
+  {
+    "id": "X51005719906",
+    "field": "date",
+    "original": "25 MAR 2018",
+    "cleaned": "2018-03-25"
+  },
+  {
+    "id": "X51005719906",
+    "field": "total",
+    "original": "105.00",
+    "cleaned": 105.0
+  },
+  {
+    "id": "X51006414712",
+    "field": "date",
+    "original": "28/04/18",
+    "cleaned": "2018-04-28"
+  },
+  {
+    "id": "X51006414712",
+    "field": "total",
+    "original": "39.60",
+    "cleaned": 39.6
+  },
+  {
+    "id": "X51007339651",
+    "field": "date",
+    "original": "29/12/2017",
+    "cleaned": "2017-12-29"
+  },
+  {
+    "id": "X51007339651",
+    "field": "total",
+    "original": "7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51005719899",
+    "field": "date",
+    "original": "18-03-2018",
+    "cleaned": "2020-03-18"
+  },
+  {
+    "id": "X51005719899",
+    "field": "total",
+    "original": "RM53.60",
+    "cleaned": 53.6
+  },
+  {
+    "id": "X51005757248",
+    "field": "date",
+    "original": "12/03/2018",
+    "cleaned": "2018-03-12"
+  },
+  {
+    "id": "X51005757248",
+    "field": "total",
+    "original": "42.50",
+    "cleaned": 42.5
+  },
+  {
+    "id": "X51006414470",
+    "field": "date",
+    "original": "09 APR 2018",
+    "cleaned": "2018-04-09"
+  },
+  {
+    "id": "X51006414470",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51006557213",
+    "field": "date",
+    "original": "01/10/2017",
+    "cleaned": "2017-10-01"
+  },
+  {
+    "id": "X51006557213",
+    "field": "total",
+    "original": "31.32",
+    "cleaned": 31.32
+  },
+  {
+    "id": "X51005361900",
+    "field": "date",
+    "original": "23/01/2018",
+    "cleaned": "2018-01-23"
+  },
+  {
+    "id": "X51005361900",
+    "field": "total",
+    "original": "18.00",
+    "cleaned": 18.0
+  },
+  {
+    "id": "X51008099054",
+    "field": "date",
+    "original": "11-06-2018",
+    "cleaned": "2020-06-11"
+  },
+  {
+    "id": "X51008099054",
+    "field": "total",
+    "original": "15.00",
+    "cleaned": 15.0
+  },
+  {
+    "id": "X51006466056",
+    "field": "date",
+    "original": "18/04/2018",
+    "cleaned": "2018-04-18"
+  },
+  {
+    "id": "X51006466056",
+    "field": "total",
+    "original": "11.25",
+    "cleaned": 11.25
+  },
+  {
+    "id": "X51006913054",
+    "field": "date",
+    "original": "12/05/18",
+    "cleaned": "2018-05-12"
+  },
+  {
+    "id": "X51006913054",
+    "field": "total",
+    "original": "12.00",
+    "cleaned": 12.0
+  },
+  {
+    "id": "X51006387971",
+    "field": "date",
+    "original": "05-05-17",
+    "cleaned": "2017-05-05"
+  },
+  {
+    "id": "X51006387971",
+    "field": "total",
+    "original": "42.35",
+    "cleaned": 42.35
+  },
+  {
+    "id": "X51008099083",
+    "field": "date",
+    "original": "04-06-2018",
+    "cleaned": "2020-06-04"
+  },
+  {
+    "id": "X51008099083",
+    "field": "total",
+    "original": "6.70",
+    "cleaned": 6.7
+  },
+  {
+    "id": "X51007846368",
+    "field": "date",
+    "original": "13/06/2018",
+    "cleaned": "2018-06-13"
+  },
+  {
+    "id": "X51007846368",
+    "field": "total",
+    "original": "473.30",
+    "cleaned": 473.3
+  },
+  {
+    "id": "X51006913068",
+    "field": "date",
+    "original": "25/05/2018",
+    "cleaned": "2018-05-25"
+  },
+  {
+    "id": "X51006913068",
+    "field": "total",
+    "original": "11.10",
+    "cleaned": 11.1
+  },
+  {
+    "id": "X51006828217",
+    "field": "date",
+    "original": "14-08-17",
+    "cleaned": "2017-08-14"
+  },
+  {
+    "id": "X51006828217",
+    "field": "total",
+    "original": "14.40",
+    "cleaned": 14.4
+  },
+  {
+    "id": "X51005676544",
+    "field": "date",
+    "original": "02/01/2018",
+    "cleaned": "2018-01-02"
+  },
+  {
+    "id": "X51005676544",
+    "field": "total",
+    "original": "2.12",
+    "cleaned": 2.12
+  },
+  {
+    "id": "X51007339150",
+    "field": "date",
+    "original": "18/07/2017",
+    "cleaned": "2017-07-18"
+  },
+  {
+    "id": "X51007339150",
+    "field": "total",
+    "original": "35.00",
+    "cleaned": 35.0
+  },
+  {
+    "id": "X51005685355",
+    "field": "date",
+    "original": "19/03/2018",
+    "cleaned": "2018-03-19"
+  },
+  {
+    "id": "X51005685355",
+    "field": "total",
+    "original": "5.30",
+    "cleaned": 5.3
+  },
+  {
+    "id": "X51005268200",
+    "field": "date",
+    "original": "15/06/2017",
+    "cleaned": "2017-06-15"
+  },
+  {
+    "id": "X51005268200",
+    "field": "total",
+    "original": "15.00",
+    "cleaned": 15.0
+  },
+  {
+    "id": "X51006008197",
+    "field": "date",
+    "original": "30/03/2018",
+    "cleaned": "2018-03-30"
+  },
+  {
+    "id": "X51006008197",
+    "field": "total",
+    "original": "56.00",
+    "cleaned": 56.0
+  },
+  {
+    "id": "X51006556591",
+    "field": "date",
+    "original": "25/08/2017",
+    "cleaned": "2017-08-25"
+  },
+  {
+    "id": "X51006556591",
+    "field": "total",
+    "original": "36.36",
+    "cleaned": 36.36
+  },
+  {
+    "id": "X51005568891",
+    "field": "date",
+    "original": "08/02/2017",
+    "cleaned": "2017-02-08"
+  },
+  {
+    "id": "X51005568891",
+    "field": "total",
+    "original": "277.00",
+    "cleaned": 277.0
+  },
+  {
+    "id": "X51005711454",
+    "field": "date",
+    "original": "24 MAR 18",
+    "cleaned": "2018-03-24"
+  },
+  {
+    "id": "X51005711454",
+    "field": "total",
+    "original": "72.93",
+    "cleaned": 72.93
+  },
+  {
+    "id": "X51007231336",
+    "field": "date",
+    "original": "13 MAY 2018",
+    "cleaned": "2018-05-13"
+  },
+  {
+    "id": "X51007231336",
+    "field": "total",
+    "original": "$8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51005763940",
+    "field": "total",
+    "original": "60.00",
+    "cleaned": 60.0
+  },
+  {
+    "id": "X51005301659",
+    "field": "date",
+    "original": "22/12/2017",
+    "cleaned": "2017-12-22"
+  },
+  {
+    "id": "X51005301659",
+    "field": "total",
+    "original": "15.90",
+    "cleaned": 15.9
+  },
+  {
+    "id": "X51005705804",
+    "field": "date",
+    "original": "04/12/2017",
+    "cleaned": "2017-12-04"
+  },
+  {
+    "id": "X51005705804",
+    "field": "total",
+    "original": "99.00",
+    "cleaned": 99.0
+  },
+  {
+    "id": "X51006619772",
+    "field": "date",
+    "original": "24/07/2016",
+    "cleaned": "2016-07-24"
+  },
+  {
+    "id": "X51006619772",
+    "field": "total",
+    "original": "28.20",
+    "cleaned": 28.2
+  },
+  {
+    "id": "X51005568884",
+    "field": "date",
+    "original": "24-11-17",
+    "cleaned": "2017-11-24"
+  },
+  {
+    "id": "X51005568884",
+    "field": "total",
+    "original": "RM 3.90",
+    "cleaned": 3.9
+  },
+  {
+    "id": "X51005711441",
+    "field": "date",
+    "original": "21-03-2018",
+    "cleaned": "2020-03-21"
+  },
+  {
+    "id": "X51005711441",
+    "field": "total",
+    "original": "6.70",
+    "cleaned": 6.7
+  },
+  {
+    "id": "X51006555072",
+    "field": "date",
+    "original": "13/10/2017",
+    "cleaned": "2017-10-13"
+  },
+  {
+    "id": "X51006555072",
+    "field": "total",
+    "original": "234.40",
+    "cleaned": 234.4
+  },
+  {
+    "id": "X51006557117",
+    "field": "date",
+    "original": "30/10/2017",
+    "cleaned": "2017-10-30"
+  },
+  {
+    "id": "X51006557117",
+    "field": "total",
+    "original": "62.60",
+    "cleaned": 62.6
+  },
+  {
+    "id": "X51005722699",
+    "field": "date",
+    "original": "11/02/18",
+    "cleaned": "2018-02-11"
+  },
+  {
+    "id": "X51005722699",
+    "field": "total",
+    "original": "11.80",
+    "cleaned": 11.8
+  },
+  {
+    "id": "X51007339151",
+    "field": "date",
+    "original": "15/07/2017",
+    "cleaned": "2017-07-15"
+  },
+  {
+    "id": "X51007339151",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51005676545",
+    "field": "date",
+    "original": "13/01/2018",
+    "cleaned": "2018-01-13"
+  },
+  {
+    "id": "X51005676545",
+    "field": "total",
+    "original": "6.36",
+    "cleaned": 6.36
+  },
+  {
+    "id": "X51005719814",
+    "field": "date",
+    "original": "17/1/2018",
+    "cleaned": "2018-01-17"
+  },
+  {
+    "id": "X51005719814",
+    "field": "total",
+    "original": "RM 29.70",
+    "cleaned": 29.7
+  },
+  {
+    "id": "X51006913055",
+    "field": "date",
+    "original": "12/05/2018",
+    "cleaned": "2018-05-12"
+  },
+  {
+    "id": "X51006913055",
+    "field": "total",
+    "original": "75.70",
+    "cleaned": 75.7
+  },
+  {
+    "id": "X51006332649",
+    "field": "date",
+    "original": "25/FEB/2017",
+    "cleaned": "2017-02-25"
+  },
+  {
+    "id": "X51006332649",
+    "field": "total",
+    "original": "217.00",
+    "cleaned": 217.0
+  },
+  {
+    "id": "X51005806685",
+    "field": "date",
+    "original": "17/01/2018",
+    "cleaned": "2018-01-17"
+  },
+  {
+    "id": "X51005806685",
+    "field": "total",
+    "original": "29.00",
+    "cleaned": 29.0
+  },
+  {
+    "id": "X51008099041",
+    "field": "date",
+    "original": "30-06-2018",
+    "cleaned": "2020-06-30"
+  },
+  {
+    "id": "X51008099041",
+    "field": "total",
+    "original": "4.20",
+    "cleaned": 4.2
+  },
+  {
+    "id": "X51005303661",
+    "field": "date",
+    "original": "20/12/2017",
+    "cleaned": "2017-12-20"
+  },
+  {
+    "id": "X51005303661",
+    "field": "total",
+    "original": "73.00",
+    "cleaned": 73.0
+  },
+  {
+    "id": "X51005677329",
+    "field": "date",
+    "original": "12/02/2018",
+    "cleaned": "2018-02-12"
+  },
+  {
+    "id": "X51005677329",
+    "field": "total",
+    "original": "270.30",
+    "cleaned": 270.3
+  },
+  {
+    "id": "X51008099043",
+    "field": "date",
+    "original": "23-06-2018",
+    "cleaned": "2020-06-23"
+  },
+  {
+    "id": "X51008099043",
+    "field": "total",
+    "original": "4.60",
+    "cleaned": 4.6
+  },
+  {
+    "id": "X51005433538",
+    "field": "date",
+    "original": "12 MAR 2018",
+    "cleaned": "2018-03-12"
+  },
+  {
+    "id": "X51005433538",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51005806678",
+    "field": "date",
+    "original": "29-01-18",
+    "cleaned": "2018-01-29"
+  },
+  {
+    "id": "X51005806678",
+    "field": "total",
+    "original": "7838.80",
+    "cleaned": 7838.8
+  },
+  {
+    "id": "X51006556828",
+    "field": "date",
+    "original": "25/09/2017",
+    "cleaned": "2017-09-25"
+  },
+  {
+    "id": "X51006556828",
+    "field": "total",
+    "original": "36.55",
+    "cleaned": 36.55
+  },
+  {
+    "id": "X51007846357",
+    "field": "date",
+    "original": "01/06/2018",
+    "cleaned": "2018-06-01"
+  },
+  {
+    "id": "X51007846357",
+    "field": "total",
+    "original": "RM43.40",
+    "cleaned": 43.4
+  },
+  {
+    "id": "X51006466055",
+    "field": "date",
+    "original": "20180428",
+    "cleaned": "2018-04-28"
+  },
+  {
+    "id": "X51006466055",
+    "field": "total",
+    "original": "20.00",
+    "cleaned": 20.0
+  },
+  {
+    "id": "X51006389963",
+    "field": "date",
+    "original": "10 OCT 2017",
+    "cleaned": "2017-10-10"
+  },
+  {
+    "id": "X51006389963",
+    "field": "total",
+    "original": "250.00",
+    "cleaned": 250.0
+  },
+  {
+    "id": "X51008030560",
+    "field": "date",
+    "original": "03/04/2018",
+    "cleaned": "2018-04-03"
+  },
+  {
+    "id": "X51008030560",
+    "field": "total",
+    "original": "11.60",
+    "cleaned": 11.6
+  },
+  {
+    "id": "X51005676547",
+    "field": "date",
+    "original": "13/01/2018",
+    "cleaned": "2018-01-13"
+  },
+  {
+    "id": "X51005676547",
+    "field": "total",
+    "original": "12.72",
+    "cleaned": 12.72
+  },
+  {
+    "id": "X51008145504",
+    "field": "date",
+    "original": "27/06/18",
+    "cleaned": "2018-06-27"
+  },
+  {
+    "id": "X51008145504",
+    "field": "total",
+    "original": "136.00",
+    "cleaned": 136.0
+  },
+  {
+    "id": "X51005453804",
+    "field": "date",
+    "original": "27/03/2018",
+    "cleaned": "2018-03-27"
+  },
+  {
+    "id": "X51005453804",
+    "field": "total",
+    "original": "12.00",
+    "cleaned": 12.0
+  },
+  {
+    "id": "X51008128065",
+    "field": "date",
+    "original": "03-05-18",
+    "cleaned": "2018-05-03"
+  },
+  {
+    "id": "X51008128065",
+    "field": "total",
+    "original": "19.90",
+    "cleaned": 19.9
+  },
+  {
+    "id": "X00016469672",
+    "field": "date",
+    "original": "11/01/2019",
+    "cleaned": "2019-01-11"
+  },
+  {
+    "id": "X00016469672",
+    "field": "total",
+    "original": "327.00",
+    "cleaned": 327.0
+  },
+  {
+    "id": "X51005757199",
+    "field": "date",
+    "original": "01/03/18",
+    "cleaned": "2018-03-01"
+  },
+  {
+    "id": "X51005757199",
+    "field": "total",
+    "original": "4.00",
+    "cleaned": 4.0
+  },
+  {
+    "id": "X51006387812",
+    "field": "date",
+    "original": "23/04/2017",
+    "cleaned": "2017-04-23"
+  },
+  {
+    "id": "X51006387812",
+    "field": "total",
+    "original": "12.37",
+    "cleaned": 12.37
+  },
+  {
+    "id": "X51006619765",
+    "field": "date",
+    "original": "08-01-16",
+    "cleaned": "2016-01-08"
+  },
+  {
+    "id": "X51006619765",
+    "field": "total",
+    "original": "RM 64.70",
+    "cleaned": 64.7
+  },
+  {
+    "id": "X51006387813",
+    "field": "date",
+    "original": "23-04-2017",
+    "cleaned": "2020-04-23"
+  },
+  {
+    "id": "X51006387813",
+    "field": "total",
+    "original": "113.80",
+    "cleaned": 113.8
+  },
+  {
+    "id": "X51006619758",
+    "field": "date",
+    "original": "24-01-16",
+    "cleaned": "2016-01-24"
+  },
+  {
+    "id": "X51006619758",
+    "field": "total",
+    "original": "13.60",
+    "cleaned": 13.6
+  },
+  {
+    "id": "X51005301667",
+    "field": "date",
+    "original": "20/11/2017",
+    "cleaned": "2017-11-20"
+  },
+  {
+    "id": "X51005301667",
+    "field": "total",
+    "original": "39.80",
+    "cleaned": 39.8
+  },
+  {
+    "id": "X51008142068",
+    "field": "date",
+    "original": "11/05/2018",
+    "cleaned": "2018-05-11"
+  },
+  {
+    "id": "X51008142068",
+    "field": "total",
+    "original": "68.90",
+    "cleaned": 68.9
+  },
+  {
+    "id": "X51006619566",
+    "field": "date",
+    "original": "05-12-16",
+    "cleaned": "2016-12-05"
+  },
+  {
+    "id": "X51006619566",
+    "field": "total",
+    "original": "15.90",
+    "cleaned": 15.9
+  },
+  {
+    "id": "X51005711442",
+    "field": "date",
+    "original": "16-03-2018",
+    "cleaned": "2020-03-16"
+  },
+  {
+    "id": "X51005711442",
+    "field": "total",
+    "original": "9.60",
+    "cleaned": 9.6
+  },
+  {
+    "id": "X51005711456",
+    "field": "date",
+    "original": "31-03-2018",
+    "cleaned": "2020-03-31"
+  },
+  {
+    "id": "X51005711456",
+    "field": "total",
+    "original": "65.55",
+    "cleaned": 65.55
+  },
+  {
+    "id": "X51008145505",
+    "field": "date",
+    "original": "09/06/2018",
+    "cleaned": "2018-06-09"
+  },
+  {
+    "id": "X51008145505",
+    "field": "total",
+    "original": "489.30",
+    "cleaned": 489.3
+  },
+  {
+    "id": "X51005712017",
+    "field": "date",
+    "original": "18/03/2018",
+    "cleaned": "2018-03-18"
+  },
+  {
+    "id": "X51005712017",
+    "field": "total",
+    "original": "13.10",
+    "cleaned": 13.1
+  },
+  {
+    "id": "X51005685357",
+    "field": "date",
+    "original": "02/03/18",
+    "cleaned": "2018-03-02"
+  },
+  {
+    "id": "X51005685357",
+    "field": "total",
+    "original": "79.35",
+    "cleaned": 79.35
+  },
+  {
+    "id": "X51007339152",
+    "field": "date",
+    "original": "06/07/2017",
+    "cleaned": "2017-07-06"
+  },
+  {
+    "id": "X51007339152",
+    "field": "total",
+    "original": "4.50",
+    "cleaned": 4.5
+  },
+  {
+    "id": "X51007339146",
+    "field": "date",
+    "original": "28/03/2017",
+    "cleaned": "2017-03-28"
+  },
+  {
+    "id": "X51007339146",
+    "field": "total",
+    "original": "16.50",
+    "cleaned": 16.5
+  },
+  {
+    "id": "X51005676546",
+    "field": "date",
+    "original": "11/01/2018",
+    "cleaned": "2018-01-11"
+  },
+  {
+    "id": "X51005676546",
+    "field": "total",
+    "original": "21.20",
+    "cleaned": 21.2
+  },
+  {
+    "id": "X51005577192",
+    "field": "date",
+    "original": "04/12/2017",
+    "cleaned": "2017-12-04"
+  },
+  {
+    "id": "X51005577192",
+    "field": "total",
+    "original": "7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51005441408",
+    "field": "date",
+    "original": "10-03-2018",
+    "cleaned": "2020-03-10"
+  },
+  {
+    "id": "X51005441408",
+    "field": "total",
+    "original": "190.00",
+    "cleaned": 190.0
+  },
+  {
+    "id": "X51008099081",
+    "field": "date",
+    "original": "01-06-2018",
+    "cleaned": "2020-06-01"
+  },
+  {
+    "id": "X51008099081",
+    "field": "total",
+    "original": "4.80",
+    "cleaned": 4.8
+  },
+  {
+    "id": "X51006556815",
+    "field": "date",
+    "original": "05/09/2017",
+    "cleaned": "2017-09-05"
+  },
+  {
+    "id": "X51006556815",
+    "field": "total",
+    "original": "54.15",
+    "cleaned": 54.15
+  },
+  {
+    "id": "X51005806679",
+    "field": "date",
+    "original": "02/02/2018",
+    "cleaned": "2018-02-02"
+  },
+  {
+    "id": "X51005806679",
+    "field": "total",
+    "original": "374.20",
+    "cleaned": 374.2
+  },
+  {
+    "id": "X51005677328",
+    "field": "date",
+    "original": "12/02/2018",
+    "cleaned": "2018-02-12"
+  },
+  {
+    "id": "X51005677328",
+    "field": "total",
+    "original": "5.30",
+    "cleaned": 5.3
+  },
+  {
+    "id": "X51006414429",
+    "field": "date",
+    "original": "02 APR 2018",
+    "cleaned": "2018-04-02"
+  },
+  {
+    "id": "X51006414429",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51007846395",
+    "field": "date",
+    "original": "24/06/2018",
+    "cleaned": "2018-06-24"
+  },
+  {
+    "id": "X51007846395",
+    "field": "total",
+    "original": "12.80",
+    "cleaned": 12.8
+  },
+  {
+    "id": "X51006387740",
+    "field": "date",
+    "original": "10/04/2017",
+    "cleaned": "2017-04-10"
+  },
+  {
+    "id": "X51006387740",
+    "field": "total",
+    "original": "15.40",
+    "cleaned": 15.4
+  },
+  {
+    "id": "X51006502529",
+    "field": "date",
+    "original": "20/04/2018",
+    "cleaned": "2018-04-20"
+  },
+  {
+    "id": "X51006502529",
+    "field": "total",
+    "original": "3.70",
+    "cleaned": 3.7
+  },
+  {
+    "id": "X51008099046",
+    "field": "date",
+    "original": "12-06-2018",
+    "cleaned": "2020-06-12"
+  },
+  {
+    "id": "X51008099046",
+    "field": "total",
+    "original": "4.60",
+    "cleaned": 4.6
+  },
+  {
+    "id": "X51007846391",
+    "field": "date",
+    "original": "20 JUN 2018",
+    "cleaned": "2018-06-20"
+  },
+  {
+    "id": "X51007846391",
+    "field": "total",
+    "original": "RM8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51008030565",
+    "field": "date",
+    "original": "04-04-2018",
+    "cleaned": "2020-04-04"
+  },
+  {
+    "id": "X51008030565",
+    "field": "total",
+    "original": "7.80",
+    "cleaned": 7.8
+  },
+  {
+    "id": "X51008099085",
+    "field": "date",
+    "original": "26-06-2018",
+    "cleaned": "2020-06-26"
+  },
+  {
+    "id": "X51008099085",
+    "field": "total",
+    "original": "4.10",
+    "cleaned": 4.1
+  },
+  {
+    "id": "X51007103702",
+    "field": "date",
+    "original": "30-04-18",
+    "cleaned": "2018-04-30"
+  },
+  {
+    "id": "X51007103702",
+    "field": "total",
+    "original": "5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51006556839",
+    "field": "date",
+    "original": "18/09/2017",
+    "cleaned": "2017-09-18"
+  },
+  {
+    "id": "X51006556839",
+    "field": "total",
+    "original": "5.90",
+    "cleaned": 5.9
+  },
+  {
+    "id": "X51005745188",
+    "field": "date",
+    "original": "02/02/2018",
+    "cleaned": "2018-02-02"
+  },
+  {
+    "id": "X51005745188",
+    "field": "total",
+    "original": "48.00",
+    "cleaned": 48.0
+  },
+  {
+    "id": "X51005255805",
+    "field": "date",
+    "original": "29-12-2017",
+    "cleaned": "2020-12-29"
+  },
+  {
+    "id": "X51005255805",
+    "field": "total",
+    "original": "14.10",
+    "cleaned": 14.1
+  },
+  {
+    "id": "X51007339156",
+    "field": "date",
+    "original": "08/07/2017",
+    "cleaned": "2017-07-08"
+  },
+  {
+    "id": "X51007339156",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51005757201",
+    "field": "date",
+    "original": "28/02/2018",
+    "cleaned": "2018-02-28"
+  },
+  {
+    "id": "X51005757201",
+    "field": "total",
+    "original": "88.95",
+    "cleaned": 88.95
+  },
+  {
+    "id": "X51005447848",
+    "field": "date",
+    "original": "06/01/18",
+    "cleaned": "2018-01-06"
+  },
+  {
+    "id": "X51005447848",
+    "field": "total",
+    "original": "53.55",
+    "cleaned": 53.55
+  },
+  {
+    "id": "X51008164524",
+    "field": "date",
+    "original": "15-07-18",
+    "cleaned": "2018-07-15"
+  },
+  {
+    "id": "X51008164524",
+    "field": "total",
+    "original": "7.15",
+    "cleaned": 7.15
+  },
+  {
+    "id": "X51005757349",
+    "field": "date",
+    "original": "24-MAR-2018",
+    "cleaned": "2018-03-24"
+  },
+  {
+    "id": "X51005757349",
+    "field": "total",
+    "original": "21.00",
+    "cleaned": 21.0
+  },
+  {
+    "id": "X51005711452",
+    "field": "date",
+    "original": "21/03/2018",
+    "cleaned": "2018-03-21"
+  },
+  {
+    "id": "X51005711452",
+    "field": "total",
+    "original": "25.40",
+    "cleaned": 25.4
+  },
+  {
+    "id": "X51005453801",
+    "field": "date",
+    "original": "20/03/2018",
+    "cleaned": "2018-03-20"
+  },
+  {
+    "id": "X51005453801",
+    "field": "total",
+    "original": "102.00",
+    "cleaned": 102.0
+  },
+  {
+    "id": "X51005447860",
+    "field": "date",
+    "original": "19/02/2018",
+    "cleaned": "2018-02-19"
+  },
+  {
+    "id": "X51005447860",
+    "field": "total",
+    "original": "17.70",
+    "cleaned": 17.7
+  },
+  {
+    "id": "X51005268400",
+    "field": "date",
+    "original": "12/28/2017",
+    "cleaned": "2020-12-28"
+  },
+  {
+    "id": "X51005268400",
+    "field": "total",
+    "original": "15.00",
+    "cleaned": 15.0
+  },
+  {
+    "id": "X51008114216",
+    "field": "date",
+    "original": "15-06-18",
+    "cleaned": "2018-06-15"
+  },
+  {
+    "id": "X51008114216",
+    "field": "total",
+    "original": "8.95",
+    "cleaned": 8.95
+  },
+  {
+    "id": "X51006882603",
+    "field": "date",
+    "original": "26/02/2018",
+    "cleaned": "2018-02-26"
+  },
+  {
+    "id": "X51006882603",
+    "field": "total",
+    "original": "16.30",
+    "cleaned": 16.3
+  },
+  {
+    "id": "X51008123451",
+    "field": "date",
+    "original": "11/06/2018",
+    "cleaned": "2018-06-11"
+  },
+  {
+    "id": "X51008123451",
+    "field": "total",
+    "original": "48.00",
+    "cleaned": 48.0
+  },
+  {
+    "id": "X51005745214",
+    "field": "date",
+    "original": "07-02-18",
+    "cleaned": "2018-02-07"
+  },
+  {
+    "id": "X51005745214",
+    "field": "total",
+    "original": "45.35",
+    "cleaned": 45.35
+  },
+  {
+    "id": "X51008123450",
+    "field": "date",
+    "original": "27/06/18",
+    "cleaned": "2018-06-27"
+  },
+  {
+    "id": "X51008123450",
+    "field": "total",
+    "original": "1.50",
+    "cleaned": 1.5
+  },
+  {
+    "id": "X00016469676",
+    "field": "date",
+    "original": "23-01-2019",
+    "cleaned": "2020-01-23"
+  },
+  {
+    "id": "X00016469676",
+    "field": "total",
+    "original": "20.00",
+    "cleaned": 20.0
+  },
+  {
+    "id": "X51005724629",
+    "field": "date",
+    "original": "17/03/2018",
+    "cleaned": "2018-03-17"
+  },
+  {
+    "id": "X51005724629",
+    "field": "total",
+    "original": "174.90",
+    "cleaned": 174.9
+  },
+  {
+    "id": "X51008114217",
+    "field": "date",
+    "original": "30-06-18",
+    "cleaned": "2018-06-30"
+  },
+  {
+    "id": "X51008114217",
+    "field": "total",
+    "original": "27.25",
+    "cleaned": 27.25
+  },
+  {
+    "id": "X51007103688",
+    "field": "date",
+    "original": "27-04-18",
+    "cleaned": "2018-04-27"
+  },
+  {
+    "id": "X51007103688",
+    "field": "total",
+    "original": "38.00",
+    "cleaned": 38.0
+  },
+  {
+    "id": "X51006556596",
+    "field": "date",
+    "original": "28/08/2017",
+    "cleaned": "2017-08-28"
+  },
+  {
+    "id": "X51006556596",
+    "field": "total",
+    "original": "41.44",
+    "cleaned": 41.44
+  },
+  {
+    "id": "X51005447861",
+    "field": "date",
+    "original": "01/03/18",
+    "cleaned": "2018-03-01"
+  },
+  {
+    "id": "X51005447861",
+    "field": "total",
+    "original": "49.40",
+    "cleaned": 49.4
+  },
+  {
+    "id": "X51005711447",
+    "field": "date",
+    "original": "14-03-2018",
+    "cleaned": "2020-03-14"
+  },
+  {
+    "id": "X51005711447",
+    "field": "total",
+    "original": "2.30",
+    "cleaned": 2.3
+  },
+  {
+    "id": "X51005711453",
+    "field": "date",
+    "original": "10/03/2018",
+    "cleaned": "2018-03-10"
+  },
+  {
+    "id": "X51005711453",
+    "field": "total",
+    "original": "8.50",
+    "cleaned": 8.5
+  },
+  {
+    "id": "X51006619563",
+    "field": "date",
+    "original": "21-11-16",
+    "cleaned": "2016-11-21"
+  },
+  {
+    "id": "X51006619563",
+    "field": "total",
+    "original": "31.80",
+    "cleaned": 31.8
+  },
+  {
+    "id": "X51008164525",
+    "field": "date",
+    "original": "03/07/2018",
+    "cleaned": "2018-07-03"
+  },
+  {
+    "id": "X51008164525",
+    "field": "total",
+    "original": "30.45",
+    "cleaned": 30.45
+  },
+  {
+    "id": "X51006388066",
+    "field": "date",
+    "original": "17/05/17",
+    "cleaned": "2017-05-17"
+  },
+  {
+    "id": "X51006388066",
+    "field": "total",
+    "original": "41.50",
+    "cleaned": 41.5
+  },
+  {
+    "id": "X51007339157",
+    "field": "date",
+    "original": "19/07/2017",
+    "cleaned": "2017-07-19"
+  },
+  {
+    "id": "X51007339157",
+    "field": "total",
+    "original": "5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51005676543",
+    "field": "date",
+    "original": "02/01/2018",
+    "cleaned": "2018-01-02"
+  },
+  {
+    "id": "X51005676543",
+    "field": "total",
+    "original": "13.25",
+    "cleaned": 13.25
+  },
+  {
+    "id": "X51006556838",
+    "field": "date",
+    "original": "19/09/2017",
+    "cleaned": "2017-09-19"
+  },
+  {
+    "id": "X51006556838",
+    "field": "total",
+    "original": "22.58",
+    "cleaned": 22.58
+  },
+  {
+    "id": "X51007846353",
+    "field": "date",
+    "original": "16/06/2018",
+    "cleaned": "2018-06-16"
+  },
+  {
+    "id": "X51007846353",
+    "field": "total",
+    "original": "28.15",
+    "cleaned": 28.15
+  },
+  {
+    "id": "X51005433514",
+    "field": "date",
+    "original": "03 MAR 2018",
+    "cleaned": "2018-03-03"
+  },
+  {
+    "id": "X51005433514",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51008099084",
+    "field": "date",
+    "original": "26-06-2018",
+    "cleaned": "2020-06-26"
+  },
+  {
+    "id": "X51008099084",
+    "field": "total",
+    "original": "4.60",
+    "cleaned": 4.6
+  },
+  {
+    "id": "X51005677339",
+    "field": "date",
+    "original": "05/02/2018",
+    "cleaned": "2018-02-05"
+  },
+  {
+    "id": "X51005677339",
+    "field": "total",
+    "original": "63.60",
+    "cleaned": 63.6
+  },
+  {
+    "id": "X51005442338",
+    "field": "date",
+    "original": "18/03/18",
+    "cleaned": "2018-03-18"
+  },
+  {
+    "id": "X51005442338",
+    "field": "total",
+    "original": "28.60",
+    "cleaned": 28.6
+  },
+  {
+    "id": "X51008030566",
+    "field": "date",
+    "original": "09-04-2018",
+    "cleaned": "2020-04-09"
+  },
+  {
+    "id": "X51008030566",
+    "field": "total",
+    "original": "8.60",
+    "cleaned": 8.6
+  },
+  {
+    "id": "X51006913051",
+    "field": "date",
+    "original": "11/05/2018",
+    "cleaned": "2018-05-11"
+  },
+  {
+    "id": "X51006913051",
+    "field": "total",
+    "original": "31.00",
+    "cleaned": 31.0
+  },
+  {
+    "id": "X51006414638",
+    "field": "date",
+    "original": "15/04/18",
+    "cleaned": "2018-04-15"
+  },
+  {
+    "id": "X51006414638",
+    "field": "total",
+    "original": "44.90",
+    "cleaned": 44.9
+  },
+  {
+    "id": "X51005676541",
+    "field": "date",
+    "original": "03/01/2018",
+    "cleaned": "2018-01-03"
+  },
+  {
+    "id": "X51005676541",
+    "field": "total",
+    "original": "94.87",
+    "cleaned": 94.87
+  },
+  {
+    "id": "X51005712038",
+    "field": "date",
+    "original": "28/03/2018",
+    "cleaned": "2018-03-28"
+  },
+  {
+    "id": "X51005712038",
+    "field": "total",
+    "original": "30.00",
+    "cleaned": 30.0
+  },
+  {
+    "id": "X51006388064",
+    "field": "date",
+    "original": "14/MAY/2017",
+    "cleaned": "2017-05-14"
+  },
+  {
+    "id": "X51006388064",
+    "field": "total",
+    "original": "191.20",
+    "cleaned": 191.2
+  },
+  {
+    "id": "X51006619561",
+    "field": "date",
+    "original": "12/13/2016",
+    "cleaned": "2020-12-13"
+  },
+  {
+    "id": "X51006619561",
+    "field": "total",
+    "original": "180.10",
+    "cleaned": 180.1
+  },
+  {
+    "id": "X51005711445",
+    "field": "date",
+    "original": "12-03-2018",
+    "cleaned": "2020-03-12"
+  },
+  {
+    "id": "X51005711445",
+    "field": "total",
+    "original": "7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51005453802",
+    "field": "date",
+    "original": "30/03/2018",
+    "cleaned": "2018-03-30"
+  },
+  {
+    "id": "X51005453802",
+    "field": "total",
+    "original": "159.00",
+    "cleaned": 159.0
+  },
+  {
+    "id": "X51005568880",
+    "field": "date",
+    "original": "19-09-17",
+    "cleaned": "2017-09-19"
+  },
+  {
+    "id": "X51005568880",
+    "field": "total",
+    "original": "15.90",
+    "cleaned": 15.9
+  },
+  {
+    "id": "X51005711451",
+    "field": "date",
+    "original": "05-03-2018",
+    "cleaned": "2020-03-05"
+  },
+  {
+    "id": "X51005711451",
+    "field": "total",
+    "original": "6.00",
+    "cleaned": 6.0
+  },
+  {
+    "id": "X51006414599",
+    "field": "date",
+    "original": "14/04/2018",
+    "cleaned": "2018-04-14"
+  },
+  {
+    "id": "X51006414599",
+    "field": "total",
+    "original": "12.30",
+    "cleaned": 12.3
+  },
+  {
+    "id": "X51006619777",
+    "field": "date",
+    "original": "30-06-16",
+    "cleaned": "2016-06-30"
+  },
+  {
+    "id": "X51006619777",
+    "field": "total",
+    "original": "27.30",
+    "cleaned": 27.3
+  },
+  {
+    "id": "X51007103675",
+    "field": "date",
+    "original": "25-04-18",
+    "cleaned": "2018-04-25"
+  },
+  {
+    "id": "X51007103675",
+    "field": "total",
+    "original": "48.10",
+    "cleaned": 48.1
+  },
+  {
+    "id": "X51007228448",
+    "field": "date",
+    "original": "27/05/2018",
+    "cleaned": "2018-05-27"
+  },
+  {
+    "id": "X51007228448",
+    "field": "total",
+    "original": "11.60",
+    "cleaned": 11.6
+  },
+  {
+    "id": "X51008123446",
+    "field": "date",
+    "original": "30/05/18",
+    "cleaned": "2018-05-30"
+  },
+  {
+    "id": "X51008123446",
+    "field": "total",
+    "original": "5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51008123447",
+    "field": "date",
+    "original": "28/05/18",
+    "cleaned": "2018-05-28"
+  },
+  {
+    "id": "X51008123447",
+    "field": "total",
+    "original": "5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51005301661",
+    "field": "date",
+    "original": "20/12/2017",
+    "cleaned": "2017-12-20"
+  },
+  {
+    "id": "X51005301661",
+    "field": "total",
+    "original": "73.00",
+    "cleaned": 73.0
+  },
+  {
+    "id": "X51005568881",
+    "field": "date",
+    "original": "21/09/2017",
+    "cleaned": "2017-09-21"
+  },
+  {
+    "id": "X51005568881",
+    "field": "total",
+    "original": "10.40",
+    "cleaned": 10.4
+  },
+  {
+    "id": "X51008128062",
+    "field": "date",
+    "original": "11/5/2018",
+    "cleaned": "2018-05-11"
+  },
+  {
+    "id": "X51008128062",
+    "field": "total",
+    "original": "27.00",
+    "cleaned": 27.0
+  },
+  {
+    "id": "X51007419197",
+    "field": "date",
+    "original": "28/06/2018",
+    "cleaned": "2018-06-28"
+  },
+  {
+    "id": "X51007419197",
+    "field": "total",
+    "original": "6.00",
+    "cleaned": 6.0
+  },
+  {
+    "id": "X51006388065",
+    "field": "date",
+    "original": "21-05-17",
+    "cleaned": "2017-05-21"
+  },
+  {
+    "id": "X51006388065",
+    "field": "total",
+    "original": "20.80",
+    "cleaned": 20.8
+  },
+  {
+    "id": "X51005712039",
+    "field": "date",
+    "original": "21/03/2018",
+    "cleaned": "2018-03-21"
+  },
+  {
+    "id": "X51005712039",
+    "field": "total",
+    "original": "9.00",
+    "cleaned": 9.0
+  },
+  {
+    "id": "X51005587267",
+    "field": "date",
+    "original": "4/02/2017",
+    "cleaned": "2017-02-04"
+  },
+  {
+    "id": "X51005587267",
+    "field": "total",
+    "original": "85.10",
+    "cleaned": 85.1
+  },
+  {
+    "id": "X51005676540",
+    "field": "date",
+    "original": "11/01/2018",
+    "cleaned": "2018-01-11"
+  },
+  {
+    "id": "X51005676540",
+    "field": "total",
+    "original": "116.28",
+    "cleaned": 116.28
+  },
+  {
+    "id": "X51007846350",
+    "field": "date",
+    "original": "15/06/2018",
+    "cleaned": "2018-06-15"
+  },
+  {
+    "id": "X51007846350",
+    "field": "total",
+    "original": "14.20",
+    "cleaned": 14.2
+  },
+  {
+    "id": "X51008099087",
+    "field": "date",
+    "original": "11-06-2018",
+    "cleaned": "2020-06-11"
+  },
+  {
+    "id": "X51008099087",
+    "field": "total",
+    "original": "7.80",
+    "cleaned": 7.8
+  },
+  {
+    "id": "X51007846393",
+    "field": "date",
+    "original": "20/06/2018",
+    "cleaned": "2018-06-20"
+  },
+  {
+    "id": "X51007846393",
+    "field": "total",
+    "original": "RM14.20",
+    "cleaned": 14.2
+  },
+  {
+    "id": "X51008099044",
+    "field": "date",
+    "original": "18-06-2018",
+    "cleaned": "2020-06-18"
+  },
+  {
+    "id": "X51008099044",
+    "field": "total",
+    "original": "6.50",
+    "cleaned": 6.5
+  },
+  {
+    "id": "X51006350750",
+    "field": "date",
+    "original": "27/03/2018",
+    "cleaned": "2018-03-27"
+  },
+  {
+    "id": "X51006350750",
+    "field": "total",
+    "original": "130.00",
+    "cleaned": 130.0
+  },
+  {
+    "id": "X51008099049",
+    "field": "date",
+    "original": "15 JUN 18",
+    "cleaned": "2018-06-15"
+  },
+  {
+    "id": "X51008099049",
+    "field": "total",
+    "original": "17.22",
+    "cleaned": 17.22
+  },
+  {
+    "id": "X51005444037",
+    "field": "date",
+    "original": "28 MAR 18",
+    "cleaned": "2018-03-28"
+  },
+  {
+    "id": "X51005444037",
+    "field": "total",
+    "original": "129.30",
+    "cleaned": 129.3
+  },
+  {
+    "id": "X51005361946",
+    "field": "date",
+    "original": "14-03-18",
+    "cleaned": "2018-03-14"
+  },
+  {
+    "id": "X51005361946",
+    "field": "total",
+    "original": "37.10",
+    "cleaned": 37.1
+  },
+  {
+    "id": "X51005745187",
+    "field": "date",
+    "original": "03/02/2018",
+    "cleaned": "2018-02-03"
+  },
+  {
+    "id": "X51005745187",
+    "field": "total",
+    "original": "21.20",
+    "cleaned": 21.2
+  },
+  {
+    "id": "X51005568913",
+    "field": "date",
+    "original": "27/07/17",
+    "cleaned": "2017-07-27"
+  },
+  {
+    "id": "X51005568913",
+    "field": "total",
+    "original": "538.00",
+    "cleaned": 538.0
+  },
+  {
+    "id": "X51007339165",
+    "field": "date",
+    "original": "29/11/2017",
+    "cleaned": "2017-11-29"
+  },
+  {
+    "id": "X51007339165",
+    "field": "total",
+    "original": "33.60",
+    "cleaned": 33.6
+  },
+  {
+    "id": "X51006619343",
+    "field": "date",
+    "original": "17-04-16",
+    "cleaned": "2016-04-17"
+  },
+  {
+    "id": "X51006619343",
+    "field": "total",
+    "original": "RM 22.90",
+    "cleaned": 22.9
+  },
+  {
+    "id": "X51007579726",
+    "field": "date",
+    "original": "18/06/2018",
+    "cleaned": "2018-06-18"
+  },
+  {
+    "id": "X51007579726",
+    "field": "total",
+    "original": "RM 30.00",
+    "cleaned": 30.0
+  },
+  {
+    "id": "X51006912974",
+    "field": "date",
+    "original": "30 MAY 2018",
+    "cleaned": "2018-05-30"
+  },
+  {
+    "id": "X51006912974",
+    "field": "total",
+    "original": "$8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51006912960",
+    "field": "date",
+    "original": "17/05/2018",
+    "cleaned": "2018-05-17"
+  },
+  {
+    "id": "X51006912960",
+    "field": "total",
+    "original": "30.70",
+    "cleaned": 30.7
+  },
+  {
+    "id": "X51005447853",
+    "field": "date",
+    "original": "05-02-18",
+    "cleaned": "2018-02-05"
+  },
+  {
+    "id": "X51005447853",
+    "field": "total",
+    "original": "141.50",
+    "cleaned": 141.5
+  },
+  {
+    "id": "X51005757346",
+    "field": "date",
+    "original": "23-03-18",
+    "cleaned": "2018-03-23"
+  },
+  {
+    "id": "X51005757346",
+    "field": "total",
+    "original": "26.10",
+    "cleaned": 26.1
+  },
+  {
+    "id": "X51006619545",
+    "field": "date",
+    "original": "(06/12/2016)",
+    "cleaned": "2016-12-06"
+  },
+  {
+    "id": "X51006619545",
+    "field": "total",
+    "original": "RM111.90",
+    "cleaned": 111.9
+  },
+  {
+    "id": "X51005568898",
+    "field": "date",
+    "original": "30/05/2017",
+    "cleaned": "2017-05-30"
+  },
+  {
+    "id": "X51005568898",
+    "field": "total",
+    "original": "18.80",
+    "cleaned": 18.8
+  },
+  {
+    "id": "X51007103692",
+    "field": "date",
+    "original": "28-04-18",
+    "cleaned": "2018-04-28"
+  },
+  {
+    "id": "X51007103692",
+    "field": "total",
+    "original": "53.20",
+    "cleaned": 53.2
+  },
+  {
+    "id": "X51005724627",
+    "field": "date",
+    "original": "31/03/2018",
+    "cleaned": "2018-03-31"
+  },
+  {
+    "id": "X51005724627",
+    "field": "total",
+    "original": "174.90",
+    "cleaned": 174.9
+  },
+  {
+    "id": "X51008142063",
+    "field": "date",
+    "original": "30/04/2018",
+    "cleaned": "2018-04-30"
+  },
+  {
+    "id": "X51008142063",
+    "field": "total",
+    "original": "404.39",
+    "cleaned": 404.39
+  },
+  {
+    "id": "X51008123476",
+    "field": "date",
+    "original": "25/06/18",
+    "cleaned": "2018-06-25"
+  },
+  {
+    "id": "X51008123476",
+    "field": "total",
+    "original": "5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51006554833",
+    "field": "date",
+    "original": "29/10/2017",
+    "cleaned": "2017-10-29"
+  },
+  {
+    "id": "X51006554833",
+    "field": "total",
+    "original": "28.90",
+    "cleaned": 28.9
+  },
+  {
+    "id": "X51008142062",
+    "field": "date",
+    "original": "02/05/2018",
+    "cleaned": "2018-05-02"
+  },
+  {
+    "id": "X51008142062",
+    "field": "total",
+    "original": "361.46",
+    "cleaned": 361.46
+  },
+  {
+    "id": "X51006619785",
+    "field": "date",
+    "original": "29/07/2016",
+    "cleaned": "2016-07-29"
+  },
+  {
+    "id": "X51006619785",
+    "field": "total",
+    "original": "RM78.30",
+    "cleaned": 78.3
+  },
+  {
+    "id": "X51005568899",
+    "field": "date",
+    "original": "18-10-17",
+    "cleaned": "2017-10-18"
+  },
+  {
+    "id": "X51005568899",
+    "field": "total",
+    "original": "5.90",
+    "cleaned": 5.9
+  },
+  {
+    "id": "X51006619550",
+    "field": "date",
+    "original": "15/12/2016",
+    "cleaned": "2016-12-15"
+  },
+  {
+    "id": "X51006619550",
+    "field": "total",
+    "original": "47.70",
+    "cleaned": 47.7
+  },
+  {
+    "id": "X51008128052",
+    "field": "date",
+    "original": "30-04-2018",
+    "cleaned": "2020-04-30"
+  },
+  {
+    "id": "X51008128052",
+    "field": "total",
+    "original": "93.00",
+    "cleaned": 93.0
+  },
+  {
+    "id": "X51006388082",
+    "field": "date",
+    "original": "15/05/2017",
+    "cleaned": "2017-05-15"
+  },
+  {
+    "id": "X51006388082",
+    "field": "total",
+    "original": "4.70",
+    "cleaned": 4.7
+  },
+  {
+    "id": "X51005447852",
+    "field": "date",
+    "original": "20-02-18",
+    "cleaned": "2018-02-20"
+  },
+  {
+    "id": "X51005447852",
+    "field": "total",
+    "original": "9.90",
+    "cleaned": 9.9
+  },
+  {
+    "id": "X51005757353",
+    "field": "date",
+    "original": "24-03-18",
+    "cleaned": "2018-03-24"
+  },
+  {
+    "id": "X51005757353",
+    "field": "total",
+    "original": "12.30",
+    "cleaned": 12.3
+  },
+  {
+    "id": "X51006388069",
+    "field": "date",
+    "original": "25 MAY 2017",
+    "cleaned": "2017-05-25"
+  },
+  {
+    "id": "X51006388069",
+    "field": "total",
+    "original": "118.35",
+    "cleaned": 118.35
+  },
+  {
+    "id": "X51006619342",
+    "field": "date",
+    "original": "17-04-16",
+    "cleaned": "2016-04-17"
+  },
+  {
+    "id": "X51006619342",
+    "field": "total",
+    "original": "RM 3.30",
+    "cleaned": 3.3
+  },
+  {
+    "id": "X51007339158",
+    "field": "date",
+    "original": "19/07/2017",
+    "cleaned": "2017-07-19"
+  },
+  {
+    "id": "X51007339158",
+    "field": "total",
+    "original": "5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51006334741",
+    "field": "date",
+    "original": "04 JAN 2017",
+    "cleaned": "2017-01-04"
+  },
+  {
+    "id": "X51006334741",
+    "field": "total",
+    "original": "20.05",
+    "cleaned": 20.05
+  },
+  {
+    "id": "X51005712021",
+    "field": "date",
+    "original": "20/03/2018",
+    "cleaned": "2018-03-20"
+  },
+  {
+    "id": "X51005712021",
+    "field": "total",
+    "original": "26.82",
+    "cleaned": 26.82
+  },
+  {
+    "id": "X51007339164",
+    "field": "date",
+    "original": "26/11/2017",
+    "cleaned": "2017-11-26"
+  },
+  {
+    "id": "X51007339164",
+    "field": "total",
+    "original": "9.30",
+    "cleaned": 9.3
+  },
+  {
+    "id": "X51005441402",
+    "field": "date",
+    "original": "03/03/2018",
+    "cleaned": "2018-03-03"
+  },
+  {
+    "id": "X51005441402",
+    "field": "total",
+    "original": "174.90",
+    "cleaned": 174.9
+  },
+  {
+    "id": "X51006387951",
+    "field": "date",
+    "original": "30/04/2017",
+    "cleaned": "2017-04-30"
+  },
+  {
+    "id": "X51006387951",
+    "field": "total",
+    "original": "RM3.00",
+    "cleaned": 3.0
+  },
+  {
+    "id": "X51005433533",
+    "field": "date",
+    "original": "09/03/2018",
+    "cleaned": "2018-03-09"
+  },
+  {
+    "id": "X51005433533",
+    "field": "total",
+    "original": "332.30",
+    "cleaned": 332.3
+  },
+  {
+    "id": "X51006556823",
+    "field": "date",
+    "original": "30/09/2017",
+    "cleaned": "2017-09-30"
+  },
+  {
+    "id": "X51006556823",
+    "field": "total",
+    "original": "26.80",
+    "cleaned": 26.8
+  },
+  {
+    "id": "X51006466062",
+    "field": "date",
+    "original": "16-04-2018",
+    "cleaned": "2020-04-16"
+  },
+  {
+    "id": "X51006466062",
+    "field": "total",
+    "original": "RM5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51006414392",
+    "field": "date",
+    "original": "07/04/2018",
+    "cleaned": "2018-04-07"
+  },
+  {
+    "id": "X51006414392",
+    "field": "total",
+    "original": "35.00",
+    "cleaned": 35.0
+  },
+  {
+    "id": "X51006913074",
+    "field": "date",
+    "original": "08/05/18",
+    "cleaned": "2018-05-08"
+  },
+  {
+    "id": "X51006913074",
+    "field": "total",
+    "original": "6.70",
+    "cleaned": 6.7
+  },
+  {
+    "id": "X51007846412",
+    "field": "date",
+    "original": "17/06/2018",
+    "cleaned": "2018-06-17"
+  },
+  {
+    "id": "X51007846412",
+    "field": "total",
+    "original": "26.50",
+    "cleaned": 26.5
+  },
+  {
+    "id": "X51008099048",
+    "field": "date",
+    "original": "09-06-2018",
+    "cleaned": "2020-06-09"
+  },
+  {
+    "id": "X51008099048",
+    "field": "total",
+    "original": "4.80",
+    "cleaned": 4.8
+  },
+  {
+    "id": "X51005806698",
+    "field": "date",
+    "original": "28/02/2018",
+    "cleaned": "2018-02-28"
+  },
+  {
+    "id": "X51005806698",
+    "field": "total",
+    "original": "10.45",
+    "cleaned": 10.45
+  },
+  {
+    "id": "X51006502533",
+    "field": "date",
+    "original": "19-04-2018",
+    "cleaned": "2020-04-19"
+  },
+  {
+    "id": "X51006502533",
+    "field": "total",
+    "original": "9.50",
+    "cleaned": 9.5
+  },
+  {
+    "id": "X51006556604",
+    "field": "date",
+    "original": "24/08/2017",
+    "cleaned": "2017-08-24"
+  },
+  {
+    "id": "X51006556604",
+    "field": "total",
+    "original": "39.78",
+    "cleaned": 39.78
+  },
+  {
+    "id": "X51005677334",
+    "field": "date",
+    "original": "31/01/2018",
+    "cleaned": "2018-01-31"
+  },
+  {
+    "id": "X51005677334",
+    "field": "total",
+    "original": "82.68",
+    "cleaned": 82.68
+  },
+  {
+    "id": "X51006502531",
+    "field": "date",
+    "original": "16/04/2018",
+    "cleaned": "2018-04-16"
+  },
+  {
+    "id": "X51006502531",
+    "field": "total",
+    "original": "18.80",
+    "cleaned": 18.8
+  },
+  {
+    "id": "X51006466060",
+    "field": "date",
+    "original": "30-04-2018",
+    "cleaned": "2020-04-30"
+  },
+  {
+    "id": "X51006466060",
+    "field": "total",
+    "original": "1.38",
+    "cleaned": 1.38
+  },
+  {
+    "id": "X51008099089",
+    "field": "date",
+    "original": "20-06-2018",
+    "cleaned": "2020-06-20"
+  },
+  {
+    "id": "X51008099089",
+    "field": "total",
+    "original": "9.60",
+    "cleaned": 9.6
+  },
+  {
+    "id": "X51007846410",
+    "field": "date",
+    "original": "10/06/2018",
+    "cleaned": "2018-06-10"
+  },
+  {
+    "id": "X51007846410",
+    "field": "total",
+    "original": "12.00",
+    "cleaned": 12.0
+  },
+  {
+    "id": "X51006387953",
+    "field": "date",
+    "original": "30/04/2017",
+    "cleaned": "2017-04-30"
+  },
+  {
+    "id": "X51006387953",
+    "field": "total",
+    "original": "RM1.00",
+    "cleaned": 1.0
+  },
+  {
+    "id": "X51005745190",
+    "field": "date",
+    "original": "12-02-2018",
+    "cleaned": "2020-02-12"
+  },
+  {
+    "id": "X51005745190",
+    "field": "total",
+    "original": "RM367.10",
+    "cleaned": 367.1
+  },
+  {
+    "id": "X51006555125",
+    "field": "date",
+    "original": "25/09/2017",
+    "cleaned": "2017-09-25"
+  },
+  {
+    "id": "X51006555125",
+    "field": "total",
+    "original": "28.40",
+    "cleaned": 28.4
+  },
+  {
+    "id": "X51007339166",
+    "field": "date",
+    "original": "04/12/2017",
+    "cleaned": "2017-12-04"
+  },
+  {
+    "id": "X51007339166",
+    "field": "total",
+    "original": "3.90",
+    "cleaned": 3.9
+  },
+  {
+    "id": "X51005447850",
+    "field": "date",
+    "original": "20180304",
+    "cleaned": "2018-03-04"
+  },
+  {
+    "id": "X51005447850",
+    "field": "total",
+    "original": "3.20",
+    "cleaned": 3.2
+  },
+  {
+    "id": "X51005757351",
+    "field": "date",
+    "original": "24-03-18",
+    "cleaned": "2018-03-24"
+  },
+  {
+    "id": "X51005757351",
+    "field": "total",
+    "original": "14.90",
+    "cleaned": 14.9
+  },
+  {
+    "id": "X51007103691",
+    "field": "date",
+    "original": "28/04/2018",
+    "cleaned": "2018-04-28"
+  },
+  {
+    "id": "X51007103691",
+    "field": "total",
+    "original": "26.10",
+    "cleaned": 26.1
+  },
+  {
+    "id": "X51005433492",
+    "field": "date",
+    "original": "05 MAR 2018",
+    "cleaned": "2018-03-05"
+  },
+  {
+    "id": "X51005433492",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51008099102",
+    "field": "date",
+    "original": "04-06-2018",
+    "cleaned": "2020-06-04"
+  },
+  {
+    "id": "X51008099102",
+    "field": "total",
+    "original": "68.00",
+    "cleaned": 68.0
+  },
+  {
+    "id": "X51008142060",
+    "field": "date",
+    "original": "26/05/2018",
+    "cleaned": "2018-05-26"
+  },
+  {
+    "id": "X51008142060",
+    "field": "total",
+    "original": "121.90",
+    "cleaned": 121.9
+  },
+  {
+    "id": "X51008142061",
+    "field": "date",
+    "original": "03/05/2018",
+    "cleaned": "2018-05-03"
+  },
+  {
+    "id": "X51008142061",
+    "field": "total",
+    "original": "178.08",
+    "cleaned": 178.08
+  },
+  {
+    "id": "X51007843145",
+    "field": "date",
+    "original": "30-06-2018",
+    "cleaned": "2020-06-30"
+  },
+  {
+    "id": "X51007843145",
+    "field": "total",
+    "original": "50.00",
+    "cleaned": 50.0
+  },
+  {
+    "id": "X51006619341",
+    "field": "date",
+    "original": "06-04-16",
+    "cleaned": "2016-04-06"
+  },
+  {
+    "id": "X51006619341",
+    "field": "total",
+    "original": "RM 8.60",
+    "cleaned": 8.6
+  },
+  {
+    "id": "X51005441398",
+    "field": "date",
+    "original": "30/03/2018",
+    "cleaned": "2018-03-30"
+  },
+  {
+    "id": "X51005441398",
+    "field": "total",
+    "original": "189.75",
+    "cleaned": 189.75
+  },
+  {
+    "id": "X51007339167",
+    "field": "date",
+    "original": "11/12/2017",
+    "cleaned": "2017-12-11"
+  },
+  {
+    "id": "X51007339167",
+    "field": "total",
+    "original": "7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51005441401",
+    "field": "date",
+    "original": "12/03/2018",
+    "cleaned": "2018-03-12"
+  },
+  {
+    "id": "X51005441401",
+    "field": "total",
+    "original": "343.95",
+    "cleaned": 343.95
+  },
+  {
+    "id": "X51005587254",
+    "field": "date",
+    "original": "13/03/2017",
+    "cleaned": "2017-03-13"
+  },
+  {
+    "id": "X51005587254",
+    "field": "total",
+    "original": "5.00",
+    "cleaned": 5.0
+  },
+  {
+    "id": "X51008145450",
+    "field": "date",
+    "original": "20/06/2018",
+    "cleaned": "2018-06-20"
+  },
+  {
+    "id": "X51008145450",
+    "field": "total",
+    "original": "85.20",
+    "cleaned": 85.2
+  },
+  {
+    "id": "X51006414636",
+    "field": "date",
+    "original": "6/4/2018",
+    "cleaned": "2018-04-06"
+  },
+  {
+    "id": "X51006414636",
+    "field": "total",
+    "original": "270.00",
+    "cleaned": 270.0
+  },
+  {
+    "id": "X51005568911",
+    "field": "date",
+    "original": "08-03-17",
+    "cleaned": "2017-03-08"
+  },
+  {
+    "id": "X51005568911",
+    "field": "total",
+    "original": "37.80",
+    "cleaned": 37.8
+  },
+  {
+    "id": "X51006401978",
+    "field": "date",
+    "original": "22/04/2017",
+    "cleaned": "2017-04-22"
+  },
+  {
+    "id": "X51006401978",
+    "field": "total",
+    "original": "22.25",
+    "cleaned": 22.25
+  },
+  {
+    "id": "X51005705760",
+    "field": "date",
+    "original": "10/08/2017",
+    "cleaned": "2017-08-10"
+  },
+  {
+    "id": "X51005705760",
+    "field": "total",
+    "original": "21.40",
+    "cleaned": 21.4
+  },
+  {
+    "id": "X51007846388",
+    "field": "date",
+    "original": "18 JUN 2018",
+    "cleaned": "2018-06-18"
+  },
+  {
+    "id": "X51007846388",
+    "field": "total",
+    "original": "RM8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51006350763",
+    "field": "date",
+    "original": "09/04/2018",
+    "cleaned": "2018-04-09"
+  },
+  {
+    "id": "X51006350763",
+    "field": "total",
+    "original": "104.00",
+    "cleaned": 104.0
+  },
+  {
+    "id": "X51005361950",
+    "field": "date",
+    "original": "24-01-18",
+    "cleaned": "2018-01-24"
+  },
+  {
+    "id": "X51005361950",
+    "field": "total",
+    "original": "2.50",
+    "cleaned": 2.5
+  },
+  {
+    "id": "X51005677335",
+    "field": "date",
+    "original": "24/01/2018",
+    "cleaned": "2018-01-24"
+  },
+  {
+    "id": "X51005677335",
+    "field": "total",
+    "original": "74.20",
+    "cleaned": 74.2
+  },
+  {
+    "id": "X51007846398",
+    "field": "date",
+    "original": "22 JUN 2018",
+    "cleaned": "2018-06-22"
+  },
+  {
+    "id": "X51007846398",
+    "field": "total",
+    "original": "RM8.50",
+    "cleaned": 8.5
+  },
+  {
+    "id": "X51008099073",
+    "field": "date",
+    "original": "26/06/18",
+    "cleaned": "2018-06-26"
+  },
+  {
+    "id": "X51008099073",
+    "field": "total",
+    "original": "100.00",
+    "cleaned": 100.0
+  },
+  {
+    "id": "X51005677331",
+    "field": "date",
+    "original": "03/02/2018",
+    "cleaned": "2018-02-03"
+  },
+  {
+    "id": "X51005677331",
+    "field": "total",
+    "original": "60.95",
+    "cleaned": 60.95
+  },
+  {
+    "id": "X51008063849",
+    "field": "date",
+    "original": "28-05-18",
+    "cleaned": "2018-05-28"
+  },
+  {
+    "id": "X51008063849",
+    "field": "total",
+    "original": "2.70",
+    "cleaned": 2.7
+  },
+  {
+    "id": "X51006556830",
+    "field": "date",
+    "original": "23/09/2017",
+    "cleaned": "2017-09-23"
+  },
+  {
+    "id": "X51006556830",
+    "field": "total",
+    "original": "1,007.50",
+    "cleaned": 1007.5
+  },
+  {
+    "id": "X51006556824",
+    "field": "date",
+    "original": "29/09/2017",
+    "cleaned": "2017-09-29"
+  },
+  {
+    "id": "X51006556824",
+    "field": "total",
+    "original": "-1.73",
+    "cleaned": -1.73
+  },
+  {
+    "id": "X51006913073",
+    "field": "date",
+    "original": "27 MAY 2018",
+    "cleaned": "2018-05-27"
+  },
+  {
+    "id": "X51006913073",
+    "field": "total",
+    "original": "$10.70",
+    "cleaned": 10.7
+  },
+  {
+    "id": "X51006466065",
+    "field": "date",
+    "original": "13/04/2018",
+    "cleaned": "2018-04-13"
+  },
+  {
+    "id": "X51006466065",
+    "field": "total",
+    "original": "25.00",
+    "cleaned": 25.0
+  },
+  {
+    "id": "X51006556818",
+    "field": "date",
+    "original": "03/09/2017",
+    "cleaned": "2017-09-03"
+  },
+  {
+    "id": "X51006556818",
+    "field": "total",
+    "original": "29.59",
+    "cleaned": 29.59
+  },
+  {
+    "id": "X51005722668",
+    "field": "date",
+    "original": "01/02/2018",
+    "cleaned": "2018-02-01"
+  },
+  {
+    "id": "X51005722668",
+    "field": "total",
+    "original": "20.50",
+    "cleaned": 20.5
+  },
+  {
+    "id": "X51007339639",
+    "field": "date",
+    "original": "13/07/2017",
+    "cleaned": "2017-07-13"
+  },
+  {
+    "id": "X51007339639",
+    "field": "total",
+    "original": "4.00",
+    "cleaned": 4.0
+  },
+  {
+    "id": "X51005675095",
+    "field": "date",
+    "original": "14/01/2018",
+    "cleaned": "2018-01-14"
+  },
+  {
+    "id": "X51005675095",
+    "field": "total",
+    "original": "RM4.00",
+    "cleaned": 4.0
+  },
+  {
+    "id": "X51006557119",
+    "field": "date",
+    "original": "20/10/2017",
+    "cleaned": "2017-10-20"
+  },
+  {
+    "id": "X51006557119",
+    "field": "total",
+    "original": "14.79",
+    "cleaned": 14.79
+  },
+  {
+    "id": "X51006912972",
+    "field": "date",
+    "original": "15 MAY 2018",
+    "cleaned": "2018-05-15"
+  },
+  {
+    "id": "X51006912972",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51007391372",
+    "field": "date",
+    "original": "24/05/2018",
+    "cleaned": "2018-05-24"
+  },
+  {
+    "id": "X51007391372",
+    "field": "total",
+    "original": "52.00",
+    "cleaned": 52.0
+  },
+  {
+    "id": "X51005724621",
+    "field": "date",
+    "original": "06/03/2018",
+    "cleaned": "2018-03-06"
+  },
+  {
+    "id": "X51005724621",
+    "field": "total",
+    "original": "127.20",
+    "cleaned": 127.2
+  },
+  {
+    "id": "X51008142065",
+    "field": "date",
+    "original": "23/05/2018",
+    "cleaned": "2018-05-23"
+  },
+  {
+    "id": "X51008142065",
+    "field": "total",
+    "original": "162.71",
+    "cleaned": 162.71
+  },
+  {
+    "id": "X51008142059",
+    "field": "date",
+    "original": "17/04/2018",
+    "cleaned": "2018-04-17"
+  },
+  {
+    "id": "X51008142059",
+    "field": "total",
+    "original": "190.80",
+    "cleaned": 190.8
+  },
+  {
+    "id": "X51008064061",
+    "field": "date",
+    "original": "03-05-18",
+    "cleaned": "2018-05-03"
+  },
+  {
+    "id": "X51008064061",
+    "field": "total",
+    "original": "69.20",
+    "cleaned": 69.2
+  },
+  {
+    "id": "X51007103643",
+    "field": "date",
+    "original": "19-04-18",
+    "cleaned": "2018-04-19"
+  },
+  {
+    "id": "X51007103643",
+    "field": "total",
+    "original": "RM 34.80",
+    "cleaned": 34.8
+  },
+  {
+    "id": "X51007103681",
+    "field": "date",
+    "original": "26-04-18",
+    "cleaned": "2018-04-26"
+  },
+  {
+    "id": "X51007103681",
+    "field": "total",
+    "original": "2.10",
+    "cleaned": 2.1
+  },
+  {
+    "id": "X51008142058",
+    "field": "date",
+    "original": "20/04/2018",
+    "cleaned": "2018-04-20"
+  },
+  {
+    "id": "X51008142058",
+    "field": "total",
+    "original": "87.45",
+    "cleaned": 87.45
+  },
+  {
+    "id": "X51006619783",
+    "field": "date",
+    "original": "06/07/16",
+    "cleaned": "2016-07-06"
+  },
+  {
+    "id": "X51006619783",
+    "field": "total",
+    "original": "43.90",
+    "cleaned": 43.9
+  },
+  {
+    "id": "X51005447840",
+    "field": "date",
+    "original": "14/03/2018",
+    "cleaned": "2018-03-14"
+  },
+  {
+    "id": "X51005447840",
+    "field": "total",
+    "original": "8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51007231338",
+    "field": "date",
+    "original": "11/05/2018",
+    "cleaned": "2018-05-11"
+  },
+  {
+    "id": "X51007231338",
+    "field": "total",
+    "original": "9.45",
+    "cleaned": 9.45
+  },
+  {
+    "id": "X51007225417",
+    "field": "date",
+    "original": "09/04/2018",
+    "cleaned": "2018-04-09"
+  },
+  {
+    "id": "X51007225417",
+    "field": "total",
+    "original": "51.00",
+    "cleaned": 51.0
+  },
+  {
+    "id": "X51008164510",
+    "field": "date",
+    "original": "27/06/2018",
+    "cleaned": "2018-06-27"
+  },
+  {
+    "id": "X51008164510",
+    "field": "total",
+    "original": "RM152.00",
+    "cleaned": 152.0
+  },
+  {
+    "id": "X51005757235",
+    "field": "date",
+    "original": "09/03/2018",
+    "cleaned": "2018-03-09"
+  },
+  {
+    "id": "X51005757235",
+    "field": "total",
+    "original": "31.00",
+    "cleaned": 31.0
+  },
+  {
+    "id": "X51007339162",
+    "field": "date",
+    "original": "02/12/2017",
+    "cleaned": "2017-12-02"
+  },
+  {
+    "id": "X51007339162",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51005568900",
+    "field": "date",
+    "original": "28-12-17",
+    "cleaned": "2017-12-28"
+  },
+  {
+    "id": "X51005568900",
+    "field": "total",
+    "original": "9.90",
+    "cleaned": 9.9
+  },
+  {
+    "id": "X51006414633",
+    "field": "date",
+    "original": "16 APR 2018",
+    "cleaned": "2018-04-16"
+  },
+  {
+    "id": "X51006414633",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51005568914",
+    "field": "date",
+    "original": "09/08/17",
+    "cleaned": "2017-08-09"
+  },
+  {
+    "id": "X51005568914",
+    "field": "total",
+    "original": "99.80",
+    "cleaned": 99.8
+  },
+  {
+    "id": "X51007846366",
+    "field": "date",
+    "original": "12/06/2018",
+    "cleaned": "2018-06-12"
+  },
+  {
+    "id": "X51007846366",
+    "field": "total",
+    "original": "38.60",
+    "cleaned": 38.6
+  },
+  {
+    "id": "X51006414394",
+    "field": "date",
+    "original": "27/04/2018",
+    "cleaned": "2018-04-27"
+  },
+  {
+    "id": "X51006414394",
+    "field": "total",
+    "original": "275.90",
+    "cleaned": 275.9
+  },
+  {
+    "id": "X51006556825",
+    "field": "date",
+    "original": "28/09/2017",
+    "cleaned": "2017-09-28"
+  },
+  {
+    "id": "X51006556825",
+    "field": "total",
+    "original": "48.04",
+    "cleaned": 48.04
+  },
+  {
+    "id": "X51006556831",
+    "field": "date",
+    "original": "30/09/2017",
+    "cleaned": "2017-09-30"
+  },
+  {
+    "id": "X51006556831",
+    "field": "total",
+    "original": "616.60",
+    "cleaned": 616.6
+  },
+  {
+    "id": "X51005442333",
+    "field": "date",
+    "original": "27 MAR 2018",
+    "cleaned": "2018-03-27"
+  },
+  {
+    "id": "X51005442333",
+    "field": "total",
+    "original": "$6.90",
+    "cleaned": 6.9
+  },
+  {
+    "id": "X51007135247",
+    "field": "date",
+    "original": "07-02-17",
+    "cleaned": "2017-02-07"
+  },
+  {
+    "id": "X51007135247",
+    "field": "total",
+    "original": "37.45",
+    "cleaned": 37.45
+  },
+  {
+    "id": "X51006557508",
+    "field": "date",
+    "original": "26/10/2017",
+    "cleaned": "2017-10-26"
+  },
+  {
+    "id": "X51006557508",
+    "field": "total",
+    "original": "54.19",
+    "cleaned": 54.19
+  },
+  {
+    "id": "X51005442327",
+    "field": "date",
+    "original": "18 MAR 2018",
+    "cleaned": "2018-03-18"
+  },
+  {
+    "id": "X51005442327",
+    "field": "total",
+    "original": "$8.60",
+    "cleaned": 8.6
+  },
+  {
+    "id": "X51006414431",
+    "field": "date",
+    "original": "03 APR 2018",
+    "cleaned": "2018-04-03"
+  },
+  {
+    "id": "X51006414431",
+    "field": "total",
+    "original": "$7.10",
+    "cleaned": 7.1
+  },
+  {
+    "id": "X51005677332",
+    "field": "date",
+    "original": "12/01/2018",
+    "cleaned": "2018-01-12"
+  },
+  {
+    "id": "X51005677332",
+    "field": "total",
+    "original": "7.95",
+    "cleaned": 7.95
+  },
+  {
+    "id": "X51007846370",
+    "field": "date",
+    "original": "16 JUN 2018",
+    "cleaned": "2018-06-16"
+  },
+  {
+    "id": "X51007846370",
+    "field": "total",
+    "original": "RM7.70",
+    "cleaned": 7.7
+  },
+  {
+    "id": "X51006913070",
+    "field": "date",
+    "original": "24 MAY 2018",
+    "cleaned": "2018-05-24"
+  },
+  {
+    "id": "X51006913070",
+    "field": "total",
+    "original": "$8.40",
+    "cleaned": 8.4
+  },
+  {
+    "id": "X51006466066",
+    "field": "date",
+    "original": "21-04-2018",
+    "cleaned": "2020-04-21"
+  },
+  {
+    "id": "X51006466066",
+    "field": "total",
+    "original": "41.50",
+    "cleaned": 41.5
+  },
+  {
+    "id": "X51005724554",
+    "field": "date",
+    "original": "28/02/2018",
+    "cleaned": "2018-02-28"
+  },
+  {
+    "id": "X51005724554",
+    "field": "total",
+    "original": "101.76",
+    "cleaned": 101.76
+  },
+  {
+    "id": "X51006414631",
+    "field": "date",
+    "original": "18 APR 2018",
+    "cleaned": "2018-04-18"
+  },
+  {
+    "id": "X51006414631",
+    "field": "total",
+    "original": "$7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51005715010",
+    "field": "total",
+    "original": "RM41.45",
+    "cleaned": 41.45
+  },
+  {
+    "id": "X51007225398",
+    "field": "date",
+    "original": "13/04/2018",
+    "cleaned": "2018-04-13"
+  },
+  {
+    "id": "X51007225398",
+    "field": "total",
+    "original": "27.00",
+    "cleaned": 27.0
+  },
+  {
+    "id": "X00016469669",
+    "field": "date",
+    "original": "09/01/2019",
+    "cleaned": "2019-01-09"
+  },
+  {
+    "id": "X00016469669",
+    "field": "total",
+    "original": "31.00",
+    "cleaned": 31.0
+  },
+  {
+    "id": "X51005433494",
+    "field": "date",
+    "original": "06/03/2018",
+    "cleaned": "2018-03-06"
+  },
+  {
+    "id": "X51005433494",
+    "field": "total",
+    "original": "75.00",
+    "cleaned": 75.0
+  },
+  {
+    "id": "X51005806703",
+    "field": "date",
+    "original": "06/02/2018",
+    "cleaned": "2018-02-06"
+  },
+  {
+    "id": "X51005806703",
+    "field": "total",
+    "original": "109.70",
+    "cleaned": 109.7
+  },
+  {
+    "id": "X51006401836",
+    "field": "date",
+    "original": "19/01/17",
+    "cleaned": "2017-01-19"
+  },
+  {
+    "id": "X51006401836",
+    "field": "total",
+    "original": "19.80",
+    "cleaned": 19.8
+  },
+  {
+    "id": "X51007103641",
+    "field": "date",
+    "original": "19-04-18",
+    "cleaned": "2018-04-19"
+  },
+  {
+    "id": "X51007103641",
+    "field": "total",
+    "original": "RM 34.80",
+    "cleaned": 34.8
+  },
+  {
+    "id": "X51005806716",
+    "field": "date",
+    "original": "17/01/2018",
+    "cleaned": "2018-01-17"
+  },
+  {
+    "id": "X51005806716",
+    "field": "total",
+    "original": "7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51005806702",
+    "field": "date",
+    "original": "06/02/2018",
+    "cleaned": "2018-02-06"
+  },
+  {
+    "id": "X51005806702",
+    "field": "total",
+    "original": "13.50",
+    "cleaned": 13.5
+  },
+  {
+    "id": "X51006619780",
+    "field": "total",
+    "original": "RM8.35",
+    "cleaned": 8.35
+  },
+  {
+    "id": "X51006714065",
+    "field": "date",
+    "original": "30-09-2017",
+    "cleaned": "2020-09-30"
+  },
+  {
+    "id": "X51006714065",
+    "field": "total",
+    "original": "66.00",
+    "cleaned": 66.0
+  },
+  {
+    "id": "X51006388044",
+    "field": "date",
+    "original": "10-05-2017",
+    "cleaned": "2020-05-10"
+  },
+  {
+    "id": "X51006388044",
+    "field": "total",
+    "original": "22.60",
+    "cleaned": 22.6
+  },
+  {
+    "id": "X51007225399",
+    "field": "date",
+    "original": "14/04/2018",
+    "cleaned": "2018-04-14"
+  },
+  {
+    "id": "X51007225399",
+    "field": "total",
+    "original": "156.00",
+    "cleaned": 156.0
+  },
+  {
+    "id": "X51005337872",
+    "field": "date",
+    "original": "06/03/2018",
+    "cleaned": "2018-03-06"
+  },
+  {
+    "id": "X51005337872",
+    "field": "total",
+    "original": "54.50",
+    "cleaned": 54.5
+  },
+  {
+    "id": "X51006335314",
+    "field": "date",
+    "original": "22/01/2017",
+    "cleaned": "2017-01-22"
+  },
+  {
+    "id": "X51006335314",
+    "field": "total",
+    "original": "67.85",
+    "cleaned": 67.85
+  },
+  {
+    "id": "X51005676549",
+    "field": "date",
+    "original": "02/01/2018",
+    "cleaned": "2018-01-02"
+  },
+  {
+    "id": "X51005676549",
+    "field": "total",
+    "original": "39.75",
+    "cleaned": 39.75
+  },
+  {
+    "id": "X51005745183",
+    "field": "date",
+    "original": "22/02/2018",
+    "cleaned": "2018-02-22"
+  },
+  {
+    "id": "X51005745183",
+    "field": "total",
+    "original": "63.80",
+    "cleaned": 63.8
+  },
+  {
+    "id": "X51005441407",
+    "field": "date",
+    "original": "5/3/2018",
+    "cleaned": "2018-03-05"
+  },
+  {
+    "id": "X51005441407",
+    "field": "total",
+    "original": "64.15",
+    "cleaned": 64.15
+  },
+  {
+    "id": "X51005433522",
+    "field": "date",
+    "original": "10 MAR 2018",
+    "cleaned": "2018-03-10"
+  },
+  {
+    "id": "X51005433522",
+    "field": "total",
+    "original": "",
+    "cleaned": null
+  },
+  {
+    "id": "X51006913059",
+    "field": "date",
+    "original": "22 MAY 2018",
+    "cleaned": "2018-05-22"
+  },
+  {
+    "id": "X51006913059",
+    "field": "total",
+    "original": "$11.40",
+    "cleaned": 11.4
+  },
+  {
+    "id": "X51005444033",
+    "field": "date",
+    "original": "12/03/18",
+    "cleaned": "2018-03-12"
+  },
+  {
+    "id": "X51005444033",
+    "field": "total",
+    "original": "77.20",
+    "cleaned": 77.2
+  },
+  {
+    "id": "X51008099071",
+    "field": "date",
+    "original": "20/06/18",
+    "cleaned": "2018-06-20"
+  },
+  {
+    "id": "X51008099071",
+    "field": "total",
+    "original": "50.00",
+    "cleaned": 50.0
+  },
+  {
+    "id": "X51005442394",
+    "field": "date",
+    "original": "30 MAR 2018",
+    "cleaned": "2018-03-30"
+  },
+  {
+    "id": "X51005442394",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51007846302",
+    "field": "date",
+    "original": "09/06/2018",
+    "cleaned": "2018-06-09"
+  },
+  {
+    "id": "X51007846302",
+    "field": "total",
+    "original": "RM15.40",
+    "cleaned": 15.4
+  },
+  {
+    "id": "X51006556841",
+    "field": "date",
+    "original": "16/09/2017",
+    "cleaned": "2017-09-16"
+  },
+  {
+    "id": "X51006556841",
+    "field": "total",
+    "original": "3.21",
+    "cleaned": 3.21
+  },
+  {
+    "id": "X51007262328",
+    "field": "date",
+    "original": "20/05/2018",
+    "cleaned": "2018-05-20"
+  },
+  {
+    "id": "X51007262328",
+    "field": "total",
+    "original": "25.00",
+    "cleaned": 25.0
+  },
+  {
+    "id": "X51006327978",
+    "field": "date",
+    "original": "9/2/2017",
+    "cleaned": "2017-02-09"
+  },
+  {
+    "id": "X51006327978",
+    "field": "total",
+    "original": "362.50",
+    "cleaned": 362.5
+  },
+  {
+    "id": "X51005757286",
+    "field": "date",
+    "original": "10/10/2017",
+    "cleaned": "2017-10-10"
+  },
+  {
+    "id": "X51005757286",
+    "field": "total",
+    "original": "8.00",
+    "cleaned": 8.0
+  },
+  {
+    "id": "X51005749912",
+    "field": "date",
+    "original": "28/03/18",
+    "cleaned": "2018-03-28"
+  },
+  {
+    "id": "X51005749912",
+    "field": "total",
+    "original": "38.80",
+    "cleaned": 38.8
+  },
+  {
+    "id": "X51006008089",
+    "field": "date",
+    "original": "27/02/18",
+    "cleaned": "2018-02-27"
+  },
+  {
+    "id": "X51006008089",
+    "field": "total",
+    "original": "41.00",
+    "cleaned": 41.0
+  },
+  {
+    "id": "X51006414680",
+    "field": "date",
+    "original": "18/04/2018",
+    "cleaned": "2018-04-18"
+  },
+  {
+    "id": "X51006414680",
+    "field": "total",
+    "original": "1.75",
+    "cleaned": 1.75
+  },
+  {
+    "id": "X51007339112",
+    "field": "date",
+    "original": "24/05/2017",
+    "cleaned": "2017-05-24"
+  },
+  {
+    "id": "X51007339112",
+    "field": "total",
+    "original": "5.80",
+    "cleaned": 5.8
+  },
+  {
+    "id": "X51007339106",
+    "field": "date",
+    "original": "07/05/2017",
+    "cleaned": "2017-05-07"
+  },
+  {
+    "id": "X51007339106",
+    "field": "total",
+    "original": "43.7",
+    "cleaned": 43.7
+  },
+  {
+    "id": "X51006349086",
+    "field": "date",
+    "original": "16/04/2018",
+    "cleaned": "2018-04-16"
+  },
+  {
+    "id": "X51006349086",
+    "field": "total",
+    "original": "RM7.00",
+    "cleaned": 7.0
+  },
+  {
+    "id": "X51007339648",
+    "field": "date",
+    "original": "12/09/2017",
+    "cleaned": "2017-09-12"
+  },
+  {
+    "id": "X51007339648",
+    "field": "total",
+    "original": "30.00",
+    "cleaned": 30.0
+  },
+  {
+    "id": "X51007103578",
+    "field": "date",
+    "original": "06-04-18",
+    "cleaned": "2018-04-06"
+  },
+  {
+    "id": "X51007103578",
+    "field": "total",
+    "original": "RM 31.20",
+    "cleaned": 31.2
+  },
+  {
+    "id": "X51006557168",
+    "field": "date",
+    "original": "23/10/2017",
+    "cleaned": "2017-10-23"
+  },
+  {
+    "id": "X51006557168",
+    "field": "total",
+    "original": "39.87",
+    "cleaned": 39.87
+  },
+  {
+    "id": "X51006867436",
+    "field": "date",
+    "original": "24/05/18",
+    "cleaned": "2018-05-24"
+  },
+  {
+    "id": "X51006867436",
+    "field": "total",
+    "original": "4.50",
+    "cleaned": 4.5
+  },
+  {
+    "id": "X51006555780",
+    "field": "date",
+    "original": "21/07/2017",
+    "cleaned": "2017-07-21"
+  },
+  {
+    "id": "X51006555780",
+    "field": "total",
+    "original": "33.05",
+    "cleaned": 33.05
+  },
+  {
+    "id": "X51007231374",
+    "field": "date",
+    "original": "07/05/2018",
+    "cleaned": "2018-05-07"
+  },
+  {
+    "id": "X51007231374",
+    "field": "total",
+    "original": "24.40",
+    "cleaned": 24.4
+  },
+  {
+    "id": "X51008164992",
+    "field": "date",
+    "original": "30-05-2018",
+    "cleaned": "2020-05-30"
+  },
+  {
+    "id": "X51008164992",
+    "field": "total",
+    "original": "87.45",
+    "cleaned": 87.45
+  },
+  {
+    "id": "X51006387847",
+    "field": "date",
+    "original": "15/APR/2017",
+    "cleaned": "2017-04-15"
+  },
+  {
+    "id": "X51006387847",
+    "field": "total",
+    "original": "635.00",
+    "cleaned": 635.0
+  },
+  {
+    "id": "X51008114284",
+    "field": "date",
+    "original": "25-06-18",
+    "cleaned": "2018-06-25"
+  },
+  {
+    "id": "X51008114284",
+    "field": "total",
+    "original": "17.45",
+    "cleaned": 17.45
+  },
+  {
+    "id": "X51005663297",
+    "field": "date",
+    "original": "14/03/2018",
+    "cleaned": "2018-03-14"
+  },
+  {
+    "id": "X51005663297",
+    "field": "total",
+    "original": "599.45",
+    "cleaned": 599.45
+  },
+  {
+    "id": "X51007231361",
+    "field": "date",
+    "original": "26/05/2018",
+    "cleaned": "2018-05-26"
+  },
+  {
+    "id": "X51007231361",
+    "field": "total",
+    "original": "164.80",
+    "cleaned": 164.8
+  },
+  {
+    "id": "X51005757324",
+    "field": "date",
+    "original": "25-03-18",
+    "cleaned": "2018-03-25"
+  },
+  {
+    "id": "X51005757324",
+    "field": "total",
+    "original": "50.80",
+    "cleaned": 50.8
+  },
+  {
+    "id": "X51006733494",
+    "field": "date",
+    "original": "OCT 3, 2016",
+    "cleaned": "2016-10-03"
+  },
+  {
+    "id": "X51006733494",
+    "field": "total",
+    "original": "RM33.90",
+    "cleaned": 33.9
+  },
+  {
+    "id": "X51005711403",
+    "field": "date",
+    "original": "19-03-2018",
+    "cleaned": "2020-03-19"
+  },
+  {
+    "id": "X51005711403",
+    "field": "total",
+    "original": "9.10",
+    "cleaned": 9.1
+  },
+  {
+    "id": "X51007339098",
+    "field": "date",
+    "original": "18/04/2017",
+    "cleaned": "2017-04-18"
+  },
+  {
+    "id": "X51007339098",
+    "field": "total",
+    "original": "8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51007339107",
+    "field": "date",
+    "original": "04/04/2017",
+    "cleaned": "2017-04-04"
+  },
+  {
+    "id": "X51007339107",
+    "field": "total",
+    "original": "14.90",
+    "cleaned": 14.9
+  },
+  {
+    "id": "X51007339113",
+    "field": "date",
+    "original": "24/07/2017",
+    "cleaned": "2017-07-24"
+  },
+  {
+    "id": "X51007339113",
+    "field": "total",
+    "original": "5.80",
+    "cleaned": 5.8
+  },
+  {
+    "id": "X51005719856",
+    "field": "date",
+    "original": "16/02/2018",
+    "cleaned": "2018-02-16"
+  },
+  {
+    "id": "X51005719856",
+    "field": "total",
+    "original": "21.50",
+    "cleaned": 21.5
+  },
+  {
+    "id": "X51006556840",
+    "field": "date",
+    "original": "17/09/2017",
+    "cleaned": "2017-09-17"
+  },
+  {
+    "id": "X51006556840",
+    "field": "total",
+    "original": "40.18",
+    "cleaned": 40.18
+  },
+  {
+    "id": "X51006387932",
+    "field": "date",
+    "original": "04/05/2017",
+    "cleaned": "2017-05-04"
+  },
+  {
+    "id": "X51006387932",
+    "field": "total",
+    "original": "12.00",
+    "cleaned": 12.0
+  },
+  {
+    "id": "X51007262315",
+    "field": "date",
+    "original": "21/05/2018",
+    "cleaned": "2018-05-21"
+  },
+  {
+    "id": "X51007262315",
+    "field": "total",
+    "original": "70.30",
+    "cleaned": 70.3
+  },
+  {
+    "id": "X51006414483",
+    "field": "date",
+    "original": "10 APR 2018",
+    "cleaned": "2018-04-10"
+  },
+  {
+    "id": "X51006414483",
+    "field": "total",
+    "original": "$7.60",
+    "cleaned": 7.6
+  },
+  {
+    "id": "X51006619862",
+    "field": "date",
+    "original": "07-06-16",
+    "cleaned": "2016-06-07"
+  },
+  {
+    "id": "X51006619862",
+    "field": "total",
+    "original": "RM 13.30",
+    "cleaned": 13.3
+  },
+  {
+    "id": "X51007846301",
+    "field": "date",
+    "original": "10 JUN 2018",
+    "cleaned": "2018-06-10"
+  },
+  {
+    "id": "X51007846301",
+    "field": "total",
+    "original": "RM8.50",
+    "cleaned": 8.5
+  },
+  {
+    "id": "X51005442383",
+    "field": "date",
+    "original": "20/03/2018",
+    "cleaned": "2018-03-20"
+  },
+  {
+    "id": "X51005442383",
+    "field": "total",
+    "original": "13.80",
+    "cleaned": 13.8
+  },
+  {
+    "id": "X51005442397",
+    "field": "date",
+    "original": "25-03-2018",
+    "cleaned": "2020-03-25"
+  },
+  {
+    "id": "X51005442397",
+    "field": "total",
+    "original": "7.60",
+    "cleaned": 7.6
+  },
+  {
+    "id": "X51005433552",
+    "field": "date",
+    "original": "10/03/2018",
+    "cleaned": "2018-03-10"
+  },
+  {
+    "id": "X51005433552",
+    "field": "total",
+    "original": "57.80",
+    "cleaned": 57.8
+  },
+  {
+    "id": "X51005453729",
+    "field": "date",
+    "original": "27/03/2018",
+    "cleaned": "2018-03-27"
+  },
+  {
+    "id": "X51005453729",
+    "field": "total",
+    "original": "79.50",
+    "cleaned": 79.5
+  },
+  {
+    "id": "X51005676539",
+    "field": "date",
+    "original": "10/01/2018",
+    "cleaned": "2018-01-10"
+  },
+  {
+    "id": "X51005676539",
+    "field": "total",
+    "original": "23.32",
+    "cleaned": 23.32
+  },
+  {
+    "id": "X51005749905",
+    "field": "date",
+    "original": "10/03/2018",
+    "cleaned": "2018-03-10"
+  },
+  {
+    "id": "X51005749905",
+    "field": "total",
+    "original": "34.00",
+    "cleaned": 34.0
+  },
+  {
+    "id": "X51005719883",
+    "field": "date",
+    "original": "17-02-18",
+    "cleaned": "2018-02-17"
+  },
+  {
+    "id": "X51005719883",
+    "field": "total",
+    "original": "108.50",
+    "cleaned": 108.5
+  },
+  {
+    "id": "X51007339111",
+    "field": "date",
+    "original": "12/08/2017",
+    "cleaned": "2017-08-12"
+  },
+  {
+    "id": "X51007339111",
+    "field": "total",
+    "original": "3.00",
+    "cleaned": 3.0
+  },
+  {
+    "id": "X51007339139",
+    "field": "date",
+    "original": "21/03/2017",
+    "cleaned": "2017-03-21"
+  },
+  {
+    "id": "X51007339139",
+    "field": "total",
+    "original": "10.00",
+    "cleaned": 10.0
+  },
+  {
+    "id": "X51006414720",
+    "field": "date",
+    "original": "20/04/2018",
+    "cleaned": "2018-04-20"
+  },
+  {
+    "id": "X51006414720",
+    "field": "total",
+    "original": "6.40",
+    "cleaned": 6.4
+  },
+  {
+    "id": "X51006867435",
+    "field": "date",
+    "original": "18/05/18",
+    "cleaned": "2018-05-18"
+  },
+  {
+    "id": "X51006867435",
+    "field": "total",
+    "original": "2.28",
+    "cleaned": 2.28
+  },
+  {
+    "id": "X51005447833",
+    "field": "date",
+    "original": "21/02/18",
+    "cleaned": "2018-02-21"
+  },
+  {
+    "id": "X51005447833",
+    "field": "total",
+    "original": "88.17",
+    "cleaned": 88.17
+  },
+  {
+    "id": "X51005711401",
+    "field": "date",
+    "original": "19-03-2018",
+    "cleaned": "2020-03-19"
+  },
+  {
+    "id": "X51005711401",
+    "field": "total",
+    "original": "6.00",
+    "cleaned": 6.0
+  },
+  {
+    "id": "X51005889296",
+    "field": "date",
+    "original": "25/04/18",
+    "cleaned": "2018-04-25"
+  },
+  {
+    "id": "X51005889296",
+    "field": "total",
+    "original": "22.00",
+    "cleaned": 22.0
+  },
+  {
+    "id": "X51008164991",
+    "field": "date",
+    "original": "13-06-2018",
+    "cleaned": "2020-06-13"
+  },
+  {
+    "id": "X51008164991",
+    "field": "total",
+    "original": "35.00",
+    "cleaned": 35.0
+  },
+  {
+    "id": "X51006387850",
+    "field": "date",
+    "original": "25/04/2017",
+    "cleaned": "2017-04-25"
+  },
+  {
+    "id": "X51006387850",
+    "field": "total",
+    "original": "94.00",
+    "cleaned": 94.0
+  },
+  {
+    "id": "X51005663280",
+    "field": "date",
+    "original": "30 DEC 17",
+    "cleaned": "2017-12-30"
+  },
+  {
+    "id": "X51005663280",
+    "field": "total",
+    "original": "102.40",
+    "cleaned": 102.4
+  },
+  {
+    "id": "X00016469619",
+    "field": "date",
+    "original": "19/10/2018",
+    "cleaned": "2018-10-19"
+  },
+  {
+    "id": "X00016469619",
+    "field": "total",
+    "original": "60.30",
+    "cleaned": 60.3
+  },
+  {
+    "id": "X51006556738",
+    "field": "date",
+    "original": "03/08/2017",
+    "cleaned": "2017-08-03"
+  },
+  {
+    "id": "X51006556738",
+    "field": "total",
+    "original": "51.88",
+    "cleaned": 51.88
+  },
+  {
+    "id": "X51006557195",
+    "field": "date",
+    "original": "12/10/2017",
+    "cleaned": "2017-10-12"
+  },
+  {
+    "id": "X51006557195",
+    "field": "total",
+    "original": "59.54",
+    "cleaned": 59.54
+  },
+  {
+    "id": "X51005447832",
+    "field": "date",
+    "original": "26/02/18",
+    "cleaned": "2018-02-26"
+  },
+  {
+    "id": "X51005447832",
+    "field": "total",
+    "original": "85.54",
+    "cleaned": 85.54
+  },
+  {
+    "id": "X51006620414",
+    "field": "date",
+    "original": "20/10/2016",
+    "cleaned": "2016-10-20"
+  },
+  {
+    "id": "X51006620414",
+    "field": "total",
+    "original": "RM9.75",
+    "cleaned": 9.75
+  },
+  {
+    "id": "X51006414721",
+    "field": "date",
+    "original": "27/04/18",
+    "cleaned": "2018-04-27"
+  },
+  {
+    "id": "X51006414721",
+    "field": "total",
+    "original": "7.20",
+    "cleaned": 7.2
+  },
+  {
+    "id": "X51006008074",
+    "field": "date",
+    "original": "12/01/2018",
+    "cleaned": "2018-01-12"
+  },
+  {
+    "id": "X51006008074",
+    "field": "total",
+    "original": "4.25",
+    "cleaned": 4.25
+  },
+  {
+    "id": "X51005719896",
+    "field": "date",
+    "original": "14-01-2018",
+    "cleaned": "2020-01-14"
+  },
+  {
+    "id": "X51005719896",
+    "field": "total",
+    "original": "35.80",
+    "cleaned": 35.8
+  },
+  {
+    "id": "X51007339110",
+    "field": "date",
+    "original": "05/07/2017",
+    "cleaned": "2017-07-05"
+  },
+  {
+    "id": "X51007339110",
+    "field": "total",
+    "original": "2.00",
+    "cleaned": 2.0
+  },
+  {
+    "id": "X51006555806",
+    "field": "date",
+    "original": "30/07/2017",
+    "cleaned": "2017-07-30"
+  },
+  {
+    "id": "X51006555806",
+    "field": "total",
+    "original": "20.21",
+    "cleaned": 20.21
+  },
+  {
+    "id": "X51005719882",
+    "field": "date",
+    "original": "17-02-18",
+    "cleaned": "2018-02-17"
+  },
+  {
+    "id": "X51005719882",
+    "field": "total",
+    "original": "213.00",
+    "cleaned": 213.0
+  },
+  {
+    "id": "X51005676538",
+    "field": "date",
+    "original": "04/01/2018",
+    "cleaned": "2018-01-04"
+  },
+  {
+    "id": "X51005676538",
+    "field": "total",
+    "original": "44.73",
+    "cleaned": 44.73
+  },
+  {
+    "id": "X51007135037",
+    "field": "date",
+    "original": "05-JAN-2017",
+    "cleaned": "2017-01-05"
+  },
+  {
+    "id": "X51007135037",
+    "field": "total",
+    "original": "72.00",
+    "cleaned": 72.0
+  },
+  {
+    "id": "X51005757290",
+    "field": "date",
+    "original": "17-03-18",
+    "cleaned": "2018-03-17"
+  },
+  {
+    "id": "X51005757290",
+    "field": "total",
+    "original": "42.90",
+    "cleaned": 42.9
+  },
+  {
+    "id": "X51005433553",
+    "field": "date",
+    "original": "11/03/2018",
+    "cleaned": "2018-03-11"
+  },
+  {
+    "id": "X51005433553",
+    "field": "total",
+    "original": "13.10",
+    "cleaned": 13.1
+  },
+  {
+    "id": "X51006913028",
+    "field": "date",
+    "original": "07 MAY 2018",
+    "cleaned": "2018-05-07"
+  },
+  {
+    "id": "X51006913028",
+    "field": "total",
+    "original": "$8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51005442341",
+    "field": "date",
+    "original": "09/03/2018",
+    "cleaned": "2018-03-09"
+  },
+  {
+    "id": "X51005442341",
+    "field": "total",
+    "original": "170.00",
+    "cleaned": 170.0
+  },
+  {
+    "id": "X51005442379",
+    "field": "date",
+    "original": "24 MAR 2018",
+    "cleaned": "2018-03-24"
+  },
+  {
+    "id": "X51005442379",
+    "field": "total",
+    "original": "$9.20",
+    "cleaned": 9.2
+  },
+  {
+    "id": "X51006311758",
+    "field": "date",
+    "original": "29/03/2018",
+    "cleaned": "2018-03-29"
+  },
+  {
+    "id": "X51006311758",
+    "field": "total",
+    "original": "100.60",
+    "cleaned": 100.6
+  },
+  {
+    "id": "X51006311764",
+    "field": "date",
+    "original": "29/03/2018",
+    "cleaned": "2018-03-29"
+  },
+  {
+    "id": "X51006311764",
+    "field": "total",
+    "original": "39.90",
+    "cleaned": 39.9
+  },
+  {
+    "id": "X51005442386",
+    "field": "date",
+    "original": "21 MAR 2018",
+    "cleaned": "2018-03-21"
+  },
+  {
+    "id": "X51005442386",
+    "field": "total",
+    "original": "$8.70",
+    "cleaned": 8.7
+  },
+  {
+    "id": "X51005442392",
+    "field": "date",
+    "original": "29 MAR 2018",
+    "cleaned": "2018-03-29"
+  },
+  {
+    "id": "X51005442392",
+    "field": "total",
+    "original": "$7.10",
+    "cleaned": 7.1
+  },
+  {
+    "id": "X51006414679",
+    "field": "date",
+    "original": "14/04/2018",
+    "cleaned": "2018-04-14"
+  },
+  {
+    "id": "X51006414679",
+    "field": "total",
+    "original": "21.80",
+    "cleaned": 21.8
+  },
+  {
+    "id": "X51005757294",
+    "field": "date",
+    "original": "18-03-18",
+    "cleaned": "2018-03-18"
+  },
+  {
+    "id": "X51005757294",
+    "field": "total",
+    "original": "10.60",
+    "cleaned": 10.6
+  },
+  {
+    "id": "X51005719886",
+    "field": "date",
+    "original": "05/01/2018",
+    "cleaned": "2018-01-05"
+  },
+  {
+    "id": "X51005719886",
+    "field": "total",
+    "original": "28.70",
+    "cleaned": 28.7
+  },
+  {
+    "id": "X51007339100",
+    "field": "date",
+    "original": "18/04/2017",
+    "cleaned": "2017-04-18"
+  },
+  {
+    "id": "X51007339100",
+    "field": "total",
+    "original": "3.00",
+    "cleaned": 3.0
+  },
+  {
+    "id": "X51007339114",
+    "field": "date",
+    "original": "14/12/2017",
+    "cleaned": "2017-12-14"
+  },
+  {
+    "id": "X51007339114",
+    "field": "total",
+    "original": "36.00",
+    "cleaned": 36.0
+  },
+  {
+    "id": "X51005757243",
+    "field": "date",
+    "original": "11/03/18",
+    "cleaned": "2018-03-11"
+  },
+  {
+    "id": "X51005757243",
+    "field": "total",
+    "original": "5.75",
+    "cleaned": 5.75
+  },
+  {
+    "id": "X51006414719",
+    "field": "date",
+    "original": "12/04/2018",
+    "cleaned": "2018-04-12"
+  },
+  {
+    "id": "X51006414719",
+    "field": "total",
+    "original": "4.40",
+    "cleaned": 4.4
+  },
+  {
+    "id": "X51006393377",
+    "field": "date",
+    "original": "10-05-17",
+    "cleaned": "2017-05-10"
+  },
+  {
+    "id": "X51006393377",
+    "field": "total",
+    "original": "72.75",
+    "cleaned": 72.75
+  },
+  {
+    "id": "X51006557185",
+    "field": "date",
+    "original": "17/10/2017",
+    "cleaned": "2017-10-17"
+  },
+  {
+    "id": "X51006557185",
+    "field": "total",
+    "original": "110.46",
+    "cleaned": 110.46
+  },
+  {
+    "id": "X51005757323",
+    "field": "date",
+    "original": "26-03-18",
+    "cleaned": "2018-03-26"
+  },
+  {
+    "id": "X51005757323",
+    "field": "total",
+    "original": "28.00",
+    "cleaned": 28.0
+  },
+  {
+    "id": "X51005711404",
+    "field": "date",
+    "original": "14-03-2018",
+    "cleaned": "2020-03-14"
+  },
+  {
+    "id": "X51005711404",
+    "field": "total",
+    "original": "4.80",
+    "cleaned": 4.8
+  },
+  {
+    "id": "X51006328913",
+    "field": "date",
+    "original": "02/JAN/2017",
+    "cleaned": "2017-01-02"
+  },
+  {
+    "id": "X51006328913",
+    "field": "total",
+    "original": "165.00",
+    "cleaned": 165.0
+  },
+  {
+    "id": "X51006414533",
+    "field": "date",
+    "original": "10-04-2018",
+    "cleaned": "2020-04-10"
+  },
+  {
+    "id": "X51006414533",
+    "field": "total",
+    "original": "50.00",
+    "cleaned": 50.0
+  },
+  {
+    "id": "X51006389893",
+    "field": "date",
+    "original": "21/10/2017",
+    "cleaned": "2017-10-21"
+  },
+  {
+    "id": "X51006389893",
+    "field": "total",
+    "original": "250.00",
+    "cleaned": 250.0
+  },
+  {
+    "id": "X51008114283",
+    "field": "date",
+    "original": "11-06-18",
+    "cleaned": "2018-06-11"
+  },
+  {
+    "id": "X51008114283",
+    "field": "total",
+    "original": "11.25",
+    "cleaned": 11.25
+  },
+  {
+    "id": "X51006329402",
+    "field": "date",
+    "original": "06/04/17",
+    "cleaned": "2017-04-06"
+  },
+  {
+    "id": "X51006329402",
+    "field": "total",
+    "original": "50.45",
+    "cleaned": 50.45
+  },
+  {
+    "id": "X51007846270",
+    "field": "date",
+    "original": "04/06/2018",
+    "cleaned": "2018-06-04"
+  },
+  {
+    "id": "X51007846270",
+    "field": "total",
+    "original": "RM21.85",
+    "cleaned": 21.85
+  },
+  {
+    "id": "X51008114282",
+    "field": "date",
+    "original": "04-06-18",
+    "cleaned": "2018-06-04"
+  },
+  {
+    "id": "X51008114282",
+    "field": "total",
+    "original": "20.90",
+    "cleaned": 20.9
+  },
+  {
+    "id": "X51005361895",
+    "field": "date",
+    "original": "25/01/2018",
+    "cleaned": "2018-01-25"
+  },
+  {
+    "id": "X51005361895",
+    "field": "total",
+    "original": "9.00",
+    "cleaned": 9.0
+  },
+  {
+    "id": "X00016469620",
+    "field": "date",
+    "original": "12-01-19",
+    "cleaned": "2019-01-12"
+  },
+  {
+    "id": "X00016469620",
+    "field": "total",
+    "original": "33.90",
+    "cleaned": 33.9
+  },
+  {
+    "id": "X51006620161",
+    "field": "date",
+    "original": "28/02/2016",
+    "cleaned": "2016-02-28"
+  },
+  {
+    "id": "X51006620161",
+    "field": "total",
+    "original": "110.00",
+    "cleaned": 110.0
+  },
+  {
+    "id": "X51008123604",
+    "field": "date",
+    "original": "24/06/2018",
+    "cleaned": "2018-06-24"
+  },
+  {
+    "id": "X51008123604",
+    "field": "total",
+    "original": "52.40",
+    "cleaned": 52.4
+  },
+  {
+    "id": "X51006557184",
+    "field": "date",
+    "original": "19/10/2017",
+    "cleaned": "2017-10-19"
+  },
+  {
+    "id": "X51006557184",
+    "field": "total",
+    "original": "68.63",
+    "cleaned": 68.63
+  },
+  {
+    "id": "X51006393376",
+    "field": "date",
+    "original": "10-05-17",
+    "cleaned": "2017-05-10"
+  },
+  {
+    "id": "X51006393376",
+    "field": "total",
+    "original": "11.50",
+    "cleaned": 11.5
+  },
+  {
+    "id": "X51006679216",
+    "field": "date",
+    "original": "21/05/2018",
+    "cleaned": "2018-05-21"
+  },
+  {
+    "id": "X51006679216",
+    "field": "total",
+    "original": "RM31.60",
+    "cleaned": 31.6
+  },
+  {
+    "id": "X51006414718",
+    "field": "date",
+    "original": "20/04/2018",
+    "cleaned": "2018-04-20"
+  },
+  {
+    "id": "X51006414718",
+    "field": "total",
+    "original": "46.55",
+    "cleaned": 46.55
+  },
+  {
+    "id": "X51006555817",
+    "field": "date",
+    "original": "25/07/2017",
+    "cleaned": "2017-07-25"
+  },
+  {
+    "id": "X51006555817",
+    "field": "total",
+    "original": "24.83",
+    "cleaned": 24.83
+  },
+  {
+    "id": "X51005719893",
+    "field": "total",
+    "original": "71.00",
+    "cleaned": 71.0
+  },
+  {
+    "id": "X51007339115",
+    "field": "date",
+    "original": "31/10/2017",
+    "cleaned": "2017-10-31"
+  },
+  {
+    "id": "X51007339115",
+    "field": "total",
+    "original": "3.90",
+    "cleaned": 3.9
+  },
+  {
+    "id": "X51006619496",
+    "field": "date",
+    "original": "14-12-16",
+    "cleaned": "2016-12-14"
+  },
+  {
+    "id": "X51006619496",
+    "field": "total",
+    "original": "61.65",
+    "cleaned": 61.65
+  },
+  {
+    "id": "X51006414485",
+    "field": "date",
+    "original": "11 APR 2018",
+    "cleaned": "2018-04-11"
+  },
+  {
+    "id": "X51006414485",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51007846305",
+    "field": "date",
+    "original": "10/06/2018",
+    "cleaned": "2018-06-10"
+  },
+  {
+    "id": "X51007846305",
+    "field": "total",
+    "original": "127.35",
+    "cleaned": 127.35
+  },
+  {
+    "id": "X51006556852",
+    "field": "date",
+    "original": "11/09/2017",
+    "cleaned": "2017-09-11"
+  },
+  {
+    "id": "X51006556852",
+    "field": "total",
+    "original": "65.50",
+    "cleaned": 65.5
+  },
+  {
+    "id": "X51005442344",
+    "field": "date",
+    "original": "13/03/2018",
+    "cleaned": "2018-03-13"
+  },
+  {
+    "id": "X51005442344",
+    "field": "total",
+    "original": "100.90",
+    "cleaned": 100.9
+  },
+  {
+    "id": "X51006619694",
+    "field": "date",
+    "original": "11/02/16",
+    "cleaned": "2016-02-11"
+  },
+  {
+    "id": "X51006619694",
+    "field": "total",
+    "original": "2.56",
+    "cleaned": 2.56
+  },
+  {
+    "id": "X51008123599",
+    "field": "date",
+    "original": "17/06/2018",
+    "cleaned": "2018-06-17"
+  },
+  {
+    "id": "X51008123599",
+    "field": "total",
+    "original": "28.30",
+    "cleaned": 28.3
+  },
+  {
+    "id": "X51005442378",
+    "field": "date",
+    "original": "23/03/2018",
+    "cleaned": "2018-03-23"
+  },
+  {
+    "id": "X51005442378",
+    "field": "total",
+    "original": "10.00",
+    "cleaned": 10.0
+  },
+  {
+    "id": "X51008114321",
+    "field": "date",
+    "original": "03/06/18",
+    "cleaned": "2018-06-03"
+  },
+  {
+    "id": "X51008114321",
+    "field": "total",
+    "original": "100.00",
+    "cleaned": 100.0
+  },
+  {
+    "id": "X51006647932",
+    "field": "date",
+    "original": "14/05/2018",
+    "cleaned": "2018-05-14"
+  },
+  {
+    "id": "X51006647932",
+    "field": "total",
+    "original": "87.10",
+    "cleaned": 87.1
+  },
+  {
+    "id": "X51006619696",
+    "field": "date",
+    "original": "03-02-16",
+    "cleaned": "2016-02-03"
+  },
+  {
+    "id": "X51006619696",
+    "field": "total",
+    "original": "82.80",
+    "cleaned": 82.8
+  },
+  {
+    "id": "X51005444045",
+    "field": "date",
+    "original": "19-03-18",
+    "cleaned": "2018-03-19"
+  },
+  {
+    "id": "X51005444045",
+    "field": "total",
+    "original": "11.40",
+    "cleaned": 11.4
+  },
+  {
+    "id": "X51006311767",
+    "field": "date",
+    "original": "29/03/2018",
+    "cleaned": "2018-03-29"
+  },
+  {
+    "id": "X51006311767",
+    "field": "total",
+    "original": "48.95",
+    "cleaned": 48.95
+  },
+  {
+    "id": "X51005663324",
+    "field": "date",
+    "original": "28/12/2017",
+    "cleaned": "2017-12-28"
+  },
+  {
+    "id": "X51005663324",
+    "field": "total",
+    "original": "465.34",
+    "cleaned": 465.34
+  },
+  {
+    "id": "X51005442346",
+    "field": "date",
+    "original": "15/03/2018",
+    "cleaned": "2018-03-15"
+  },
+  {
+    "id": "X51005442346",
+    "field": "total",
+    "original": "8.00",
+    "cleaned": 8.0
+  },
+  {
+    "id": "X51006913007",
+    "field": "date",
+    "original": "27/05/2018",
+    "cleaned": "2018-05-27"
+  },
+  {
+    "id": "X51006913007",
+    "field": "total",
+    "original": "99.90",
+    "cleaned": 99.9
+  },
+  {
+    "id": "X51007846307",
+    "field": "date",
+    "original": "12 JUN 2018",
+    "cleaned": "2018-06-12"
+  },
+  {
+    "id": "X51007846307",
+    "field": "total",
+    "original": "RM7.70",
+    "cleaned": 7.7
+  },
+  {
+    "id": "X51006392122",
+    "field": "date",
+    "original": "19/06/17",
+    "cleaned": "2017-06-19"
+  },
+  {
+    "id": "X51006392122",
+    "field": "total",
+    "original": "45.00",
+    "cleaned": 45.0
+  },
+  {
+    "id": "X51006008073",
+    "field": "date",
+    "original": "12/01/2018",
+    "cleaned": "2018-01-12"
+  },
+  {
+    "id": "X51006008073",
+    "field": "total",
+    "original": "100.00",
+    "cleaned": 100.0
+  },
+  {
+    "id": "X51007339117",
+    "field": "date",
+    "original": "01/11/2017",
+    "cleaned": "2017-11-01"
+  },
+  {
+    "id": "X51007339117",
+    "field": "total",
+    "original": "33.50",
+    "cleaned": 33.5
+  },
+  {
+    "id": "X51006856981",
+    "field": "date",
+    "original": "07/07/17",
+    "cleaned": "2017-07-07"
+  },
+  {
+    "id": "X51006856981",
+    "field": "total",
+    "original": "13.78",
+    "cleaned": 13.78
+  },
+  {
+    "id": "X51005568829",
+    "field": "date",
+    "original": "02/02/2017",
+    "cleaned": "2017-02-02"
+  },
+  {
+    "id": "X51005568829",
+    "field": "total",
+    "original": "92.80",
+    "cleaned": 92.8
+  },
+  {
+    "id": "X51006557179",
+    "field": "date",
+    "original": "22/10/2017",
+    "cleaned": "2017-10-22"
+  },
+  {
+    "id": "X51006557179",
+    "field": "total",
+    "original": "34.21",
+    "cleaned": 34.21
+  },
+  {
+    "id": "X51007231365",
+    "field": "date",
+    "original": "05 MAY 18",
+    "cleaned": "2018-05-05"
+  },
+  {
+    "id": "X51007231365",
+    "field": "total",
+    "original": "28.50",
+    "cleaned": 28.5
+  },
+  {
+    "id": "X51005663278",
+    "field": "date",
+    "original": "23/12/17",
+    "cleaned": "2017-12-23"
+  },
+  {
+    "id": "X51005663278",
+    "field": "total",
+    "original": "73.30",
+    "cleaned": 73.3
+  },
+  {
+    "id": "X51008142005",
+    "field": "date",
+    "original": "28-04-2018",
+    "cleaned": "2020-04-28"
+  },
+  {
+    "id": "X51008142005",
+    "field": "total",
+    "original": "65.70",
+    "cleaned": 65.7
+  },
+  {
+    "id": "X51008042777",
+    "field": "date",
+    "original": "26-05-2018",
+    "cleaned": "2020-05-26"
+  },
+  {
+    "id": "X51008042777",
+    "field": "total",
+    "original": "4.80",
+    "cleaned": 4.8
+  },
+  {
+    "id": "X00016469622",
+    "field": "date",
+    "original": "25/12/2018",
+    "cleaned": "2018-12-25"
+  },
+  {
+    "id": "X00016469622",
+    "field": "total",
+    "original": "80.90",
+    "cleaned": 80.9
+  },
+  {
+    "id": "X51006389884",
+    "field": "date",
+    "original": "22-11-17",
+    "cleaned": "2017-11-22"
+  },
+  {
+    "id": "X51006389884",
+    "field": "total",
+    "original": "182.00",
+    "cleaned": 182.0
+  },
+  {
+    "id": "X51005361897",
+    "field": "date",
+    "original": "17/01/2018",
+    "cleaned": "2018-01-17"
+  },
+  {
+    "id": "X51005361897",
+    "field": "total",
+    "original": "27.55",
+    "cleaned": 27.55
+  },
+  {
+    "id": "X51005361883",
+    "field": "date",
+    "original": "18/01/2018",
+    "cleaned": "2018-01-18"
+  },
+  {
+    "id": "X51005361883",
+    "field": "total",
+    "original": "4.90",
+    "cleaned": 4.9
+  },
+  {
+    "id": "X51006619709",
+    "field": "date",
+    "original": "24-01-16",
+    "cleaned": "2016-01-24"
+  },
+  {
+    "id": "X51006619709",
+    "field": "total",
+    "original": "RM 57.40",
+    "cleaned": 57.4
+  },
+  {
+    "id": "X51008164997",
+    "field": "date",
+    "original": "15-06-2018",
+    "cleaned": "2020-06-15"
+  },
+  {
+    "id": "X51008164997",
+    "field": "total",
+    "original": "148.50",
+    "cleaned": 148.5
+  },
+  {
+    "id": "X51005663293",
+    "field": "date",
+    "original": "14-02-2018",
+    "cleaned": "2020-02-14"
+  },
+  {
+    "id": "X51005663293",
+    "field": "total",
+    "original": "30.30",
+    "cleaned": 30.3
+  },
+  {
+    "id": "X51008164996",
+    "field": "date",
+    "original": "17-06-2018",
+    "cleaned": "2020-06-17"
+  },
+  {
+    "id": "X51008164996",
+    "field": "total",
+    "original": "58.00",
+    "cleaned": 58.0
+  },
+  {
+    "id": "X51006620189",
+    "field": "date",
+    "original": "11-05-16",
+    "cleaned": "2016-05-11"
+  },
+  {
+    "id": "X51006620189",
+    "field": "total",
+    "original": "177.20",
+    "cleaned": 177.2
+  },
+  {
+    "id": "X51006401869",
+    "field": "date",
+    "original": "09/02/17",
+    "cleaned": "2017-02-09"
+  },
+  {
+    "id": "X51006401869",
+    "field": "total",
+    "original": "19.20",
+    "cleaned": 19.2
+  },
+  {
+    "id": "X51008114281",
+    "field": "date",
+    "original": "04-06-18",
+    "cleaned": "2018-06-04"
+  },
+  {
+    "id": "X51008114281",
+    "field": "total",
+    "original": "23.40",
+    "cleaned": 23.4
+  },
+  {
+    "id": "X00016469623",
+    "field": "date",
+    "original": "18-11-18",
+    "cleaned": "2018-11-18"
+  },
+  {
+    "id": "X00016469623",
+    "field": "total",
+    "original": "30.90",
+    "cleaned": 30.9
+  },
+  {
+    "id": "X51005745296",
+    "field": "date",
+    "original": "09-04-2018",
+    "cleaned": "2020-04-09"
+  },
+  {
+    "id": "X51005745296",
+    "field": "total",
+    "original": "31.00",
+    "cleaned": 31.0
+  },
+  {
+    "id": "X51008142038",
+    "field": "date",
+    "original": "28-01-18",
+    "cleaned": "2018-01-28"
+  },
+  {
+    "id": "X51008142038",
+    "field": "total",
+    "original": "27.90",
+    "cleaned": 27.9
+  },
+  {
+    "id": "X51006329399",
+    "field": "date",
+    "original": "31/03/2017",
+    "cleaned": "2017-03-31"
+  },
+  {
+    "id": "X51006329399",
+    "field": "total",
+    "original": "12.15",
+    "cleaned": 12.15
+  },
+  {
+    "id": "X51008164969",
+    "field": "date",
+    "original": "14-06-2018",
+    "cleaned": "2020-06-14"
+  },
+  {
+    "id": "X51008164969",
+    "field": "total",
+    "original": "59.00",
+    "cleaned": 59.0
+  },
+  {
+    "id": "X51006620176",
+    "field": "date",
+    "original": "22-04-16",
+    "cleaned": "2016-04-22"
+  },
+  {
+    "id": "X51006620176",
+    "field": "total",
+    "original": "RM 12.50",
+    "cleaned": 12.5
+  },
+  {
+    "id": "X51006414519",
+    "field": "date",
+    "original": "06/04/2018",
+    "cleaned": "2018-04-06"
+  },
+  {
+    "id": "X51006414519",
+    "field": "total",
+    "original": "50.00",
+    "cleaned": 50.0
+  },
+  {
+    "id": "X51005663279",
+    "field": "date",
+    "original": "28/12/2017",
+    "cleaned": "2017-12-28"
+  },
+  {
+    "id": "X51005663279",
+    "field": "total",
+    "original": "148.40",
+    "cleaned": 148.4
+  },
+  {
+    "id": "X51005306399",
+    "field": "date",
+    "original": "18/03/18",
+    "cleaned": "2018-03-18"
+  },
+  {
+    "id": "X51005306399",
+    "field": "total",
+    "original": "86.00",
+    "cleaned": 86.0
+  },
+  {
+    "id": "X51005230617",
+    "field": "date",
+    "original": "18/01/2018",
+    "cleaned": "2018-01-18"
+  },
+  {
+    "id": "X51005230617",
+    "field": "total",
+    "original": "26.60",
+    "cleaned": 26.6
+  },
+  {
+    "id": "X51007231370",
+    "field": "date",
+    "original": "06/05/2018",
+    "cleaned": "2018-05-06"
+  },
+  {
+    "id": "X51007231370",
+    "field": "total",
+    "original": "15.15",
+    "cleaned": 15.15
+  },
+  {
+    "id": "X51006557193",
+    "field": "date",
+    "original": "14/10/2017",
+    "cleaned": "2017-10-14"
+  },
+  {
+    "id": "X51006557193",
+    "field": "total",
+    "original": "33.80",
+    "cleaned": 33.8
+  },
+  {
+    "id": "X51006555784",
+    "field": "date",
+    "original": "30/08/2017",
+    "cleaned": "2017-08-30"
+  },
+  {
+    "id": "X51006555784",
+    "field": "total",
+    "original": "53.14",
+    "cleaned": 53.14
+  },
+  {
+    "id": "X51006557178",
+    "field": "date",
+    "original": "25/10/2017",
+    "cleaned": "2017-10-25"
+  },
+  {
+    "id": "X51006557178",
+    "field": "total",
+    "original": "35.01",
+    "cleaned": 35.01
+  },
+  {
+    "id": "X51006414733",
+    "field": "date",
+    "original": "01/04/2018",
+    "cleaned": "2018-04-01"
+  },
+  {
+    "id": "X51006414733",
+    "field": "total",
+    "original": "122.80",
+    "cleaned": 122.8
+  },
+  {
+    "id": "X51006555814",
+    "field": "date",
+    "original": "27/07/2017",
+    "cleaned": "2017-07-27"
+  },
+  {
+    "id": "X51006555814",
+    "field": "total",
+    "original": "94.19",
+    "cleaned": 94.19
+  },
+  {
+    "id": "X51007339658",
+    "field": "date",
+    "original": "04/09/2017",
+    "cleaned": "2017-09-04"
+  },
+  {
+    "id": "X51007339658",
+    "field": "total",
+    "original": "28.00",
+    "cleaned": 28.0
+  },
+  {
+    "id": "X51005442384",
+    "field": "date",
+    "original": "19 MAR 2018",
+    "cleaned": "2018-03-19"
+  },
+  {
+    "id": "X51005442384",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51005433541",
+    "field": "date",
+    "original": "14 MAR 2018",
+    "cleaned": "2018-03-14"
+  },
+  {
+    "id": "X51005433541",
+    "field": "total",
+    "original": "$8.20",
+    "cleaned": 8.2
+  },
+  {
+    "id": "X51006619697",
+    "field": "date",
+    "original": "13-02-2016",
+    "cleaned": "2020-02-13"
+  },
+  {
+    "id": "X51006619697",
+    "field": "total",
+    "original": "RM96.20",
+    "cleaned": 96.2
+  }
+]

@@ -4,4 +4,6 @@ __pycache__/
 output/*
 .DS_Store
 test_output.json
-sroie_dataset/*
+sroie_dataset_experiment/train/*
+sroie_dataset_experiment/train_cleaned.jsonl
+sroie_dataset_experiment/train.jsonl
