@@ -10,6 +10,10 @@ from typing import Literal
 class BrainResponse(BaseModel):
     decision: Literal["stop", "continue"] = Field(description="The decision to make", default="continue")
     reason: str = Field(description="The reason for the decision", default="")
+    changes: list[str] = Field(
+        description="Concrete list of prompt/schema changes made in this decision.",
+        default_factory=list,
+    )
     updated_prompt: str = Field(description="The updated prompt", default="")
     updated_schema: dict = Field(description="The updated schema", default_factory=dict)
 
@@ -70,13 +74,14 @@ def _extract_json_from_content(content) -> dict:
 
 
 def get_brain_decision(
-    metrics, prompt, schema, evaluator_config, mismatch_examples=None, hints=None
+    metrics, prompt, schema, evaluator_config, mismatch_examples=None, hints=None, performance_worsened=False
 ):
     """
     Asks the AI model if the results meet the success thresholds.
     Returns: {
         "decision": "stop/continue",
         "reason": "...",
+        "changes": ["...", "..."],
         "updated_prompt": "...",
         "updated_schema": {...}
     }
@@ -94,6 +99,9 @@ IMPORTANT:
 - Study the mismatch examples carefully. Look at exact formatting differences (e.g. time formats, casing, wording).
 - The updated prompt and schema must produce output that matches the ground truth format EXACTLY.
 - Do NOT just add vague instructions — be specific about expected formats based on what the ground truth shows.
+- Provide a "changes" array containing concise, concrete change items.
+- Each item in "changes" must describe one specific modification made to prompt/schema.
+Do not hardcode the values in the prompt or schema, you can give examples but invent similar values to the ground truth.
 """
 
     user_prompt = f"""Metrics: {json.dumps(metrics)}
@@ -119,6 +127,11 @@ USER HINTS:
 
 Consider these hints when improving the prompt and schema."""
 
+    if performance_worsened:
+        user_prompt += """
+
+WARNING: Performance worsened compared to previous iteration. Be very conservative with changes. Focus on reverting to previous working configuration or making minimal, targeted fixes only."""
+
     messages = [SystemMessage(content=system_prompt), UserMessage(content=user_prompt)]
 
     try:
@@ -139,6 +152,7 @@ Consider these hints when improving the prompt and schema."""
             "{\n"
             '  \"decision\": \"stop\" or \"continue\",\n'
             '  \"reason\": \"...\",\n'
+            '  \"changes\": [\"specific change 1\", \"specific change 2\"],\n'
             '  \"updated_prompt\": \"the full improved prompt text\",\n'
             '  \"updated_schema\": { \"... the full improved schema object ...\" }\n'
             "}"

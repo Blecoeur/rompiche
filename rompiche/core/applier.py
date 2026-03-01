@@ -78,19 +78,3 @@ def apply_suggestions(current_prompt, current_schema, suggestions):
                     ]
 
     return updated_prompt, updated_schema
-
-
-# Example usage
-if __name__ == "__main__":
-    current_prompt = "Extract the title and date from the text."
-    current_schema = {"title": "str", "date": "YYYY-MM-DD"}
-    suggestions = [
-        "Add examples of titles with suffixes (e.g., 'Workshop').",
-        "Clarify date format in prompt (e.g., 'YYYY-MM-DD').",
-    ]
-
-    new_prompt, new_schema = apply_suggestions(
-        current_prompt, current_schema, suggestions
-    )
-    print("Updated prompt:", new_prompt)
-    print("Updated schema:", new_schema)

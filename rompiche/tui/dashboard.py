@@ -494,8 +494,21 @@ class LiveDashboard(App):
                 decision = update.get("decision", "continue")
                 summary = update.get("summary", "No summary provided.")
                 timestamp = update.get("timestamp", "--:--:--")
+                raw_changes = update.get("changes", [])
+                if isinstance(raw_changes, list):
+                    changes = [str(item).strip() for item in raw_changes if str(item).strip()]
+                elif isinstance(raw_changes, str) and raw_changes.strip():
+                    changes = [raw_changes.strip()]
+                else:
+                    changes = []
+                if not changes:
+                    changes = [summary]
+
                 content += f"{i}. [{timestamp}] Iteration {iteration} -> {decision}\n"
-                content += f"   {summary}\n"
+                content += "   Changes:\n"
+                for change in changes:
+                    content += f"   - {change}\n"
+                content += "\n"
 
             if content != self._last_updates_text:
                 updates_content.update(content)

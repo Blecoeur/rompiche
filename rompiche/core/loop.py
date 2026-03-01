@@ -10,6 +10,17 @@ import json
 import time
 
 
+def _normalize_update_changes(changes: Any) -> list[str]:
+    """Normalize update changes into a non-empty list of strings."""
+    if isinstance(changes, list):
+        normalized = [str(item).strip() for item in changes if str(item).strip()]
+        if normalized:
+            return normalized
+    elif isinstance(changes, str) and changes.strip():
+        return [changes.strip()]
+    return []
+
+
 def _initialize_loop(
     initial_prompt: str,
     initial_schema: Dict[str, Any],
@@ -139,6 +150,7 @@ def _consult_brain(
     tracker: MetricsTracker,
     use_tui: bool,
     iteration: int,
+    performance_worsened: bool = False,
 ) -> Dict | None:
     """Consult the brain for optimization decisions."""
     if use_tui and tracker:
@@ -155,6 +167,7 @@ def _consult_brain(
             evaluator_config,
             mismatch_examples,
             hints,
+            performance_worsened,
         )
         
         if hasattr(get_brain_decision, "tokens_used") and tracker:
@@ -168,10 +181,12 @@ def _consult_brain(
         return decision
     except Exception as e:
         if tracker:
+            error_message = f"Brain consultation failed: {e}"
             tracker.add_brain_update({
                 "iteration": iteration + 1,
                 "decision": "error",
-                "summary": f"Brain consultation failed: {e}",
+                "summary": error_message,
+                "changes": [error_message],
             })
         if use_tui and tracker:
             tracker.update_status(f"Error consulting brain: {e}")
@@ -189,14 +204,22 @@ def _apply_brain_decision(
     iteration: int,
     tracker: MetricsTracker,
     use_tui: bool,
+    previous_metrics: Dict | None = None,
 ) -> tuple[str, Dict[str, Any], bool]:
     """Apply brain decision and return updated prompt/schema."""
     if decision["decision"] == "stop":
+        reason = decision.get("reason", "").strip()
+        stop_summary = reason or "Brain decided to stop optimization."
+        stop_changes = _normalize_update_changes(decision.get("changes"))
+        if not stop_changes:
+            stop_changes = [stop_summary]
+
         if tracker:
             tracker.add_brain_update({
                 "iteration": iteration + 1,
                 "decision": "stop",
-                "summary": decision.get("reason", "Brain decided to stop optimization."),
+                "summary": stop_summary,
+                "changes": stop_changes,
             })
         if use_tui and tracker:
             tracker.update_status("🤖 Brain decided to stop optimization.")
@@ -218,10 +241,13 @@ def _apply_brain_decision(
         current_prompt = decision["updated_prompt"]
     if "updated_schema" in decision:
         current_schema = decision["updated_schema"]
-    
+
     if tracker:
         tracker.set_active_configuration(current_prompt, current_schema)
+        reason = decision.get("reason", "").strip()
         summary = decision.get("update_summary")
+        change_items = _normalize_update_changes(decision.get("changes"))
+
         if not summary:
             changed_parts = []
             if prompt_was_updated:
@@ -232,13 +258,22 @@ def _apply_brain_decision(
                 summary = f"Updated {', '.join(changed_parts)}."
             else:
                 summary = "No prompt/schema changes in this decision."
-            reason = decision.get("reason")
             if reason:
                 summary = f"{summary} Reason: {reason}"
+
+        if not change_items:
+            if reason:
+                change_items.append(reason)
+            elif prompt_was_updated or schema_was_updated:
+                change_items.append("No detailed changes were returned by the brain.")
+        if not change_items:
+            change_items = ["No prompt/schema changes in this decision."]
+
         tracker.add_brain_update({
             "iteration": iteration + 1,
             "decision": decision.get("decision", "continue"),
             "summary": summary,
+            "changes": change_items,
         })
     
     if use_tui and tracker:
@@ -248,6 +283,24 @@ def _apply_brain_decision(
         print(f"Updated schema: {json.dumps(current_schema, indent=2)}")
     
     return current_prompt, current_schema, False
+
+
+def _compare_metrics(previous: Dict, current: Dict) -> bool:
+    """Compare metrics to determine if performance worsened."""
+    # Simple comparison: check if any metric value decreased
+    for field, field_metrics in current.items():
+        if field in previous:
+            prev_value = previous[field].get("value", 0)
+            curr_value = field_metrics.get("value", 0)
+            # For accuracy/precision metrics, lower is worse
+            if field in ["accuracy", "precision", "recall", "f1"]:
+                if curr_value < prev_value:
+                    return True
+            # For error/loss metrics, higher is worse
+            elif field in ["error_rate", "loss"]:
+                if curr_value > prev_value:
+                    return True
+    return False
 
 
 def run_full_optimization_loop(
@@ -264,6 +317,7 @@ def run_full_optimization_loop(
     """Main optimization loop with configurable parameters and optional TUI support"""
     current_prompt = initial_prompt
     current_schema = initial_schema
+    previous_metrics = None
     
     # Initialize loop state
     data, evaluator = _initialize_loop(
@@ -323,7 +377,20 @@ def run_full_optimization_loop(
         else:
             print(f"Found {len(mismatch_examples)} mismatch examples")
         
-        # 5. Consult brain
+        # 5. Check if performance worsened
+        performance_worsened = False
+        if previous_metrics and _compare_metrics(previous_metrics, metrics):
+            performance_worsened = True
+            if use_tui and tracker:
+                tracker.update_status("⚠️ Performance worsened! Reverting to previous configuration...")
+            else:
+                print("⚠️ Performance worsened! Reverting to previous configuration...")
+            # Revert to previous prompt/schema
+            current_prompt, current_schema = previous_metrics.get("prompt", current_prompt), previous_metrics.get("schema", current_schema)
+            if tracker:
+                tracker.set_active_configuration(current_prompt, current_schema)
+        
+        # 6. Consult brain
         decision = _consult_brain(
             metrics,
             current_prompt,
@@ -333,12 +400,19 @@ def run_full_optimization_loop(
             tracker,
             use_tui,
             iteration,
+            performance_worsened,
         )
         
         if decision is None:
+            # Store current state for next iteration
+            previous_metrics = {
+                "metrics": metrics,
+                "prompt": current_prompt,
+                "schema": current_schema,
+            }
             continue
         
-        # 6. Apply brain decision
+        # 7. Apply brain decision
         current_prompt, current_schema, should_stop = _apply_brain_decision(
             decision,
             current_prompt,
@@ -346,10 +420,18 @@ def run_full_optimization_loop(
             iteration,
             tracker,
             use_tui,
+            previous_metrics,
         )
         
         if should_stop:
             break
+        
+        # Store current state for next iteration
+        previous_metrics = {
+            "metrics": metrics,
+            "prompt": current_prompt,
+            "schema": current_schema,
+        }
     
     # Finalize
     if use_tui and tracker:
