@@ -21,6 +21,24 @@ def _normalize_update_changes(changes: Any) -> list[str]:
     return []
 
 
+def _has_meaningful_prompt_update(updated_prompt: Any, current_prompt: str) -> bool:
+    """Return True when the brain provided a non-empty changed prompt."""
+    return (
+        isinstance(updated_prompt, str)
+        and updated_prompt.strip() != ""
+        and updated_prompt != current_prompt
+    )
+
+
+def _has_meaningful_schema_update(updated_schema: Any, current_schema: Dict[str, Any]) -> bool:
+    """Return True when the brain provided a non-empty changed schema."""
+    return (
+        isinstance(updated_schema, dict)
+        and bool(updated_schema)
+        and updated_schema != current_schema
+    )
+
+
 def _initialize_loop(
     initial_prompt: str,
     initial_schema: Dict[str, Any],
@@ -228,19 +246,16 @@ def _apply_brain_decision(
         
         return current_prompt, current_schema, True
     
-    prompt_was_updated = (
-        "updated_prompt" in decision
-        and decision["updated_prompt"] != current_prompt
-    )
-    schema_was_updated = (
-        "updated_schema" in decision
-        and decision["updated_schema"] != current_schema
-    )
-    
-    if "updated_prompt" in decision:
-        current_prompt = decision["updated_prompt"]
-    if "updated_schema" in decision:
-        current_schema = decision["updated_schema"]
+    updated_prompt = decision.get("updated_prompt")
+    updated_schema = decision.get("updated_schema")
+
+    prompt_was_updated = _has_meaningful_prompt_update(updated_prompt, current_prompt)
+    schema_was_updated = _has_meaningful_schema_update(updated_schema, current_schema)
+
+    if prompt_was_updated:
+        current_prompt = updated_prompt
+    if schema_was_updated:
+        current_schema = updated_schema
 
     if tracker:
         tracker.set_active_configuration(current_prompt, current_schema)

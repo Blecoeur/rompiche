@@ -14,8 +14,14 @@ class BrainResponse(BaseModel):
         description="Concrete list of prompt/schema changes made in this decision.",
         default_factory=list,
     )
-    updated_prompt: str = Field(description="The updated prompt", default="")
-    updated_schema: dict = Field(description="The updated schema", default_factory=dict)
+    updated_prompt: str | None = Field(
+        description="The full updated prompt text, or null if no prompt change.",
+        default=None,
+    )
+    updated_schema: dict | None = Field(
+        description="The full updated schema object, or null if no schema change.",
+        default=None,
+    )
 
 
 def _track_brain_tokens(response) -> None:
@@ -101,6 +107,7 @@ IMPORTANT:
 - Do NOT just add vague instructions — be specific about expected formats based on what the ground truth shows.
 - Provide a "changes" array containing concise, concrete change items.
 - Each item in "changes" must describe one specific modification made to prompt/schema.
+- Use null for "updated_prompt" and/or "updated_schema" when that part is unchanged.
 Do not hardcode the values in the prompt or schema, you can give examples but invent similar values to the ground truth.
 """
 
@@ -153,8 +160,8 @@ WARNING: Performance worsened compared to previous iteration. Be very conservati
             '  \"decision\": \"stop\" or \"continue\",\n'
             '  \"reason\": \"...\",\n'
             '  \"changes\": [\"specific change 1\", \"specific change 2\"],\n'
-            '  \"updated_prompt\": \"the full improved prompt text\",\n'
-            '  \"updated_schema\": { \"... the full improved schema object ...\" }\n'
+            '  \"updated_prompt\": \"the full improved prompt text\" or null,\n'
+            '  \"updated_schema\": { \"... the full improved schema object ...\" } or null\n'
             "}"
             "Do not include any extra commentary, markdown, or non-JSON output."
         )
