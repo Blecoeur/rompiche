@@ -147,3 +147,54 @@ def process(input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]) -> 
         process.tokens_used = 0
     process.tokens_used += processor.tokens_used
     return result
+
+
+def build_mismatch_explanation_messages(
+    input_data: Dict[str, Any],
+    prediction: Dict[str, Any],
+    ground_truth: Dict[str, Any],
+    mismatch: Dict[str, Any],
+) -> list:
+    """
+    Build explanation messages for a mismatch from a VLM (image) extraction task.
+    Embeds the source image as a base64 data URI so the LLM can visually verify
+    what the document looks like alongside the prediction/ground-truth delta.
+    Falls back to a text-only message if the image cannot be read.
+    """
+    import json as _json
+
+    field = mismatch.get("field", "unknown")
+    field_score = mismatch.get("field_score", {})
+    image_path = input_data.get("image_path") if isinstance(input_data, dict) else None
+
+    pred_value = prediction.get(field) if isinstance(prediction, dict) else prediction
+    gt_value = ground_truth.get(field) if isinstance(ground_truth, dict) else ground_truth
+
+    text_part = {
+        "type": "text",
+        "text": (
+            f"Field with mismatch: {field}\n"
+            f"Score: {_json.dumps(field_score)}\n\n"
+            f"Predicted value: {_json.dumps(pred_value)}\n"
+            f"Expected value:  {_json.dumps(gt_value)}\n\n"
+            "The document image is attached below. Explain what caused the mismatch."
+        ),
+    }
+
+    user_content: list = [text_part]
+
+    if image_path:
+        try:
+            with open(image_path, "rb") as f:
+                image_base64 = base64.b64encode(f.read()).decode("utf-8")
+            user_content.append(
+                {
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"},
+                }
+            )
+        except Exception:
+            # If the image can't be read, fall back to mentioning the path
+            text_part["text"] += f"\n(Image path: {image_path} — could not be loaded)"
+
+    return [{"role": "user", "content": user_content}]

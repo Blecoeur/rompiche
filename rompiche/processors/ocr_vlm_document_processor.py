@@ -193,6 +193,45 @@ def process(input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]) -> 
     return result
 
 
+def build_mismatch_explanation_messages(
+    input_data: Dict[str, Any],
+    prediction: Dict[str, Any],
+    ground_truth: Dict[str, Any],
+    mismatch: Dict[str, Any],
+) -> list:
+    """
+    Build explanation messages for a mismatch from an OCR+VLM extraction task.
+    Re-runs OCR on the source image to include the extracted text in the
+    explanation context, so the LLM can reason about whether the mismatch
+    stems from an OCR error or a prompt/schema issue.
+    """
+    import json as _json
+
+    field = mismatch.get("field", "unknown")
+    field_score = mismatch.get("field_score", {})
+    image_path = input_data.get("image_path") if isinstance(input_data, dict) else None
+
+    pred_value = prediction.get(field) if isinstance(prediction, dict) else prediction
+    gt_value = ground_truth.get(field) if isinstance(ground_truth, dict) else ground_truth
+
+    ocr_text = ""
+    if image_path:
+        try:
+            processor = OCRVLMDocumentProcessor()
+            ocr_text = processor._extract_text_with_ocr(image_path)
+        except Exception:
+            ocr_text = "(OCR extraction failed)"
+
+    content = (
+        f"Field with mismatch: {field}\n"
+        f"Score: {_json.dumps(field_score)}\n\n"
+        f"Predicted value: {_json.dumps(pred_value)}\n"
+        f"Expected value:  {_json.dumps(gt_value)}\n\n"
+        f"OCR-extracted text from the source document:\n{ocr_text or '(no text extracted)'}"
+    )
+    return [{"role": "user", "content": content}]
+
+
 def process_ocr_vlm(
     input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any], ocr_engine: str = "tesseract"
 ) -> Dict[str, Any]:

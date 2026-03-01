@@ -52,7 +52,24 @@ def load_config(config_file: str) -> Dict[str, Any]:
 def load_processor_module(
     module_path: str,
 ) -> Callable[[str, str, Dict[str, Any]], Dict[str, Any]]:
-    """Load processor from Python module path or file path."""
+    """Load processor from Python module path or file path.
+
+    Required module export
+    ---------------------
+    process(input_data, prompt, schema) -> Dict[str, Any]
+        Called once per dataset sample during each optimization iteration.
+
+    Optional module export (backward-compatible)
+    --------------------------------------------
+    build_mismatch_explanation_messages(input_data, prediction, ground_truth, mismatch)
+        -> list[dict]
+
+        Hook invoked by the mismatch-explanation stage (before brain consultation)
+        to build the LLM message payload for each mismatch.  The returned list
+        must contain OpenAI-style message dicts (``{"role": ..., "content": ...}``).
+        Content can be a plain string or a list of multimodal parts (e.g. text +
+        image_url).  If this hook is absent, a generic text fallback is used.
+    """
     try:
         module = None
 

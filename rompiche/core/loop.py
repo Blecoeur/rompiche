@@ -1,7 +1,7 @@
-from typing import Dict, Any, Callable
+from typing import Dict, Any, Callable, List, Optional
 from rompiche.core.metrics import MetricsTracker
 from rompiche.core.evaluator import Evaluator
-from rompiche.core.brain import get_brain_decision
+from rompiche.core.brain import get_brain_decision, explain_mismatch
 from rompiche.utils.utils import load_data, split_data
 from rompiche.utils.evaluate_utils import evaluate_all_results
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -9,6 +9,132 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import random
 import time
+
+
+def _get_explanation_hook(processor_func: Callable) -> Optional[Callable]:
+    """
+    Look for an optional `build_mismatch_explanation_messages` hook on the
+    processor.  The hook can be:
+      - a module-level function on the module that defined processor_func,
+      - a method on the bound instance (processor_func.__self__),
+      - or a plain attribute on processor_func itself.
+
+    Returns the callable if found, or None.
+    """
+    # Direct attribute on the callable (e.g. module-level process function
+    # that has the hook attached as an attribute by the module).
+    hook = getattr(processor_func, "build_mismatch_explanation_messages", None)
+    if callable(hook):
+        return hook
+
+    # Bound method on the instance (class-based processor).
+    instance = getattr(processor_func, "__self__", None)
+    if instance is not None:
+        hook = getattr(instance, "build_mismatch_explanation_messages", None)
+        if callable(hook):
+            return hook
+
+    # Module-level function in the same module as processor_func.
+    module = getattr(processor_func, "__module__", None)
+    if module:
+        import sys
+        mod = sys.modules.get(module)
+        if mod is not None:
+            hook = getattr(mod, "build_mismatch_explanation_messages", None)
+            if callable(hook):
+                return hook
+
+    return None
+
+
+def _build_default_explanation_messages(mismatch: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Generic fallback message builder for text-only processors.
+    Returns a single user message with the mismatch details as text.
+    """
+    field = mismatch.get("field", "unknown")
+    prediction = mismatch.get("prediction", {})
+    ground_truth = mismatch.get("ground_truth", {})
+    input_data = mismatch.get("input", {})
+    field_score = mismatch.get("field_score", {})
+
+    content = (
+        f"Field: {field}\n"
+        f"Input: {json.dumps(input_data, indent=2)}\n"
+        f"Prediction: {json.dumps(prediction, indent=2)}\n"
+        f"Ground truth: {json.dumps(ground_truth, indent=2)}\n"
+        f"Field score: {json.dumps(field_score, indent=2)}"
+    )
+    return [{"role": "user", "content": content}]
+
+
+def _explain_mismatches(
+    mismatch_examples: List[Dict[str, Any]],
+    processor_func: Callable,
+    tracker: MetricsTracker,
+    use_tui: bool,
+    status_message: Optional[str] = None,
+) -> List[Dict[str, Any]]:
+    """
+    For each mismatch, call the mismatch-explanation LLM and attach the
+    explanation dict under the key ``"explanation"`` on the mismatch item.
+
+    The explanation messages are built by the processor's optional
+    ``build_mismatch_explanation_messages`` hook.  If the hook is absent the
+    generic text fallback is used instead.
+
+    Returns a new list of enriched mismatch dicts.
+    """
+    if not mismatch_examples:
+        return mismatch_examples
+
+    message = status_message or "🔍 Explaining mismatches..."
+    if use_tui and tracker:
+        tracker.update_status(message)
+    else:
+        print(message)
+
+    hook = _get_explanation_hook(processor_func)
+    enriched: List[Dict[str, Any]] = []
+    before_tokens = getattr(explain_mismatch, "tokens_used", 0)
+
+    for i, mismatch in enumerate(mismatch_examples, start=1):
+        if use_tui and tracker:
+            tracker.update_status(
+                f"{message.split(':')[0]}: explaining mismatch {i}/{len(mismatch_examples)}..."
+            )
+
+        try:
+            if hook is not None:
+                messages = hook(
+                    mismatch.get("input"),
+                    mismatch.get("prediction"),
+                    mismatch.get("ground_truth"),
+                    mismatch,
+                )
+            else:
+                messages = _build_default_explanation_messages(mismatch)
+
+            explanation = explain_mismatch(messages)
+        except Exception as e:
+            explanation = {
+                "issue_summary": f"Explanation error: {e}",
+                "likely_root_cause": "",
+                "format_rules_violated": [],
+                "fix_suggestion": "",
+            }
+
+        enriched_mismatch = dict(mismatch)
+        enriched_mismatch["explanation"] = explanation
+        enriched.append(enriched_mismatch)
+
+    # Track only the tokens consumed during this call (delta pattern)
+    after_tokens = getattr(explain_mismatch, "tokens_used", 0)
+    stage_tokens = max(0, after_tokens - before_tokens)
+    if tracker and stage_tokens:
+        tracker.add_tokens(stage_tokens)
+
+    return enriched
 
 
 def _normalize_update_changes(changes: Any) -> list[str]:
@@ -568,7 +694,7 @@ def run_full_optimization_loop(
     
     for iteration in range(max_iterations):
         has_test_set = bool(test_data)
-        total_steps = 7 if has_test_set else 5
+        total_steps = 8 if has_test_set else 6
 
         if use_tui and tracker and tracker.stopped:
             break
@@ -675,7 +801,7 @@ def run_full_optimization_loop(
         mismatch_examples = train_mismatch_examples
         
         if use_tui and tracker:
-            # Show all mismatch examples collected for this iteration in the UI.
+            # Show mismatch examples collected for this iteration in the UI.
             tracker.mismatch_examples = list(mismatch_examples)
             tracker.update_status(
                 (
@@ -689,11 +815,27 @@ def run_full_optimization_loop(
         
         if train_early_stopped_on_mismatch_limit:
             if use_tui and tracker:
-                tracker.update_status("🎯 Enough mismatch examples collected. Moving to brain consultation...")
+                tracker.update_status("🎯 Enough mismatch examples collected. Moving to mismatch explanation...")
             else:
-                print("🎯 Enough mismatch examples collected. Moving to brain consultation...")
-        
-        # 5. Check if performance worsened
+                print("🎯 Enough mismatch examples collected. Moving to mismatch explanation...")
+
+        # 5. Explain mismatches with LLM before consulting the brain
+        mismatch_examples = _explain_mismatches(
+            mismatch_examples,
+            processor_func,
+            tracker,
+            use_tui,
+            status_message=(
+                f"Step 6/{total_steps}: 🔍 Explaining mismatches..."
+                if has_test_set
+                else f"Step 4/{total_steps}: 🔍 Explaining mismatches..."
+            ),
+        )
+
+        if use_tui and tracker:
+            tracker.mismatch_examples = list(mismatch_examples)
+
+        # 6. Check if performance worsened
         performance_worsened = False
         if previous_metrics and _compare_metrics(previous_metrics, metrics):
             performance_worsened = True
@@ -706,7 +848,7 @@ def run_full_optimization_loop(
             if tracker:
                 tracker.set_active_configuration(current_prompt, current_schema)
         
-        # 6. Consult brain
+        # 7. Consult brain
         decision = _consult_brain(
             metrics,
             current_prompt,
@@ -718,9 +860,9 @@ def run_full_optimization_loop(
             iteration,
             performance_worsened,
             status_message=(
-                f"Step 6/{total_steps}: 🤖 Consulting optimization brain..."
+                f"Step 7/{total_steps}: 🤖 Consulting optimization brain..."
                 if has_test_set
-                else f"Step 4/{total_steps}: 🤖 Consulting optimization brain..."
+                else f"Step 5/{total_steps}: 🤖 Consulting optimization brain..."
             ),
         )
         
@@ -733,7 +875,7 @@ def run_full_optimization_loop(
             }
             continue
         
-        # 7. Apply brain decision
+        # 8. Apply brain decision
         current_prompt, current_schema, should_stop = _apply_brain_decision(
             decision,
             current_prompt,
@@ -743,9 +885,9 @@ def run_full_optimization_loop(
             use_tui,
             previous_metrics,
             status_message=(
-                f"Step 7/{total_steps}: 🤖 Applying brain updates..."
+                f"Step 8/{total_steps}: 🤖 Applying brain updates..."
                 if has_test_set
-                else f"Step 5/{total_steps}: 🤖 Applying brain updates..."
+                else f"Step 6/{total_steps}: 🤖 Applying brain updates..."
             ),
         )
         
@@ -815,11 +957,13 @@ def run_full_optimization_loop(
     # Add token usage information
     processor_tokens = total_processor_tokens
     brain_tokens = getattr(get_brain_decision, "tokens_used", 0)
-    total_tokens = processor_tokens + brain_tokens
+    explainer_tokens = getattr(explain_mismatch, "tokens_used", 0)
+    total_tokens = processor_tokens + brain_tokens + explainer_tokens
     
     result["token_usage"] = {
         "processor_tokens": processor_tokens,
         "brain_tokens": brain_tokens,
+        "explainer_tokens": explainer_tokens,
         "total_tokens": total_tokens,
     }
     

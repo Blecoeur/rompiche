@@ -113,3 +113,30 @@ def process(input_data: Dict[str, Any], prompt: str, schema: Dict[str, Any]) -> 
         process.tokens_used = 0
     process.tokens_used += processor.tokens_used
     return result
+
+
+def build_mismatch_explanation_messages(
+    input_data: Dict[str, Any],
+    prediction: Dict[str, Any],
+    ground_truth: Dict[str, Any],
+    mismatch: Dict[str, Any],
+) -> list:
+    """
+    Build explanation messages for a mismatch from a text extraction task.
+    Returns a single user message with the source text and field delta as plain text.
+    """
+    field = mismatch.get("field", "unknown")
+    field_score = mismatch.get("field_score", {})
+    input_text = input_data.get("text", "") if isinstance(input_data, dict) else str(input_data)
+
+    pred_value = prediction.get(field) if isinstance(prediction, dict) else prediction
+    gt_value = ground_truth.get(field) if isinstance(ground_truth, dict) else ground_truth
+
+    content = (
+        f"Field with mismatch: {field}\n"
+        f"Score: {json.dumps(field_score)}\n\n"
+        f"Source text:\n{input_text}\n\n"
+        f"Predicted value: {json.dumps(pred_value)}\n"
+        f"Expected value:  {json.dumps(gt_value)}"
+    )
+    return [{"role": "user", "content": content}]
